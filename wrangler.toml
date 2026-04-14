@@ -13,7 +13,7 @@ binding = "DB"
 database_name = "durible-orders"
 # After you run `wrangler d1 create durible-orders`, paste the returned
 # database_id here:
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_id = "f015ed66-4987-4b77-a8fe-f0e73eedbc66"
 
 # R2 bucket binding — accessed in the Pages Function as `env.BUCKET`
 [[r2_buckets]]

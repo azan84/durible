@@ -63,7 +63,7 @@ ul {
 
 .logo-img {
   display: block;
-  height: 64px;
+  height: 13px;
   width: auto;
   object-fit: contain;
 }
@@ -708,7 +708,7 @@ ul {
 
 @media (max-width: 480px) {
   .logo-img {
-    height: 52px;
+    height: 10px;
   }
 
   .main-nav {
