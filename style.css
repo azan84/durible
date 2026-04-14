@@ -356,6 +356,40 @@ ul {
   margin-top: 8px;
 }
 
+.items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.item-card {
+  border: 2px solid #000;
+  background: #ffffff;
+  padding: 24px 22px 10px;
+  position: relative;
+}
+
+.item-card-header {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #ffffff;
+  background: #000000;
+  display: inline-block;
+  padding: 6px 14px;
+  margin: -34px 0 18px -12px;
+}
+
+.item-card .form-row {
+  margin-bottom: 18px;
+}
+
+.item-card .form-row:last-child {
+  margin-bottom: 8px;
+}
+
 .total-box {
   background: #f8f8f8;
   border: 1px solid #e0e0e0;

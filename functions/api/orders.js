@@ -6,6 +6,7 @@
 const UNIT_PRICE = 20;
 const SHIPPING_COST = 5;
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+const VALID_DEPARTMENTS = new Set(['ECE', 'MEC', 'MCT', 'BTE', 'MME', 'CIVE', 'Do not include']);
 
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -25,14 +26,14 @@ function genOrderId() {
   return `DUR-${yymmdd}-${rand}`;
 }
 
-async function uploadFile(bucket, file, prefix, orderId) {
+async function uploadFile(bucket, file, prefix, keyBase) {
   if (!file || typeof file.arrayBuffer !== 'function') return null;
   if (file.size === 0) return null;
   if (file.size > MAX_FILE_SIZE) {
     throw new Error(`${prefix} file exceeds 10 MB limit.`);
   }
   const ext = (file.name.split('.').pop() || 'bin').toLowerCase().slice(0, 8);
-  const key = `${prefix}/${orderId}.${ext}`;
+  const key = `${prefix}/${keyBase}.${ext}`;
   await bucket.put(key, file.stream(), {
     httpMetadata: { contentType: file.type || 'application/octet-stream' },
     customMetadata: { originalName: file.name || '' },
@@ -51,14 +52,11 @@ export async function onRequestPost({ request, env }) {
 
     const form = await request.formData();
 
-    // Extract + validate fields
+    // ---- Top-level buyer fields ----
     const full_name = (form.get('full_name') || '').toString().trim();
     const email = (form.get('email') || '').toString().trim();
     const contact_number = (form.get('contact_number') || '').toString().trim();
-    const departments = (form.get('departments') || '').toString().trim();
-    const batches = (form.get('batches') || '').toString().trim();
-    const avatar_choice = (form.get('avatar_choice') || '').toString().trim();
-    const quantity = parseInt(form.get('quantity') || '1', 10);
+    const quantity = parseInt(form.get('quantity') || '0', 10);
     const shipping_method = (form.get('shipping_method') || 'collect').toString().trim();
     const mailing_address = (form.get('mailing_address') || '').toString().trim();
     const notes = (form.get('notes') || '').toString().trim();
@@ -68,11 +66,6 @@ export async function onRequestPost({ request, env }) {
       return jsonResponse({ error: 'Valid email is required.' }, 400);
     if (!contact_number)
       return jsonResponse({ error: 'Contact number is required.' }, 400);
-    if (!departments)
-      return jsonResponse({ error: 'Select at least one department.' }, 400);
-    if (!batches) return jsonResponse({ error: 'Select at least one batch.' }, 400);
-    if (!['male', 'female', 'custom'].includes(avatar_choice))
-      return jsonResponse({ error: 'Pick an avatar option.' }, 400);
     if (!(quantity >= 1 && quantity <= 10))
       return jsonResponse({ error: 'Quantity must be between 1 and 10.' }, 400);
     if (!['collect', 'standard'].includes(shipping_method))
@@ -83,59 +76,131 @@ export async function onRequestPost({ request, env }) {
         400
       );
 
-    const unit_total = quantity * UNIT_PRICE;
-    const shipping_total = shipping_method === 'standard' ? SHIPPING_COST : 0;
-    const total_amount = unit_total + shipping_total;
+    // ---- Per-item fields ----
+    const items = [];
+    for (let i = 0; i < quantity; i++) {
+      const department = (form.get(`item_${i}_department`) || '').toString().trim();
+      const engraving_type = (form.get(`item_${i}_engraving_type`) || '').toString().trim();
+      const engraving_value = (form.get(`item_${i}_engraving_value`) || '').toString().trim();
+      const avatar_choice = (form.get(`item_${i}_avatar_choice`) || '').toString().trim();
 
-    const order_id = genOrderId();
+      if (!department || !VALID_DEPARTMENTS.has(department)) {
+        return jsonResponse(
+          { error: `Keychain #${i + 1}: invalid or missing department.` },
+          400
+        );
+      }
+      if (!['batch', 'matric'].includes(engraving_type)) {
+        return jsonResponse(
+          { error: `Keychain #${i + 1}: invalid engraving type.` },
+          400
+        );
+      }
+      if (!engraving_value) {
+        return jsonResponse(
+          { error: `Keychain #${i + 1}: engraving value is required.` },
+          400
+        );
+      }
+      if (!['male', 'female', 'custom'].includes(avatar_choice)) {
+        return jsonResponse(
+          { error: `Keychain #${i + 1}: invalid avatar choice.` },
+          400
+        );
+      }
+      items.push({
+        index: i,
+        department,
+        engraving_type,
+        engraving_value,
+        avatar_choice,
+        avatar_file: form.get(`item_${i}_avatar_file`),
+      });
+    }
 
-    // Upload files to R2 (keyed by order_id)
-    const avatarFile = form.get('avatar_file');
+    // ---- Payment slip required ----
     const slipFile = form.get('payment_slip');
-
-    if (!slipFile || (slipFile.size && slipFile.size === 0)) {
+    if (!slipFile || (slipFile.size !== undefined && slipFile.size === 0)) {
       return jsonResponse({ error: 'Payment slip is required.' }, 400);
     }
 
-    let avatar_key = null;
+    // ---- Compute totals & generate ID ----
+    const unit_total = quantity * UNIT_PRICE;
+    const shipping_total = shipping_method === 'standard' ? SHIPPING_COST : 0;
+    const total_amount = unit_total + shipping_total;
+    const order_id = genOrderId();
+
+    // ---- Upload files to R2 ----
     let payment_slip_key = null;
     try {
-      avatar_key = await uploadFile(env.BUCKET, avatarFile, 'avatars', order_id);
       payment_slip_key = await uploadFile(env.BUCKET, slipFile, 'payments', order_id);
     } catch (uploadErr) {
       return jsonResponse({ error: uploadErr.message }, 400);
     }
 
-    // Insert into D1
-    await env.DB.prepare(
+    // Upload each custom avatar (if any)
+    for (const it of items) {
+      if (it.avatar_choice === 'custom' && it.avatar_file && it.avatar_file.size > 0) {
+        try {
+          it.avatar_key = await uploadFile(
+            env.BUCKET,
+            it.avatar_file,
+            'avatars',
+            `${order_id}_item${it.index}`
+          );
+        } catch (uploadErr) {
+          return jsonResponse(
+            { error: `Keychain #${it.index + 1}: ${uploadErr.message}` },
+            400
+          );
+        }
+      } else {
+        it.avatar_key = null;
+      }
+    }
+
+    // ---- Insert order + items atomically via D1 batch ----
+    const orderStmt = env.DB.prepare(
       `INSERT INTO orders (
-        order_id, full_name, email, contact_number, departments, batches,
-        avatar_choice, avatar_key, quantity, shipping_method, mailing_address,
-        notes, payment_slip_key, unit_price, shipping_cost, total_amount,
-        status, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-    )
-      .bind(
+        order_id, full_name, email, contact_number, quantity,
+        shipping_method, mailing_address, notes, payment_slip_key,
+        unit_price, shipping_cost, total_amount, status, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    ).bind(
+      order_id,
+      full_name,
+      email,
+      contact_number,
+      quantity,
+      shipping_method,
+      mailing_address,
+      notes,
+      payment_slip_key,
+      UNIT_PRICE,
+      shipping_total,
+      total_amount,
+      'pending',
+      new Date().toISOString()
+    );
+
+    const itemStmts = items.map((it) =>
+      env.DB.prepare(
+        `INSERT INTO order_items (
+          order_id, item_index, department, engraving_type, engraving_value,
+          avatar_choice, avatar_key
+        ) VALUES (?, ?, ?, ?, ?, ?, ?)`
+      ).bind(
         order_id,
-        full_name,
-        email,
-        contact_number,
-        departments,
-        batches,
-        avatar_choice,
-        avatar_key,
-        quantity,
-        shipping_method,
-        mailing_address,
-        notes,
-        payment_slip_key,
-        UNIT_PRICE,
-        shipping_total,
-        total_amount,
-        'pending',
-        new Date().toISOString()
+        it.index,
+        it.department,
+        it.engraving_type,
+        it.engraving_value,
+        it.avatar_choice,
+        it.avatar_key
       )
-      .run();
+    );
+
+    await env.DB.batch([orderStmt, ...itemStmts]);
 
     return jsonResponse({
       ok: true,
