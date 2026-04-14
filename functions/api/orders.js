@@ -1,12 +1,30 @@
-// POST /api/orders — receives the Durible3D order form, writes to D1, uploads files to R2.
-// Bindings required (configured in Cloudflare Pages dashboard):
-//   env.DB      -> D1 database binding named "DB"
-//   env.BUCKET  -> R2 bucket binding named "BUCKET"
+// POST /api/orders — unified endpoint for all Durible3D products.
+// The request must include a `product_type` field; different product types
+// have different required fields (validated below).
+//
+// Bindings required (set in Cloudflare Pages dashboard):
+//   env.DB      -> D1 database binding "DB"
+//   env.BUCKET  -> R2 bucket binding "BUCKET"
 
-const UNIT_PRICE = 20;
 const SHIPPING_COST = 5;
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
-const VALID_DEPARTMENTS = new Set(['ECE', 'MEC', 'MCT', 'BTE', 'MME', 'CIVE', 'Do not include']);
+
+const PRODUCT_CATALOG = {
+  keychain: { name: 'Personalised KOE Alumni Keychain', price: 20 },
+  bizcard: { name: 'Metal Business Card', price: 40 },
+  cablewinder: { name: 'Custom Cable Winder', price: 20 },
+  bagtag: { name: 'Personalised Bag Tag', price: 20 },
+};
+
+const VALID_DEPARTMENTS = new Set([
+  'ECE',
+  'MEC',
+  'MCT',
+  'BTE',
+  'MME',
+  'CIVE',
+  'Do not include',
+]);
 
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -16,7 +34,6 @@ function jsonResponse(body, status = 200) {
 }
 
 function genOrderId() {
-  // e.g. DUR-240415-A7K9
   const d = new Date();
   const yymmdd =
     String(d.getUTCFullYear()).slice(2) +
@@ -41,6 +58,10 @@ async function uploadFile(bucket, file, prefix, keyBase) {
   return key;
 }
 
+function str(form, field) {
+  return (form.get(field) || '').toString().trim();
+}
+
 export async function onRequestPost({ request, env }) {
   try {
     if (!env.DB || !env.BUCKET) {
@@ -52,22 +73,26 @@ export async function onRequestPost({ request, env }) {
 
     const form = await request.formData();
 
-    // ---- Top-level buyer fields ----
-    const full_name = (form.get('full_name') || '').toString().trim();
-    const email = (form.get('email') || '').toString().trim();
-    const contact_number = (form.get('contact_number') || '').toString().trim();
+    const product_type = str(form, 'product_type');
+    const product = PRODUCT_CATALOG[product_type];
+    if (!product) {
+      return jsonResponse({ error: 'Unknown product type.' }, 400);
+    }
+
+    // ---- Common buyer fields ----
+    const full_name = str(form, 'full_name');
+    const contact_number = str(form, 'contact_number');
+    const email = str(form, 'email');
     const quantity = parseInt(form.get('quantity') || '0', 10);
-    const shipping_method = (form.get('shipping_method') || 'collect').toString().trim();
-    const mailing_address = (form.get('mailing_address') || '').toString().trim();
-    const notes = (form.get('notes') || '').toString().trim();
+    const shipping_method = str(form, 'shipping_method') || 'collect';
+    const mailing_address = str(form, 'mailing_address');
+    const notes = str(form, 'notes');
 
     if (!full_name) return jsonResponse({ error: 'Full name is required.' }, 400);
-    if (!email || !email.includes('@'))
-      return jsonResponse({ error: 'Valid email is required.' }, 400);
     if (!contact_number)
       return jsonResponse({ error: 'Contact number is required.' }, 400);
-    if (!(quantity >= 1 && quantity <= 10))
-      return jsonResponse({ error: 'Quantity must be between 1 and 10.' }, 400);
+    if (!(quantity >= 1 && quantity <= 20))
+      return jsonResponse({ error: 'Quantity must be between 1 and 20.' }, 400);
     if (!['collect', 'standard'].includes(shipping_method))
       return jsonResponse({ error: 'Invalid shipping method.' }, 400);
     if (shipping_method === 'standard' && !mailing_address)
@@ -76,131 +101,150 @@ export async function onRequestPost({ request, env }) {
         400
       );
 
-    // ---- Per-item fields ----
-    const items = [];
-    for (let i = 0; i < quantity; i++) {
-      const department = (form.get(`item_${i}_department`) || '').toString().trim();
-      const engraving_type = (form.get(`item_${i}_engraving_type`) || '').toString().trim();
-      const engraving_value = (form.get(`item_${i}_engraving_value`) || '').toString().trim();
-      const avatar_choice = (form.get(`item_${i}_avatar_choice`) || '').toString().trim();
+    // ---- Product-specific validation + details_json ----
+    let details_json = null;
+    let items = null; // only for keychain
+    let logoFile = null; // only for cablewinder
 
-      if (!department || !VALID_DEPARTMENTS.has(department)) {
-        return jsonResponse(
-          { error: `Keychain #${i + 1}: invalid or missing department.` },
-          400
-        );
+    if (product_type === 'keychain') {
+      items = [];
+      for (let i = 0; i < quantity; i++) {
+        const department = str(form, `item_${i}_department`);
+        const engraving_value = str(form, `item_${i}_engraving_value`);
+        const avatar_choice = str(form, `item_${i}_avatar_choice`);
+        if (!department || !VALID_DEPARTMENTS.has(department)) {
+          return jsonResponse(
+            { error: `Keychain #${i + 1}: invalid or missing department.` },
+            400
+          );
+        }
+        if (!engraving_value) {
+          return jsonResponse(
+            { error: `Keychain #${i + 1}: Batch/Matric number is required.` },
+            400
+          );
+        }
+        if (!['male', 'female', 'custom'].includes(avatar_choice)) {
+          return jsonResponse(
+            { error: `Keychain #${i + 1}: invalid avatar choice.` },
+            400
+          );
+        }
+        items.push({
+          index: i,
+          department,
+          engraving_value,
+          avatar_choice,
+          avatar_file: form.get(`item_${i}_avatar_file`),
+        });
       }
-      if (!['batch', 'matric'].includes(engraving_type)) {
-        return jsonResponse(
-          { error: `Keychain #${i + 1}: invalid engraving type.` },
-          400
-        );
+    } else if (product_type === 'bizcard') {
+      if (!email || !email.includes('@'))
+        return jsonResponse({ error: 'Valid email is required.' }, 400);
+      const company_address = str(form, 'company_address');
+      if (!company_address)
+        return jsonResponse({ error: 'Company address is required.' }, 400);
+      details_json = JSON.stringify({ company_address });
+    } else if (product_type === 'cablewinder') {
+      logoFile = form.get('logo_file');
+      if (!logoFile || (logoFile.size !== undefined && logoFile.size === 0)) {
+        return jsonResponse({ error: 'Logo image upload is required.' }, 400);
       }
-      if (!engraving_value) {
-        return jsonResponse(
-          { error: `Keychain #${i + 1}: engraving value is required.` },
-          400
-        );
-      }
-      if (!['male', 'female', 'custom'].includes(avatar_choice)) {
-        return jsonResponse(
-          { error: `Keychain #${i + 1}: invalid avatar choice.` },
-          400
-        );
-      }
-      items.push({
-        index: i,
-        department,
-        engraving_type,
-        engraving_value,
-        avatar_choice,
-        avatar_file: form.get(`item_${i}_avatar_file`),
-      });
+      details_json = JSON.stringify({});
+    } else if (product_type === 'bagtag') {
+      // name + phone already captured as full_name + contact_number
+      details_json = JSON.stringify({});
     }
 
-    // ---- Payment slip required ----
+    // ---- Payment slip ----
     const slipFile = form.get('payment_slip');
     if (!slipFile || (slipFile.size !== undefined && slipFile.size === 0)) {
       return jsonResponse({ error: 'Payment slip is required.' }, 400);
     }
 
-    // ---- Compute totals & generate ID ----
-    const unit_total = quantity * UNIT_PRICE;
+    // ---- Totals ----
+    const unit_total = quantity * product.price;
     const shipping_total = shipping_method === 'standard' ? SHIPPING_COST : 0;
     const total_amount = unit_total + shipping_total;
     const order_id = genOrderId();
 
-    // ---- Upload files to R2 ----
+    // ---- Uploads ----
     let payment_slip_key = null;
+    let logo_key = null;
     try {
       payment_slip_key = await uploadFile(env.BUCKET, slipFile, 'payments', order_id);
+      if (logoFile) {
+        logo_key = await uploadFile(env.BUCKET, logoFile, 'logos', order_id);
+      }
+      if (items) {
+        for (const it of items) {
+          if (it.avatar_choice === 'custom' && it.avatar_file && it.avatar_file.size > 0) {
+            it.avatar_key = await uploadFile(
+              env.BUCKET,
+              it.avatar_file,
+              'avatars',
+              `${order_id}_item${it.index}`
+            );
+          } else {
+            it.avatar_key = null;
+          }
+        }
+      }
     } catch (uploadErr) {
       return jsonResponse({ error: uploadErr.message }, 400);
     }
 
-    // Upload each custom avatar (if any)
-    for (const it of items) {
-      if (it.avatar_choice === 'custom' && it.avatar_file && it.avatar_file.size > 0) {
-        try {
-          it.avatar_key = await uploadFile(
-            env.BUCKET,
-            it.avatar_file,
-            'avatars',
-            `${order_id}_item${it.index}`
-          );
-        } catch (uploadErr) {
-          return jsonResponse(
-            { error: `Keychain #${it.index + 1}: ${uploadErr.message}` },
-            400
-          );
-        }
-      } else {
-        it.avatar_key = null;
-      }
-    }
-
-    // ---- Insert order + items atomically via D1 batch ----
+    // ---- D1 insert ----
     const orderStmt = env.DB.prepare(
       `INSERT INTO orders (
-        order_id, full_name, email, contact_number, quantity,
-        shipping_method, mailing_address, notes, payment_slip_key,
-        unit_price, shipping_cost, total_amount, status, created_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        order_id, product_type, product_name, full_name, email, contact_number,
+        quantity, shipping_method, mailing_address, notes, payment_slip_key,
+        logo_key, unit_price, shipping_cost, total_amount, status,
+        details_json, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     ).bind(
       order_id,
+      product_type,
+      product.name,
       full_name,
-      email,
+      email || null,
       contact_number,
       quantity,
       shipping_method,
       mailing_address,
       notes,
       payment_slip_key,
-      UNIT_PRICE,
+      logo_key,
+      product.price,
       shipping_total,
       total_amount,
       'pending',
+      details_json,
       new Date().toISOString()
     );
 
-    const itemStmts = items.map((it) =>
-      env.DB.prepare(
-        `INSERT INTO order_items (
-          order_id, item_index, department, engraving_type, engraving_value,
-          avatar_choice, avatar_key
-        ) VALUES (?, ?, ?, ?, ?, ?, ?)`
-      ).bind(
-        order_id,
-        it.index,
-        it.department,
-        it.engraving_type,
-        it.engraving_value,
-        it.avatar_choice,
-        it.avatar_key
-      )
-    );
+    const stmts = [orderStmt];
+    if (items) {
+      for (const it of items) {
+        stmts.push(
+          env.DB.prepare(
+            `INSERT INTO order_items (
+              order_id, item_index, department, engraving_value,
+              avatar_choice, avatar_key
+            ) VALUES (?, ?, ?, ?, ?, ?)`
+          ).bind(
+            order_id,
+            it.index,
+            it.department,
+            it.engraving_value,
+            it.avatar_choice,
+            it.avatar_key
+          )
+        );
+      }
+    }
 
-    await env.DB.batch([orderStmt, ...itemStmts]);
+    await env.DB.batch(stmts);
 
     return jsonResponse({
       ok: true,
@@ -216,7 +260,6 @@ export async function onRequestPost({ request, env }) {
   }
 }
 
-// Optional: CORS preflight (same origin so usually not needed, but safe)
 export async function onRequestOptions() {
   return new Response(null, {
     status: 204,

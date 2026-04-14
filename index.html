@@ -3,203 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Durible3D — Personalised KOE Alumni Keychains</title>
+  <title>Durible3D — Custom 3D-Printed Lifestyle Pieces</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="form.js" defer></script>
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="#" class="logo">
-        <span class="logo-mark">D</span>
-        <span class="logo-text">DURIBLE</span>
-        <span class="logo-sub">3D STUDIO</span>
+      <a href="index.html" class="logo-link">
+        <img src="Durible_logo.png" alt="Durible3D" class="logo-img">
       </a>
       <nav class="main-nav">
-        <a href="#home">Home</a>
-        <a href="#product">Product</a>
-        <a href="#order">Order</a>
+        <a href="index.html">Home</a>
+        <a href="#products">Products</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section id="home" class="hero">
+  <section class="hero">
     <div class="hero-inner">
       <h1>PRINTED MEMORIES.<br>TREASURED FOREVER.</h1>
-      <p>Custom 3D-printed keychains celebrating the KOE Alumni legacy. A personalised tribute crafted with precision inside International Islamic University Malaysia.</p>
+      <p>Custom 3D-printed lifestyle pieces crafted with precision inside International Islamic University Malaysia.</p>
     </div>
   </section>
 
-  <!-- PRODUCT -->
-  <section id="product" class="product-section">
+  <!-- PRODUCTS -->
+  <section id="products" class="product-section">
     <div class="container">
       <div class="product-grid">
-        <div class="product-card">
+
+        <a href="keychain.html" class="product-card">
           <div class="product-image">
             <img src="keychain.png" alt="Personalised KOE Alumni Keychain">
           </div>
           <div class="product-info">
             <h2>Personalised KOE Alumni Keychain</h2>
             <p class="product-price">RM 20.00</p>
-            <p class="product-shipping">+ RM 5.00 shipping (West Malaysia)</p>
+            <p class="product-shipping">+ RM 5.00 shipping</p>
           </div>
-        </div>
+        </a>
 
-        <div class="product-card">
+        <a href="bizcard.html" class="product-card">
           <div class="product-image">
-            <img src="keychain.png" alt="KOE Alumni Keychain — Male Avatar">
+            <img src="Biz_card.jpeg" alt="Metal Business Card">
           </div>
           <div class="product-info">
-            <h2>KOE Keychain — Male Avatar</h2>
-            <p class="product-price">RM 20.00</p>
-            <p class="product-shipping">+ RM 5.00 shipping (West Malaysia)</p>
+            <h2>Metal Business Card</h2>
+            <p class="product-price">RM 40.00</p>
+            <p class="product-shipping">+ RM 5.00 shipping</p>
           </div>
-        </div>
+        </a>
 
-        <div class="product-card">
+        <a href="cablewinder.html" class="product-card">
           <div class="product-image">
-            <img src="keychain.png" alt="KOE Alumni Keychain — Female Avatar">
+            <img src="Cable_winder.jpeg" alt="Custom Cable Winder">
           </div>
           <div class="product-info">
-            <h2>KOE Keychain — Female Avatar</h2>
+            <h2>Custom Cable Winder</h2>
             <p class="product-price">RM 20.00</p>
-            <p class="product-shipping">+ RM 5.00 shipping (West Malaysia)</p>
+            <p class="product-shipping">+ RM 5.00 shipping</p>
           </div>
-        </div>
-      </div>
+        </a>
 
-      <div class="product-details">
-        <h3>What You Get</h3>
-        <ul>
-          <li>Custom 3D-printed keychain with your chosen department and batch number</li>
-          <li>Personalised avatar — use the default or upload your own</li>
-          <li>Braided rope attachment in your preferred colour</li>
-          <li>A unique keepsake celebrating your KOE journey</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ORDER FORM -->
-  <section id="order" class="order-section">
-    <div class="container">
-      <div class="order-header">
-        <h2>PLACE YOUR ORDER</h2>
-        <p>Orders close on <strong>18th April 2026</strong>. Fill in the form below to get your personalised KOE Alumni Keychain.</p>
-      </div>
-
-      <div class="form-wrapper">
-        <form id="orderForm" class="order-form" novalidate>
-          <div class="form-row">
-            <label for="full_name">Full Name <span class="req">*</span></label>
-            <input type="text" id="full_name" name="full_name" required>
+        <a href="bagtag.html" class="product-card">
+          <div class="product-image">
+            <img src="Bag_tag.jpeg" alt="Personalised Bag Tag">
           </div>
-
-          <div class="form-row">
-            <label for="email">Email <span class="req">*</span></label>
-            <input type="email" id="email" name="email" required>
+          <div class="product-info">
+            <h2>Personalised Bag Tag</h2>
+            <p class="product-price">RM 20.00</p>
+            <p class="product-shipping">+ RM 5.00 shipping</p>
           </div>
+        </a>
 
-          <div class="form-row">
-            <label for="contact_number">Contact Number <span class="req">*</span></label>
-            <input type="tel" id="contact_number" name="contact_number" required placeholder="e.g. 012-3456789">
-          </div>
-
-          <div class="form-row">
-            <label for="quantity">Order Quantity <span class="req">*</span></label>
-            <select id="quantity" name="quantity" required>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            <small>Fill in the details below for each keychain you are ordering.</small>
-          </div>
-
-          <!-- Per-item sections are generated by form.js based on the quantity above -->
-          <div id="items-container" class="items-container"></div>
-
-          <div class="form-row">
-            <label>Collection / Shipping <span class="req">*</span></label>
-            <div class="radio-group">
-              <label class="rdo"><input type="radio" name="shipping_method" value="collect" required checked> Collect at KOE, IIUM — free</label>
-              <label class="rdo"><input type="radio" name="shipping_method" value="standard"> Standard Shipping (WM only) — +RM 5</label>
-            </div>
-          </div>
-
-          <div class="form-row" id="address_row" style="display:none;">
-            <label for="mailing_address">Mailing Address</label>
-            <textarea id="mailing_address" name="mailing_address" rows="3" placeholder="Full address with postcode"></textarea>
-          </div>
-
-          <div class="form-row">
-            <label for="notes">Anything else we should know?</label>
-            <textarea id="notes" name="notes" rows="2"></textarea>
-          </div>
-
-          <div class="total-box">
-            <div class="total-line"><span>Unit price (RM 20)</span><span id="unitTotal">RM 20.00</span></div>
-            <div class="total-line"><span>Shipping</span><span id="shippingTotal">RM 0.00</span></div>
-            <div class="total-line total-grand"><span>Total</span><span id="grandTotal">RM 20.00</span></div>
-          </div>
-
-          <div class="form-row">
-            <label>Payment Slip <span class="req">*</span></label>
-            <small>After transferring, upload your payment slip below. Max 10 MB.</small>
-            <input type="file" id="payment_slip" name="payment_slip" accept="image/*,application/pdf" required class="mt-8 file-input">
-          </div>
-
-          <button type="submit" class="submit-btn" id="submitBtn">SUBMIT ORDER</button>
-
-          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
-        </form>
       </div>
     </div>
   </section>
 
-  <!-- PRICING INFO -->
-  <section class="pricing-section">
-    <div class="container">
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Self Collect</h3>
-          <div class="price-tag">RM 20</div>
-          <p>per unit</p>
-          <ul>
-            <li>Collect at KOE, IIUM</li>
-            <li>Personalised avatar</li>
-            <li>Department &amp; batch engraving</li>
-          </ul>
-        </div>
-        <div class="pricing-card featured">
-          <h3>Standard Shipping</h3>
-          <div class="price-tag">RM 25</div>
-          <p>per unit (incl. RM 5 shipping)</p>
-          <ul>
-            <li>Delivered to your doorstep</li>
-            <li>West Malaysia only</li>
-            <li>Personalised avatar</li>
-            <li>Department &amp; batch engraving</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT / FOOTER -->
+  <!-- FOOTER -->
   <footer id="contact" class="site-footer">
     <div class="footer-inner">
       <div class="footer-col">
@@ -211,18 +98,17 @@
         </div>
       </div>
       <div class="footer-col">
-        <h4>Info</h4>
+        <h4>Products</h4>
         <nav>
-          <a href="#home">Home</a>
-          <a href="#product">Product</a>
-          <a href="#order">Order</a>
-          <a href="#contact">Contact</a>
+          <a href="keychain.html">KOE Alumni Keychain</a>
+          <a href="bizcard.html">Metal Business Card</a>
+          <a href="cablewinder.html">Cable Winder</a>
+          <a href="bagtag.html">Bag Tag</a>
         </nav>
       </div>
       <div class="footer-col">
-        <h4>Pricing</h4>
-        <p>RM 20.00 per keychain<br>RM 5.00 shipping (West Malaysia)</p>
-        <p class="deadline">Orders close: 18 April 2026</p>
+        <h4>Info</h4>
+        <p>All orders printed on campus.<br>Shipping RM 5 (West Malaysia).</p>
       </div>
     </div>
     <div class="footer-bottom">

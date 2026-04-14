@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order — Personalised Bag Tag | Durible3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="form.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link">
+        <img src="Durible_logo.png" alt="Durible3D" class="logo-img">
+      </a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Products</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="product-hero">
+    <div class="container product-hero-inner">
+      <div class="product-hero-img">
+        <img src="Bag_tag.jpeg" alt="Personalised Bag Tag">
+      </div>
+      <div class="product-hero-info">
+        <a href="index.html" class="back-link">&larr; Back to all products</a>
+        <h1>PERSONALISED<br>BAG TAG</h1>
+        <p class="product-price-lg">RM 20.00 <span>/ unit</span></p>
+        <p class="product-desc">A personalised 3D-printed bag tag with your name and phone number. Perfect for travel, hikes, or anywhere you might lose a bag.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="order-section">
+    <div class="container">
+      <div class="order-header">
+        <h2>PLACE YOUR ORDER</h2>
+        <p>Tell us the name and phone number you want printed on the bag tag.</p>
+      </div>
+
+      <div class="form-wrapper">
+        <form id="orderForm" class="order-form" data-product-type="bagtag" data-unit-price="20" novalidate>
+          <input type="hidden" name="product_type" value="bagtag">
+
+          <div class="form-row">
+            <label for="full_name">Name <span class="req">*</span></label>
+            <input type="text" id="full_name" name="full_name" required placeholder="Name to print on the bag tag">
+          </div>
+
+          <div class="form-row">
+            <label for="contact_number">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="contact_number" name="contact_number" required placeholder="e.g. 012-3456789">
+          </div>
+
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Optional, for order confirmation">
+          </div>
+
+          <div class="form-row">
+            <label for="quantity">Order Quantity <span class="req">*</span></label>
+            <select id="quantity" name="quantity" required>
+              <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+              <option value="7">7</option><option value="8">8</option><option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label>Collection / Shipping <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="rdo"><input type="radio" name="shipping_method" value="collect" required checked> Collect at KOE, IIUM — free</label>
+              <label class="rdo"><input type="radio" name="shipping_method" value="standard"> Standard Shipping (WM only) — +RM 5</label>
+            </div>
+          </div>
+
+          <div class="form-row" id="address_row" style="display:none;">
+            <label for="mailing_address">Mailing Address</label>
+            <textarea id="mailing_address" name="mailing_address" rows="3" placeholder="Full address with postcode"></textarea>
+          </div>
+
+          <div class="form-row">
+            <label for="notes">Anything else we should know?</label>
+            <textarea id="notes" name="notes" rows="2"></textarea>
+          </div>
+
+          <div class="total-box">
+            <div class="total-line"><span>Unit price (RM 20)</span><span id="unitTotal">RM 20.00</span></div>
+            <div class="total-line"><span>Shipping</span><span id="shippingTotal">RM 0.00</span></div>
+            <div class="total-line total-grand"><span>Total</span><span id="grandTotal">RM 20.00</span></div>
+          </div>
+
+          <div class="form-row">
+            <label>Payment Slip <span class="req">*</span></label>
+            <small>After transferring, upload your payment slip below. Max 10 MB.</small>
+            <input type="file" id="payment_slip" name="payment_slip" accept="image/*,application/pdf" required class="mt-8 file-input">
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">SUBMIT ORDER</button>
+          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Durible3D Studio</h4>
+        <p>Custom 3D-printed lifestyle pieces crafted with precision inside International Islamic University Malaysia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <nav>
+          <a href="keychain.html">KOE Alumni Keychain</a>
+          <a href="bizcard.html">Metal Business Card</a>
+          <a href="cablewinder.html">Cable Winder</a>
+          <a href="bagtag.html">Bag Tag</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2026 Durible3D Studio. All rights reserved.</p></div>
+  </footer>
+
+</body>
+</html>
