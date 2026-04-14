@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="form.js" defer></script>
 </head>
 <body>
 
@@ -95,15 +96,108 @@
       </div>
 
       <div class="form-wrapper">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSejdmM1M5H4f2Mnxz_U23IVAPUMI-Tacu1WQbcYNTOI6xATFw/viewform?embedded=true"
-          width="100%"
-          height="2800"
-          frameborder="0"
-          marginheight="0"
-          marginwidth="0"
-          loading="lazy"
-        >Loading form…</iframe>
+        <form id="orderForm" class="order-form" novalidate>
+          <div class="form-row">
+            <label for="full_name">Full Name <span class="req">*</span></label>
+            <input type="text" id="full_name" name="full_name" required>
+          </div>
+
+          <div class="form-row">
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-row">
+            <label for="contact_number">Contact Number <span class="req">*</span></label>
+            <input type="tel" id="contact_number" name="contact_number" required placeholder="e.g. 012-3456789">
+          </div>
+
+          <div class="form-row">
+            <label>Department <span class="req">*</span></label>
+            <div class="checkbox-group">
+              <label class="chk"><input type="checkbox" name="department" value="ECE"> ECE</label>
+              <label class="chk"><input type="checkbox" name="department" value="MEC"> MEC</label>
+              <label class="chk"><input type="checkbox" name="department" value="MCT"> MCT</label>
+              <label class="chk"><input type="checkbox" name="department" value="BTE"> BTE</label>
+              <label class="chk"><input type="checkbox" name="department" value="MME"> MME</label>
+              <label class="chk"><input type="checkbox" name="department" value="CIVE"> CIVE</label>
+              <label class="chk"><input type="checkbox" name="department" value="NONE"> Do not include</label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label>Batch Number <span class="req">*</span></label>
+            <div class="checkbox-group">
+              <label class="chk"><input type="checkbox" name="batch" value="KOE 012"> KOE 012</label>
+              <label class="chk"><input type="checkbox" name="batch" value="KOE 013"> KOE 013</label>
+              <label class="chk"><input type="checkbox" name="batch" value="KOE 033"> KOE 033</label>
+              <label class="chk"><input type="checkbox" name="batch" value="KOE #11"> KOE #11</label>
+              <label class="chk"><input type="checkbox" name="batch" value="KOE #13"> KOE #13</label>
+            </div>
+            <input type="text" name="batch_other" placeholder="Other batch (optional)" class="mt-8">
+          </div>
+
+          <div class="form-row">
+            <label>Personalise Your Avatar <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="rdo"><input type="radio" name="avatar_choice" value="male" required> Use existing male avatar</label>
+              <label class="rdo"><input type="radio" name="avatar_choice" value="female"> Use existing female avatar</label>
+              <label class="rdo"><input type="radio" name="avatar_choice" value="custom"> I'll upload my own avatar</label>
+            </div>
+            <input type="file" id="avatar_file" name="avatar_file" accept="image/*" class="mt-8 file-input">
+            <small>Upload only if you chose "upload my own". Max 10 MB.</small>
+          </div>
+
+          <div class="form-row">
+            <label for="quantity">Order Quantity <span class="req">*</span></label>
+            <select id="quantity" name="quantity" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label>Collection / Shipping <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="rdo"><input type="radio" name="shipping_method" value="collect" required checked> Collect at KOE, IIUM — free</label>
+              <label class="rdo"><input type="radio" name="shipping_method" value="standard"> Standard Shipping (WM only) — +RM 5</label>
+            </div>
+          </div>
+
+          <div class="form-row" id="address_row" style="display:none;">
+            <label for="mailing_address">Mailing Address</label>
+            <textarea id="mailing_address" name="mailing_address" rows="3" placeholder="Full address with postcode"></textarea>
+          </div>
+
+          <div class="form-row">
+            <label for="notes">Anything else we should know?</label>
+            <textarea id="notes" name="notes" rows="2"></textarea>
+          </div>
+
+          <div class="total-box">
+            <div class="total-line"><span>Unit price (RM 20)</span><span id="unitTotal">RM 20.00</span></div>
+            <div class="total-line"><span>Shipping</span><span id="shippingTotal">RM 0.00</span></div>
+            <div class="total-line total-grand"><span>Total</span><span id="grandTotal">RM 20.00</span></div>
+          </div>
+
+          <div class="form-row">
+            <label>Payment Slip <span class="req">*</span></label>
+            <small>After transferring, upload your payment slip below. Max 10 MB.</small>
+            <input type="file" id="payment_slip" name="payment_slip" accept="image/*,application/pdf" required class="mt-8 file-input">
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">SUBMIT ORDER</button>
+
+          <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+        </form>
       </div>
     </div>
   </section>
