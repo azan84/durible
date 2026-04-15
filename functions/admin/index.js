@@ -291,6 +291,14 @@ function renderHtml({
     <div class="filters">
       <div class="chips">${statusChips}</div>
       <div class="chips">${productChips}</div>
+      <div class="actions">
+        <a href="/admin/export.csv${buildExportQuery(filterStatus, filterProduct)}" class="btn btn-primary">
+          &darr; Export CSV
+        </a>
+        <button type="button" class="btn btn-secondary" onclick="openAllDetailsThenPrint()">
+          &#128424; Print / Save as PDF
+        </button>
+      </div>
     </div>
 
     <div class="table-wrap">
@@ -315,10 +323,41 @@ function renderHtml({
     <p class="hint">
       Showing up to 500 most recent orders. Use the status and product filters above to narrow.
       Changing the <strong>Status</strong> dropdown on any row auto-saves and reloads this page.
+      <strong>Export CSV</strong> downloads a file that opens in Excel / Google Sheets /
+      Numbers — save as .xlsx from there if you prefer.
+      <strong>Print / Save as PDF</strong> opens your browser's print dialog — pick "Save as PDF"
+      as the destination.
     </p>
   </main>
+
+  <script>
+    // Expand every <details> row before printing, then open the print dialog.
+    // After printing (or cancelling), close them again.
+    function openAllDetailsThenPrint() {
+      var els = document.querySelectorAll('details');
+      var previouslyOpen = [];
+      els.forEach(function(d, i) {
+        previouslyOpen[i] = d.open;
+        d.open = true;
+      });
+      setTimeout(function() { window.print(); }, 100);
+      // Restore after print dialog closes
+      window.addEventListener('afterprint', function restore() {
+        els.forEach(function(d, i) { d.open = previouslyOpen[i]; });
+        window.removeEventListener('afterprint', restore);
+      });
+    }
+  </script>
 </body>
 </html>`;
+}
+
+function buildExportQuery(filterStatus, filterProduct) {
+  const params = new URLSearchParams();
+  if (filterStatus) params.set('status', filterStatus);
+  if (filterProduct) params.set('product', filterProduct);
+  const qs = params.toString();
+  return qs ? `?${qs}` : '';
 }
 
 const ADMIN_CSS = `
@@ -341,6 +380,12 @@ a:hover{text-decoration:underline}
 .flash code{background:rgba(0,0,0,0.1);padding:1px 6px;border-radius:2px}
 .filters{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
+.actions{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:500;letter-spacing:1px;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;transition:background 0.15s}
+.btn-primary{background:#000;color:#fff}
+.btn-primary:hover{background:#c6a96a;text-decoration:none}
+.btn-secondary{background:#fff;color:#000;border:1px solid #000}
+.btn-secondary:hover{background:#000;color:#fff}
 .chip{display:inline-block;padding:6px 12px;background:#fff;border:1px solid #ddd;border-radius:20px;font-size:12px;color:#444;text-decoration:none}
 .chip:hover{border-color:#888;text-decoration:none}
 .chip.active{background:#000;color:#fff;border-color:#000}
@@ -370,5 +415,23 @@ details[open] summary{color:#666;margin-bottom:6px}
   .stats{flex-direction:column;align-items:flex-start;gap:10px}
   .counts{margin-left:0}
   .table-wrap{font-size:12px}
+}
+@media print{
+  @page{size:A4 landscape;margin:12mm}
+  body{background:#fff;font-size:10px}
+  .topbar{background:#fff;color:#000;padding:0 0 12px;margin-bottom:12px;border-bottom:2px solid #000}
+  .topbar h1{color:#000;font-size:18px;letter-spacing:2px}
+  .stats strong{color:#000}
+  .filters,.hint,.status-form,.actions{display:none !important}
+  .table-wrap{border:none;overflow:visible}
+  table{font-size:9px}
+  thead th{background:#f0f0f0 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  tbody tr{page-break-inside:avoid;border-bottom:1px solid #999}
+  .badge{border:1px solid #666;background:#fff !important;color:#000 !important;-webkit-print-color-adjust:exact}
+  .row-cancelled{opacity:1;text-decoration:line-through}
+  details{open:true}
+  details summary{display:none}
+  .details-body{background:#fff;border:none;padding:4px 0;max-width:none}
+  a{color:#000;text-decoration:none}
 }
 `;
