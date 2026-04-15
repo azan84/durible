@@ -11,7 +11,7 @@ const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
 const PRODUCT_CATALOG = {
   keychain: { name: 'Personalised KOE Alumni Keychain', price: 20 },
-  bizcard: { name: 'Metal Business Card', price: 40 },
+  bizcard: { name: '3D Printed Smart Business Card', price: 40 },
   cablewinder: { name: 'Custom Cable Winder', price: 20 },
   bagtag: { name: 'Personalised Bag Tag', price: 20 },
 };
