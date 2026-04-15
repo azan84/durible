@@ -196,6 +196,11 @@ function renderRow(order, items) {
           <div class="details-body">${renderDetails(order, items)}</div>
         </details>
       </td>
+      <td class="nowrap">
+        <a href="/admin/receipt?id=${encodeURIComponent(order.order_id)}" target="_blank" rel="noopener" class="receipt-link" title="Open print-ready receipt in a new tab">
+          &#129534; Receipt
+        </a>
+      </td>
     </tr>
   `;
 }
@@ -233,7 +238,7 @@ function renderHtml({
 }) {
   const rows = orders.length
     ? orders.map((o) => renderRow(o, itemsByOrder[o.order_id])).join('')
-    : `<tr><td colspan="9" class="empty">No orders match the current filter.</td></tr>`;
+    : `<tr><td colspan="10" class="empty">No orders match the current filter.</td></tr>`;
 
   const flash = updated
     ? `<div class="flash">Updated <code>${esc(updated)}</code>.</div>`
@@ -314,6 +319,7 @@ function renderHtml({
             <th class="r">Total</th>
             <th>Status</th>
             <th>Details</th>
+            <th>Receipt</th>
           </tr>
         </thead>
         <tbody>${rows}</tbody>
@@ -401,6 +407,8 @@ tbody tr:hover{background:#fafafa}
 .oid{font-family:monospace;font-size:12px;color:#000;font-weight:500}
 .meta{font-size:11px;color:#888;margin-top:2px}
 .status-form select{padding:4px 6px;border:1px solid #ccc;font-size:12px;background:#fff;cursor:pointer}
+.receipt-link{display:inline-block;padding:5px 10px;background:#000;color:#fff !important;font-size:11px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;text-decoration:none;border-radius:2px}
+.receipt-link:hover{background:#c6a96a;text-decoration:none}
 details summary{cursor:pointer;font-size:12px;color:#0a58ca}
 details[open] summary{color:#666;margin-bottom:6px}
 .details-body{background:#fafafa;padding:10px 12px;border:1px solid #eee;font-size:12px;line-height:1.7;max-width:420px;word-wrap:break-word}
