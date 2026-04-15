@@ -292,7 +292,7 @@ function renderHtml({
       <div class="chips">${statusChips}</div>
       <div class="chips">${productChips}</div>
       <div class="actions">
-        <a href="/admin/export.csv${buildExportQuery(filterStatus, filterProduct)}" class="btn btn-primary">
+        <a href="/admin/export${buildExportQuery(filterStatus, filterProduct)}" class="btn btn-primary">
           &darr; Export CSV
         </a>
         <button type="button" class="btn btn-secondary" onclick="openAllDetailsThenPrint()">
