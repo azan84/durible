@@ -3,54 +3,133 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order — 3D Printed Smart Business Card | Durible3D</title>
+  <meta name="build" content="redesign-v2">
+  <meta name="theme-color" content="#faf8f4">
+
+  <title>3D Printed Business Card — Durible3D</title>
+  <meta name="description" content="A sustainable 3D-printed business card with embedded NFC and a printed QR code. One card replaces a lifetime of printed stacks.">
+  <meta property="og:title" content="3D Printed Business Card — Durible3D">
+  <meta property="og:description" content="NFC + QR · virtual vCard · recyclable PLA. One card replaces a lifetime of printed stacks.">
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="https://durible.biomechemical.com/bizcard.html">
+  <meta property="og:image" content="https://durible.biomechemical.com/Biz_card.jpeg">
+
+  <link rel="icon" type="image/png" href="Durible_logo.png">
+  <link rel="canonical" href="https://durible.biomechemical.com/bizcard.html">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=4">
-  <script src="form.js?v=4" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=redesignv2">
+  <script src="interactions.js?v=redesignv2" defer></script>
+  <script src="form.js?v=redesignv2" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "3D Printed Smart Business Card",
+    "image": "https://durible.biomechemical.com/Biz_card.jpeg",
+    "description": "Sustainable 3D-printed business card with embedded NFC and printed QR code linking to a hosted vCard.",
+    "brand": { "@type": "Brand", "name": "Durible3D" },
+    "offers": {
+      "@type": "Offer",
+      "url": "https://durible.biomechemical.com/bizcard.html",
+      "priceCurrency": "MYR",
+      "price": "40.00",
+      "availability": "https://schema.org/MadeToOrder"
+    }
+  }
+  </script>
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo-link">
-        <img src="Durible_logo.png" alt="Durible3D" class="logo-img">
-      </a>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="index.html#products">Products</a>
-        <a href="index.html#contact">Contact</a>
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Durible3D — home"><img src="Durible_logo.png" alt="Durible3D"></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/">Home</a><a href="/#shop">Shop</a><a href="/#story">Our story</a><a href="/#contact">Contact</a>
       </nav>
+      <div class="nav-actions">
+        <button type="button" class="nav-icon-btn" id="openWishlist" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span class="nav-badge" id="wishBadge">0</span></button>
+        <button type="button" class="nav-icon-btn nav-mobile-toggle" id="openMobileNav" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
+      </div>
     </div>
   </header>
 
-  <section class="product-hero">
-    <div class="container product-hero-inner">
-      <div class="product-hero-img">
-        <img src="Biz_card.jpeg" alt="3D Printed Smart Business Card with NFC and QR code">
-      </div>
-      <div class="product-hero-info">
-        <a href="index.html" class="back-link">&larr; Back to all products</a>
-        <h1>3D PRINTED<br>BUSINESS CARD</h1>
-        <p class="product-price-lg">RM 40.00 <span>/ unit</span></p>
-        <p class="product-desc">A sustainable 3D-printed business card with embedded <strong>NFC</strong> and a printed <strong>QR code</strong>. A tap or a scan opens your virtual contact card on the recipient's phone &mdash; no app needed, no paper wasted, no reprints when your details change. One card replaces a lifetime of printed stacks.</p>
-        <ul class="product-features">
-          <li><strong>NFC enabled</strong> &mdash; tap on any modern phone to launch your vCard</li>
-          <li><strong>QR code printed on the card</strong> &mdash; works on every phone, no NFC required</li>
-          <li><strong>Virtual contact card</strong> &mdash; we host a vCard page with your details, photo, links, and socials</li>
-          <li><strong>Sustainable</strong> &mdash; 3D-printed on campus with recyclable PLA, no electroplating, no waste</li>
-          <li><strong>Update anytime</strong> &mdash; change your details on the vCard without reprinting</li>
-        </ul>
+  <div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" hidden>
+    <div class="mobile-drawer-backdrop" data-close></div>
+    <div class="mobile-drawer-panel">
+      <button type="button" class="mobile-drawer-close" data-close aria-label="Close menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+      <div class="eyebrow">Menu</div>
+      <div class="mobile-drawer-links"><a href="/">Home</a><a href="/#shop">Shop</a><a href="/#story">Our story</a><a href="/#contact">Contact</a></div>
+    </div>
+  </div>
+
+  <div class="wish-drawer" id="wishDrawer" role="dialog" aria-modal="true" hidden>
+    <div class="wish-drawer-backdrop" data-close></div>
+    <div class="wish-drawer-panel">
+      <div class="wish-header"><h2>Saved for later</h2><button type="button" class="wish-close" data-close aria-label="Close wishlist"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button></div>
+      <div class="wish-body" id="wishBody"></div>
+    </div>
+  </div>
+
+  <section class="pdp">
+    <div class="container">
+      <div class="pdp-layout">
+        <div class="pdp-gallery reveal">
+          <div class="pdp-gallery-main">
+            <img src="Biz_card.jpeg" alt="3D Printed Smart Business Card with NFC and QR code" fetchpriority="high" width="1000" height="1250">
+          </div>
+        </div>
+
+        <div class="pdp-info">
+          <a href="/#shop" class="pdp-back reveal">&larr; Back to shop</a>
+          <div class="pdp-eyebrow eyebrow reveal" data-stagger="1">Smart cards · Made to order</div>
+          <h1 class="pdp-title reveal" data-stagger="2">3D Printed<br><em>Business Card</em></h1>
+          <div class="pdp-price-row reveal" data-stagger="3">
+            <span class="pdp-price mono">RM 40.00</span>
+            <span class="pdp-price-sub">per unit · + RM 5 shipping (West Malaysia)</span>
+          </div>
+          <p class="pdp-desc reveal" data-stagger="4">
+            A <strong>sustainable 3D-printed business card</strong> with embedded <strong>NFC</strong> and a printed <strong>QR code</strong>. A tap or a scan opens your virtual contact card on the recipient's phone — no app needed, no paper wasted, no reprints when your details change. One card replaces a lifetime of printed stacks.
+          </p>
+
+          <ul class="pdp-features reveal" data-stagger="5">
+            <li><span><strong>NFC enabled</strong> — tap on any modern phone to launch your vCard</span></li>
+            <li><span><strong>Printed QR code</strong> works on every phone, no NFC required</span></li>
+            <li><span><strong>Hosted vCard</strong> with your details, photo, links, and socials</span></li>
+            <li><span><strong>Sustainable PLA</strong> — no electroplating, no waste</span></li>
+            <li><span><strong>Update anytime</strong> without reprinting the card</span></li>
+          </ul>
+
+          <a href="#order" class="btn btn-primary btn-icon-r" id="stickyAnchor" style="margin-bottom: 24px;">Design my card</a>
+
+          <div class="accordion">
+            <div class="accordion-item" data-open="true">
+              <button class="accordion-summary" aria-expanded="true">What's in the box</button>
+              <div class="accordion-body"><div class="accordion-body-inner">One 3D-printed business card, pre-programmed with your unique vCard URL on the NFC chip and printed QR code. We'll confirm the card design with you over email before printing.</div></div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-summary" aria-expanded="false">Materials &amp; sustainability</button>
+              <div class="accordion-body"><div class="accordion-body-inner">Cards are printed in recyclable PLA — no solvents, no electroplating, no metal waste. The NFC chip is a standard NTAG 215 with 540 bytes of user memory. Total card weight ≈ 6g.</div></div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-summary" aria-expanded="false">Shipping &amp; lead time</button>
+              <div class="accordion-body"><div class="accordion-body-inner">Free collection at KOE, IIUM. Standard shipping across West Malaysia is RM 5 flat. Expect 7-10 working days — we'll confirm the artwork with you before printing.</div></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="order-section">
+  <section id="order" class="order-section">
     <div class="container">
       <div class="order-header">
-        <h2>PLACE YOUR ORDER</h2>
-        <p>Fill in your details below. We'll reach out to set up your virtual contact card and confirm the design before printing.</p>
+        <div class="section-eyebrow">Place your order</div>
+        <h2>Design your <em>smart card</em>.</h2>
+        <p>Fill in your details below. We'll reach out to set up your virtual contact card and confirm the artwork before printing.</p>
       </div>
 
       <div class="form-wrapper">
@@ -59,17 +138,17 @@
 
           <div class="form-row">
             <label for="full_name">Full Name <span class="req">*</span></label>
-            <input type="text" id="full_name" name="full_name" required>
+            <input type="text" id="full_name" name="full_name" required autocomplete="name">
           </div>
 
           <div class="form-row">
             <label for="contact_number">Phone Number <span class="req">*</span></label>
-            <input type="tel" id="contact_number" name="contact_number" required placeholder="e.g. 012-3456789">
+            <input type="tel" id="contact_number" name="contact_number" required placeholder="012-3456789" autocomplete="tel">
           </div>
 
           <div class="form-row">
             <label for="email">Email <span class="req">*</span></label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required autocomplete="email">
           </div>
 
           <div class="form-row">
@@ -116,30 +195,67 @@
             <input type="file" id="payment_slip" name="payment_slip" accept="image/*,application/pdf" required class="mt-8 file-input">
           </div>
 
-          <button type="submit" class="submit-btn" id="submitBtn">SUBMIT ORDER</button>
+          <button type="submit" class="submit-btn" id="submitBtn">Submit order</button>
           <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
         </form>
       </div>
     </div>
   </section>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-col">
-        <h4>Durible3D Studio</h4>
-        <p>Custom 3D-printed lifestyle pieces crafted with precision inside International Islamic University Malaysia.</p>
+  <div class="sticky-bar" id="stickyBar" aria-hidden="true">
+    <div class="sticky-bar-inner">
+      <div class="sticky-bar-info">
+        <span class="sticky-bar-name">3D Printed Business Card</span>
+        <span class="sticky-bar-price mono">RM 40.00 <small>+ RM 5 ship</small></span>
       </div>
-      <div class="footer-col">
-        <h4>Products</h4>
-        <nav>
-          <a href="keychain.html">KOE Alumni Keychain</a>
-          <a href="bizcard.html">Metal Business Card</a>
-          <a href="cablewinder.html">Cable Winder</a>
-          <a href="bagtag.html">Bag Tag</a>
-        </nav>
+      <a href="#order" class="btn btn-primary btn-icon-r">Design my card</a>
+    </div>
+  </div>
+
+  <section class="related">
+    <div class="container">
+      <div class="related-head">
+        <h3 class="related-title">You may also like</h3>
+        <a href="/#shop" class="link">See the full collection</a>
+      </div>
+      <div class="product-grid">
+        <article class="product-card reveal" data-product-id="keychain">
+          <a href="keychain.html" class="product-card-media"><span class="product-card-tag">Made to order</span><img src="keychain.png" alt="" loading="lazy" width="800" height="1000"><span class="product-card-quick">Customise <span aria-hidden="true">→</span></span></a>
+          <div class="product-card-info"><h3 class="product-card-name">KOE Alumni Keychain</h3><div class="product-card-meta"><span class="product-card-price mono">RM 20.00</span><span class="product-card-subprice">+ RM 5 shipping</span></div></div>
+        </article>
+        <article class="product-card reveal" data-stagger="1" data-product-id="cablewinder">
+          <a href="cablewinder.html" class="product-card-media"><span class="product-card-tag">Print your logo</span><img src="Cable_winder.jpeg" alt="" loading="lazy" width="800" height="1000"><span class="product-card-quick">Upload logo <span aria-hidden="true">→</span></span></a>
+          <div class="product-card-info"><h3 class="product-card-name">Custom Cable Winder</h3><div class="product-card-meta"><span class="product-card-price mono">RM 20.00</span><span class="product-card-subprice">+ RM 5 shipping</span></div></div>
+        </article>
+        <article class="product-card reveal" data-stagger="2" data-product-id="bagtag">
+          <a href="bagtag.html" class="product-card-media"><span class="product-card-tag">Ready to ship</span><img src="Bag_tag.jpeg" alt="" loading="lazy" width="800" height="1000"><span class="product-card-quick">Customise <span aria-hidden="true">→</span></span></a>
+          <div class="product-card-info"><h3 class="product-card-name">Personalised Bag Tag</h3><div class="product-card-meta"><span class="product-card-price mono">RM 20.00</span><span class="product-card-subprice">+ RM 5 shipping</span></div></div>
+        </article>
       </div>
     </div>
-    <div class="footer-bottom"><p>&copy; 2026 Durible3D Studio. All rights reserved.</p></div>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Durible</div>
+          <p>Custom 3D-printed lifestyle objects, designed and printed on campus at International Islamic University Malaysia.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 01-12.83 7.32L3 20l1.3-4.82A8.5 8.5 0 1121 11.5z"/></svg></a>
+          </div>
+        </div>
+        <div><div class="footer-heading">Shop</div><div class="footer-links"><a href="keychain.html">KOE Keychain</a><a href="bizcard.html">Business Card</a><a href="cablewinder.html">Cable Winder</a><a href="bagtag.html">Bag Tag</a></div></div>
+        <div><div class="footer-heading">Studio</div><div class="footer-links"><a href="/#story">Our story</a><a href="/#shop">Materials</a><a href="/#contact">Contact</a></div></div>
+        <div><div class="footer-heading">Support</div><div class="footer-links"><a href="#">Shipping</a><a href="#">Returns</a><a href="#">FAQs</a></div></div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Durible3D Studio · Kuala Lumpur</p>
+        <p>Printed with care in Malaysia</p>
+      </div>
+    </div>
   </footer>
 
 </body>

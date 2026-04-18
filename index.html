@@ -3,116 +3,387 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Durible3D — Custom 3D-Printed Lifestyle Pieces</title>
+  <meta name="build" content="redesign-v2">
+  <meta name="theme-color" content="#faf8f4">
+
+  <title>Durible3D — Custom 3D-printed objects, made to last.</title>
+  <meta name="description" content="Durible makes custom 3D-printed keychains, smart business cards, cable winders and bag tags. Designed and printed on campus at International Islamic University Malaysia with recyclable PLA.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Durible3D — Made to last">
+  <meta property="og:description" content="Custom 3D-printed objects, crafted with intention in Malaysia.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://durible.biomechemical.com/">
+  <meta property="og:image" content="https://durible.biomechemical.com/Durible_logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="Durible_logo.png">
+  <link rel="canonical" href="https://durible.biomechemical.com/">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=redesignv2">
+  <script src="interactions.js?v=redesignv2" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Durible3D",
+    "url": "https://durible.biomechemical.com/",
+    "logo": "https://durible.biomechemical.com/Durible_logo.png",
+    "description": "Custom 3D-printed lifestyle objects made with recyclable PLA in Malaysia.",
+    "foundingLocation": "International Islamic University Malaysia"
+  }
+  </script>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="logo-link">
-        <img src="Durible_logo.png" alt="Durible3D" class="logo-img">
+  <!-- NAVIGATION -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Durible3D — home">
+        <img src="Durible_logo.png" alt="Durible3D">
       </a>
-      <nav class="main-nav">
-        <a href="index.html">Home</a>
-        <a href="#products">Products</a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="/" class="active">Home</a>
+        <a href="#shop">Shop</a>
+        <a href="#story">Our story</a>
         <a href="#contact">Contact</a>
       </nav>
+
+      <div class="nav-actions">
+        <button type="button" class="nav-icon-btn" id="openWishlist" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+          <span class="nav-badge" id="wishBadge" aria-live="polite">0</span>
+        </button>
+        <button type="button" class="nav-icon-btn nav-mobile-toggle" id="openMobileNav" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7"/>
+            <line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
+
+  <!-- MOBILE NAV DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Navigation" hidden>
+    <div class="mobile-drawer-backdrop" data-close></div>
+    <div class="mobile-drawer-panel">
+      <button type="button" class="mobile-drawer-close" data-close aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+      </button>
+      <div class="eyebrow">Menu</div>
+      <div class="mobile-drawer-links">
+        <a href="/" data-close>Home</a>
+        <a href="#shop" data-close>Shop</a>
+        <a href="#story" data-close>Our story</a>
+        <a href="#contact" data-close>Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WISHLIST DRAWER -->
+  <div class="wish-drawer" id="wishDrawer" role="dialog" aria-modal="true" aria-label="Wishlist" hidden>
+    <div class="wish-drawer-backdrop" data-close></div>
+    <div class="wish-drawer-panel">
+      <div class="wish-header">
+        <h2>Saved for later</h2>
+        <button type="button" class="wish-close" data-close aria-label="Close wishlist">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="wish-body" id="wishBody">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
-      <h1>PRINTED MEMORIES.<br>TREASURED FOREVER.</h1>
-      <p>Custom 3D-printed lifestyle pieces crafted with precision inside International Islamic University Malaysia.</p>
+      <div class="hero-copy">
+        <div class="hero-eyebrow reveal">A Malaysian 3D-print studio</div>
+        <h1 class="hero-title reveal" data-stagger="1">
+          Objects made<br>
+          <em>to last.</em>
+        </h1>
+        <p class="hero-sub reveal" data-stagger="2">
+          Durible makes custom 3D-printed keychains, smart business cards, cable winders and bag tags. Printed on campus at IIUM with recyclable PLA — one considered object at a time.
+        </p>
+        <div class="hero-actions reveal" data-stagger="3">
+          <a href="#shop" class="btn btn-primary btn-icon-r">Browse the shop</a>
+          <a href="#story" class="link">Read our story</a>
+        </div>
+      </div>
+
+      <div class="hero-visual-wrap reveal" data-stagger="2">
+        <div class="hero-visual parallax" id="heroVisual">
+          <img src="keychain.png" alt="Personalised KOE Alumni keychains by Durible3D" fetchpriority="high" width="800" height="1000">
+        </div>
+        <svg class="hero-float hero-float-1" viewBox="0 0 88 88" aria-hidden="true">
+          <circle cx="44" cy="44" r="43" fill="none" stroke="currentColor" stroke-width="1" opacity="0.7"/>
+          <circle cx="44" cy="44" r="22" fill="currentColor" opacity="0.12"/>
+        </svg>
+        <svg class="hero-float hero-float-2" viewBox="0 0 70 70" aria-hidden="true">
+          <path d="M35 5 L65 35 L35 65 L5 35 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M35 18 L52 35 L35 52 L18 35 Z" fill="currentColor" opacity="0.25"/>
+        </svg>
+        <svg class="hero-float hero-float-3" viewBox="0 0 44 44" aria-hidden="true">
+          <rect x="4" y="4" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1"/>
+          <rect x="14" y="14" width="16" height="16" fill="currentColor" opacity="0.25"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="hero-meta-row reveal">
+        <div class="hero-meta">
+          <span class="hero-meta-label">Material</span>
+          <span class="hero-meta-value">Recyclable PLA</span>
+        </div>
+        <div class="hero-meta">
+          <span class="hero-meta-label">Printed</span>
+          <span class="hero-meta-value">On campus, IIUM</span>
+        </div>
+        <div class="hero-meta">
+          <span class="hero-meta-label">Shipping</span>
+          <span class="hero-meta-value">RM5 · West MY</span>
+        </div>
+        <div class="hero-meta">
+          <span class="hero-meta-label">Lead time</span>
+          <span class="hero-meta-value">5–7 days</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- PRODUCTS -->
-  <section id="products" class="product-section">
+  <!-- PROOF / COUNT-UP -->
+  <section class="proof" aria-label="By the numbers">
     <div class="container">
-      <div class="product-grid">
+      <div class="proof-grid">
+        <!-- TODO(azan): replace placeholder numbers with real data once you want to publish them -->
+        <div class="proof-item reveal">
+          <span class="proof-rule"></span>
+          <div class="proof-number" data-count="420" data-suffix="+"><span>0</span><small>+</small></div>
+          <span class="proof-label">Objects printed &amp; shipped</span>
+        </div>
+        <div class="proof-item reveal" data-stagger="1">
+          <span class="proof-rule"></span>
+          <div class="proof-number" data-count="96" data-suffix="%"><span>0</span><small>%</small></div>
+          <span class="proof-label">Orders delivered within 7 days</span>
+        </div>
+        <div class="proof-item reveal" data-stagger="2">
+          <span class="proof-rule"></span>
+          <div class="proof-number" data-count="4"><span>0</span></div>
+          <span class="proof-label">Product families, all made to order</span>
+        </div>
+        <div class="proof-item reveal" data-stagger="3">
+          <span class="proof-rule"></span>
+          <div class="proof-number" data-count="100" data-suffix="%"><span>0</span><small>%</small></div>
+          <span class="proof-label">Recyclable PLA filament</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <a href="keychain.html" class="product-card">
-          <div class="product-image">
-            <img src="keychain.png" alt="Personalised KOE Alumni Keychain">
-          </div>
-          <div class="product-info">
-            <h2>Personalised KOE Alumni Keychain</h2>
-            <p class="product-price">RM 20.00</p>
-            <p class="product-shipping">+ RM 5.00 shipping</p>
-          </div>
-        </a>
+  <!-- SHOP -->
+  <section id="shop" class="section">
+    <div class="container">
+      <div class="section-head-row">
+        <div>
+          <div class="section-eyebrow">The collection</div>
+          <h2 class="section-title">Considered <em>objects</em>,<br>ready to order.</h2>
+        </div>
+        <p class="section-sub">Four products, each printed to order in our Kuala Lumpur studio. Pick one, personalise it, and we'll ship it in under a week.</p>
+      </div>
 
-        <a href="bizcard.html" class="product-card">
-          <div class="product-image">
-            <img src="Biz_card.jpeg" alt="3D Printed Smart Business Card">
-          </div>
-          <div class="product-info">
-            <h2>3D Printed Business Card</h2>
-            <p class="product-price">RM 40.00</p>
-            <p class="product-shipping">NFC + QR &middot; sustainable &middot; + RM 5.00 shipping</p>
-          </div>
-        </a>
+      <div class="catalog-filters" role="tablist" aria-label="Filter by category">
+        <button type="button" class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button type="button" class="chip" data-filter="keychain" role="tab" aria-selected="false">Keychains</button>
+        <button type="button" class="chip" data-filter="bizcard" role="tab" aria-selected="false">Cards</button>
+        <button type="button" class="chip" data-filter="cablewinder" role="tab" aria-selected="false">Cable winders</button>
+        <button type="button" class="chip" data-filter="bagtag" role="tab" aria-selected="false">Bag tags</button>
+      </div>
 
-        <a href="cablewinder.html" class="product-card">
-          <div class="product-image">
-            <img src="Cable_winder.jpeg" alt="Custom Cable Winder">
-          </div>
-          <div class="product-info">
-            <h2>Custom Cable Winder</h2>
-            <p class="product-price">RM 20.00</p>
-            <p class="product-shipping">+ RM 5.00 shipping</p>
-          </div>
-        </a>
+      <div class="product-grid" id="productGrid">
 
-        <a href="bagtag.html" class="product-card">
-          <div class="product-image">
-            <img src="Bag_tag.jpeg" alt="Personalised Bag Tag">
+        <article class="product-card reveal" data-category="keychain" data-product-id="keychain" data-product-name="Personalised KOE Alumni Keychain" data-product-price="20" data-product-image="keychain.png" data-product-url="keychain.html">
+          <a href="keychain.html" class="product-card-media" aria-label="Shop the Personalised KOE Alumni Keychain">
+            <span class="product-card-tag">Made to order</span>
+            <img src="keychain.png" alt="Personalised KOE Alumni Keychain" loading="lazy" decoding="async" width="800" height="1000">
+            <span class="product-card-quick">Customise <span aria-hidden="true">→</span></span>
+          </a>
+          <button type="button" class="product-card-wish" data-wish aria-label="Save keychain to wishlist" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </button>
+          <div class="product-card-info">
+            <h3 class="product-card-name">Personalised KOE Alumni Keychain</h3>
+            <div class="product-card-meta">
+              <span class="product-card-price mono">RM 20.00</span>
+              <span class="product-card-subprice">+ RM 5 shipping</span>
+            </div>
           </div>
-          <div class="product-info">
-            <h2>Personalised Bag Tag</h2>
-            <p class="product-price">RM 20.00</p>
-            <p class="product-shipping">+ RM 5.00 shipping</p>
-          </div>
-        </a>
+        </article>
 
+        <article class="product-card reveal" data-stagger="1" data-category="bizcard" data-product-id="bizcard" data-product-name="3D Printed Business Card" data-product-price="40" data-product-image="Biz_card.jpeg" data-product-url="bizcard.html">
+          <a href="bizcard.html" class="product-card-media" aria-label="Shop the 3D Printed Business Card">
+            <span class="product-card-tag">NFC + QR</span>
+            <img src="Biz_card.jpeg" alt="3D printed smart business card with embedded NFC" loading="lazy" decoding="async" width="800" height="1000">
+            <span class="product-card-quick">Customise <span aria-hidden="true">→</span></span>
+          </a>
+          <button type="button" class="product-card-wish" data-wish aria-label="Save business card to wishlist" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </button>
+          <div class="product-card-info">
+            <h3 class="product-card-name">3D Printed Business Card</h3>
+            <div class="product-card-meta">
+              <span class="product-card-price mono">RM 40.00</span>
+              <span class="product-card-subprice">+ RM 5 shipping</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card reveal" data-stagger="2" data-category="cablewinder" data-product-id="cablewinder" data-product-name="Custom Cable Winder" data-product-price="20" data-product-image="Cable_winder.jpeg" data-product-url="cablewinder.html">
+          <a href="cablewinder.html" class="product-card-media" aria-label="Shop the Custom Cable Winder">
+            <span class="product-card-tag">Print your logo</span>
+            <img src="Cable_winder.jpeg" alt="Round 3D-printed cable winder with custom artwork" loading="lazy" decoding="async" width="800" height="1000">
+            <span class="product-card-quick">Upload logo <span aria-hidden="true">→</span></span>
+          </a>
+          <button type="button" class="product-card-wish" data-wish aria-label="Save cable winder to wishlist" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </button>
+          <div class="product-card-info">
+            <h3 class="product-card-name">Custom Cable Winder</h3>
+            <div class="product-card-meta">
+              <span class="product-card-price mono">RM 20.00</span>
+              <span class="product-card-subprice">+ RM 5 shipping</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card reveal" data-stagger="3" data-category="bagtag" data-product-id="bagtag" data-product-name="Personalised Bag Tag" data-product-price="20" data-product-image="Bag_tag.jpeg" data-product-url="bagtag.html">
+          <a href="bagtag.html" class="product-card-media" aria-label="Shop the Personalised Bag Tag">
+            <span class="product-card-tag">Ready to ship</span>
+            <img src="Bag_tag.jpeg" alt="Personalised 3D-printed bag tag" loading="lazy" decoding="async" width="800" height="1000">
+            <span class="product-card-quick">Customise <span aria-hidden="true">→</span></span>
+          </a>
+          <button type="button" class="product-card-wish" data-wish aria-label="Save bag tag to wishlist" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </button>
+          <div class="product-card-info">
+            <h3 class="product-card-name">Personalised Bag Tag</h3>
+            <div class="product-card-meta">
+              <span class="product-card-price mono">RM 20.00</span>
+              <span class="product-card-subprice">+ RM 5 shipping</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY SECTION -->
+  <section id="story" class="story">
+    <div class="story-bg" id="storyBg" aria-hidden="true"></div>
+    <div class="story-inner">
+      <div class="section-eyebrow story-eyebrow reveal">Why we exist</div>
+      <h2 class="story-title reveal" data-stagger="1">
+        <span class="story-words" id="storyWords">
+          <span class="story-word">We</span>
+          <span class="story-word">make</span>
+          <span class="story-word">objects</span>
+          <span class="story-word">that</span>
+          <span class="story-word"><em>outlast</em></span>
+          <span class="story-word">the</span>
+          <span class="story-word">moment</span>
+          <span class="story-word">they</span>
+          <span class="story-word">were</span>
+          <span class="story-word">made.</span>
+        </span>
+      </h2>
+      <p class="story-lede reveal" data-stagger="2">
+        Durible began inside a workshop at IIUM's Kulliyyah of Engineering — a small bench, a 3D printer, a spool of warm red PLA. What started as keepsakes for alumni has grown into a quiet studio for everyday objects with a longer life: cards that update without reprinting, winders that outlive the cables, tags that carry a name for years.
+      </p>
+      <!-- TODO(azan): swap the copy above with your real founder's narrative when ready -->
+      <p class="story-lede reveal" data-stagger="3">
+        Every object is printed to order, by hand, with recyclable PLA — not injection-molded overseas, not stamped out by the thousand. One considered object at a time.
+      </p>
+      <div class="reveal" data-stagger="4">
+        <a href="#shop" class="btn btn-secondary btn-icon-r" style="background: transparent; color: var(--bg); border-color: rgba(250,248,244,0.35);">Browse the collection</a>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer id="contact" class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-col">
-        <h4>Durible3D Studio</h4>
-        <p>Custom 3D-printed lifestyle pieces crafted with precision. Designed and created inside International Islamic University Malaysia.</p>
-        <div class="social-links">
-          <a href="#">Instagram</a>
-          <a href="#">Facebook</a>
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">Durible</div>
+          <p>Custom 3D-printed lifestyle objects, designed and printed on campus at International Islamic University Malaysia. Recyclable PLA, made to order.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 01-12.83 7.32L3 20l1.3-4.82A8.5 8.5 0 1121 11.5z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Shop</div>
+          <div class="footer-links">
+            <a href="keychain.html">KOE Keychain</a>
+            <a href="bizcard.html">Business Card</a>
+            <a href="cablewinder.html">Cable Winder</a>
+            <a href="bagtag.html">Bag Tag</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Studio</div>
+          <div class="footer-links">
+            <a href="#story">Our story</a>
+            <a href="#shop">Materials</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Care guide</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Support</div>
+          <div class="footer-links">
+            <a href="#">Shipping</a>
+            <a href="#">Returns</a>
+            <a href="#">FAQs</a>
+            <a href="#">Trade &amp; wholesale</a>
+          </div>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Products</h4>
-        <nav>
-          <a href="keychain.html">KOE Alumni Keychain</a>
-          <a href="bizcard.html">Metal Business Card</a>
-          <a href="cablewinder.html">Cable Winder</a>
-          <a href="bagtag.html">Bag Tag</a>
-        </nav>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Durible3D Studio · Kuala Lumpur</p>
+        <p>Printed with care in Malaysia</p>
       </div>
-      <div class="footer-col">
-        <h4>Info</h4>
-        <p>All orders printed on campus.<br>Shipping RM 5 (West Malaysia).</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Durible3D Studio. All rights reserved.</p>
     </div>
   </footer>
 
