@@ -58,6 +58,8 @@ the domain via HTTP, not via DNS-zone ownership.
 | `DB` | D1 database | `durible-orders` |
 | `BUCKET` | R2 bucket | `durible-uploads` |
 | `ADMIN_PASSWORD` | Environment variable (encrypted secret) | (set via `wrangler pages secret put`) |
+| `TELEGRAM_BOT_TOKEN` | Environment variable (encrypted secret, optional) | From @BotFather — enables order notifications |
+| `TELEGRAM_CHAT_ID` | Environment variable (encrypted secret, optional) | Target chat (your DM with the bot) |
 
 ## Deploying a new version
 
@@ -110,6 +112,60 @@ cached copy.
   ```
 - Dashboard console alternative: Cloudflare → D1 → durible-orders →
   Console.
+
+## Telegram notifications on every new order
+
+Each successful order submission also fires a message to a Telegram
+chat (your personal DM with a dedicated bot).
+
+### One-time setup
+
+1. **Open Telegram**, search `@BotFather`, start a chat.
+2. Send `/newbot`. Give it a name (e.g. *Durible Orders*) and a
+   username ending in `bot` (e.g. `durible_orders_bot`).
+3. BotFather replies with an **HTTP API token** that looks like
+   `1234567890:AAH9...`. Copy it.
+4. Find your bot in Telegram, open its chat, tap **Start**, and send
+   any message (e.g. `hi`). This gives the bot a chat to send to.
+5. In a browser, visit
+   `https://api.telegram.org/bot<TOKEN>/getUpdates`
+   (replace `<TOKEN>` with the token from step 3). Look for
+   `"chat":{"id":123456789,` in the JSON — that number is your
+   **chat ID**. Copy it.
+6. Set both as Pages secrets (one at a time, paste when prompted):
+   ```bash
+   wrangler pages secret put TELEGRAM_BOT_TOKEN --project-name=durible
+   wrangler pages secret put TELEGRAM_CHAT_ID  --project-name=durible
+   ```
+7. Redeploy so the new secrets are scoped to the new deployment:
+   ```bash
+   wrangler pages deploy . --project-name=durible --branch=main --commit-dirty=true
+   ```
+8. Verify by opening
+   `https://durible.biomechemical.com/admin/telegram-test`
+   in your browser — it sends a test message and prints the result.
+   You can also click **✉ Test Telegram** from the admin dashboard.
+
+### What each order notification contains
+
+- Order ID, product name, quantity
+- Total with breakdown (unit × qty + shipping)
+- Buyer name, phone, email
+- Delivery method + full mailing address (if shipping)
+- Product-specific detail:
+  - Keychain: dept + batch/matric + avatar for each of the N items
+  - Biz card: company address
+  - Cable winder: logo file R2 key
+- Notes (if any)
+- Payment slip R2 key
+- Direct links to the printable receipt and the admin dashboard
+
+### If it stops working
+
+Open `/admin/telegram-test` — if secrets are missing or the token
+was revoked, it'll tell you which one is the problem. To change
+either secret, re-run the `wrangler pages secret put` command with
+the same name; the new value replaces the old on the next deploy.
 
 ## Admin dashboard
 
