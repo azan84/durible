@@ -18,6 +18,7 @@
   const unitEl = document.getElementById('unitTotal');
   const shippingEl = document.getElementById('shippingTotal');
   const grandEl = document.getElementById('grandTotal');
+  const payQrTotalEl = document.getElementById('payQrTotal');
   const submitBtn = document.getElementById('submitBtn');
   const msgEl = document.getElementById('formMessage');
 
@@ -89,6 +90,7 @@
     if (unitEl) unitEl.textContent = fmt(unitTotal);
     if (shippingEl) shippingEl.textContent = fmt(ship);
     if (grandEl) grandEl.textContent = fmt(grand);
+    if (payQrTotalEl) payQrTotalEl.textContent = fmt(grand);
 
     if (addressRow && addressEl) {
       if (shipping && shipping.value === 'standard') {
