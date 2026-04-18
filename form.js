@@ -203,7 +203,7 @@
     }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = 'SUBMITTING…';
+    submitBtn.textContent = 'Submitting…';
     msgEl.className = 'form-message';
     msgEl.textContent = '';
 
@@ -222,7 +222,7 @@
       showMessage('error', err.message || 'Something went wrong. Please try again.');
     } finally {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'SUBMIT ORDER';
+      submitBtn.textContent = 'Submit order';
     }
   });
 })();
