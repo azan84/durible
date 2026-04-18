@@ -303,8 +303,8 @@ function renderHtml({
         <button type="button" class="btn btn-secondary" onclick="openAllDetailsThenPrint()">
           &#128424; Print / Save as PDF
         </button>
-        <a href="/admin/telegram-test" target="_blank" rel="noopener" class="btn btn-secondary" title="Send a test Telegram notification to verify your bot setup">
-          &#9993; Test Telegram
+        <a href="/admin/whatsapp-test" target="_blank" rel="noopener" class="btn btn-secondary" title="Send a test WhatsApp notification via CallMeBot">
+          &#128241; Test WhatsApp
         </a>
       </div>
     </div>

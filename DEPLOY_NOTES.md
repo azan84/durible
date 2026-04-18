@@ -58,8 +58,8 @@ the domain via HTTP, not via DNS-zone ownership.
 | `DB` | D1 database | `durible-orders` |
 | `BUCKET` | R2 bucket | `durible-uploads` |
 | `ADMIN_PASSWORD` | Environment variable (encrypted secret) | (set via `wrangler pages secret put`) |
-| `TELEGRAM_BOT_TOKEN` | Environment variable (encrypted secret, optional) | From @BotFather — enables order notifications |
-| `TELEGRAM_CHAT_ID` | Environment variable (encrypted secret, optional) | Target chat (your DM with the bot) |
+| `WHATSAPP_PHONE` | Environment variable (encrypted secret, optional) | Target WhatsApp number, international format no '+' (e.g. `60107924208`) |
+| `CALLMEBOT_API_KEY` | Environment variable (encrypted secret, optional) | CallMeBot free API key (see WhatsApp section) |
 
 ## Deploying a new version
 
@@ -113,38 +113,64 @@ cached copy.
 - Dashboard console alternative: Cloudflare → D1 → durible-orders →
   Console.
 
-## Telegram notifications on every new order
+## WhatsApp notifications on every new order
 
-Each successful order submission also fires a message to a Telegram
-chat (your personal DM with a dedicated bot).
+Each successful order submission fires a WhatsApp message to your
+personal WhatsApp (Business or regular) via **CallMeBot** — a free
+forwarding service designed for self-notifications.
 
-### One-time setup
+### Trade-offs (read first)
 
-1. **Open Telegram**, search `@BotFather`, start a chat.
-2. Send `/newbot`. Give it a name (e.g. *Durible Orders*) and a
-   username ending in `bot` (e.g. `durible_orders_bot`).
-3. BotFather replies with an **HTTP API token** that looks like
-   `1234567890:AAH9...`. Copy it.
-4. Find your bot in Telegram, open its chat, tap **Start**, and send
-   any message (e.g. `hi`). This gives the bot a chat to send to.
-5. In a browser, visit
-   `https://api.telegram.org/bot<TOKEN>/getUpdates`
-   (replace `<TOKEN>` with the token from step 3). Look for
-   `"chat":{"id":123456789,` in the JSON — that number is your
-   **chat ID**. Copy it.
-6. Set both as Pages secrets (one at a time, paste when prompted):
-   ```bash
-   wrangler pages secret put TELEGRAM_BOT_TOKEN --project-name=durible
-   wrangler pages secret put TELEGRAM_CHAT_ID  --project-name=durible
+- ✅ Free, no credit card, no Meta Business Manager setup
+- ✅ Works with WhatsApp Business numbers
+- ✅ Messages arrive as normal chats from the CallMeBot contact
+- ⚠️ Third-party service — CallMeBot relays your messages. Don't
+  send customer PII you wouldn't email to a Gmail address.
+- ⚠️ Rate-limited to reasonable use (a few messages per minute is
+  fine; thousands per hour is not).
+- ⚠️ Not an official WhatsApp API — if CallMeBot goes offline,
+  notifications stop. Orders still flow through to D1 + R2
+  independently; nothing customer-facing is affected.
+
+If you outgrow CallMeBot, the cleanest upgrade paths are:
+1. **Meta WhatsApp Cloud API** (official, free up to 1,000
+   service conversations/month, but requires Meta Business
+   Manager + pre-approved message templates for agent-initiated
+   sends).
+2. **Twilio WhatsApp** (paid, ≈USD 0.005 / message).
+
+Both would just need a new `_lib/whatsapp.js` send function; the
+rest of the pipeline is unchanged.
+
+### One-time setup — CallMeBot
+
+1. **In WhatsApp on your phone**, add the contact number
+   `+34 644 52 74 88` to your address book. Name it anything
+   (e.g. *CallMeBot*).
+2. Open a chat with that contact and send the exact message:
    ```
-7. Redeploy so the new secrets are scoped to the new deployment:
+   I allow callmebot to send me messages
+   ```
+3. Within 2 minutes, CallMeBot DMs you an **API key** — a numeric
+   string like `1234567`. Copy it.
+4. Set two Pages secrets:
+   ```bash
+   wrangler pages secret put WHATSAPP_PHONE --project-name=durible
+   # when prompted, paste: 60107924208
+   # (your phone in international format, NO '+', spaces, or dashes)
+
+   wrangler pages secret put CALLMEBOT_API_KEY --project-name=durible
+   # when prompted, paste the API key from CallMeBot
+   ```
+5. Redeploy so the new secrets are scoped to the new deployment:
    ```bash
    wrangler pages deploy . --project-name=durible --branch=main --commit-dirty=true
    ```
-8. Verify by opening
-   `https://durible.biomechemical.com/admin/telegram-test`
-   in your browser — it sends a test message and prints the result.
-   You can also click **✉ Test Telegram** from the admin dashboard.
+6. Verify by opening
+   `https://durible.biomechemical.com/admin/whatsapp-test`
+   in your browser (you'll need the admin password). It sends a
+   test message and prints the result. You'll also see a new
+   **📱 Test WhatsApp** button on the admin dashboard.
 
 ### What each order notification contains
 
@@ -158,14 +184,18 @@ chat (your personal DM with a dedicated bot).
   - Cable winder: logo file R2 key
 - Notes (if any)
 - Payment slip R2 key
-- Direct links to the printable receipt and the admin dashboard
+- Direct URLs to the printable receipt and the admin dashboard
 
 ### If it stops working
 
-Open `/admin/telegram-test` — if secrets are missing or the token
-was revoked, it'll tell you which one is the problem. To change
-either secret, re-run the `wrangler pages secret put` command with
-the same name; the new value replaces the old on the next deploy.
+1. Open `/admin/whatsapp-test` — if secrets are missing or
+   CallMeBot rejected the request, it'll tell you which.
+2. If you changed your WhatsApp number or reset the CallMeBot
+   registration, you need to re-do the activation and run
+   `wrangler pages secret put CALLMEBOT_API_KEY ...` again.
+3. If CallMeBot ever suspends or the service changes, swap
+   `functions/_lib/whatsapp.js` for an alternative provider — the
+   rest of the pipeline is unchanged.
 
 ## Admin dashboard
 

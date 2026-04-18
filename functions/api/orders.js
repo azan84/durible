@@ -7,10 +7,10 @@
 //   env.BUCKET  -> R2 bucket binding "BUCKET"
 //
 // Optional secrets (add via `wrangler pages secret put <NAME> --project-name=durible`):
-//   env.TELEGRAM_BOT_TOKEN  — enables Telegram notifications on every new order
-//   env.TELEGRAM_CHAT_ID    — target chat ID (your DM with the bot)
+//   env.WHATSAPP_PHONE       — target WhatsApp number, e.g. 60107924208
+//   env.CALLMEBOT_API_KEY    — CallMeBot API key (free activation in WhatsApp)
 
-import { sendTelegramText, buildOrderMessage } from '../_lib/telegram.js';
+import { sendWhatsApp, buildOrderMessage } from '../_lib/whatsapp.js';
 
 const SHIPPING_COST = 5;
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
@@ -253,10 +253,10 @@ export async function onRequestPost(context) {
 
     await env.DB.batch(stmts);
 
-    // ---- Telegram notification (best-effort, non-blocking failure) ----
+    // ---- WhatsApp notification (best-effort, never blocks the order) ----
     try {
       const baseUrl = new URL(request.url).origin;
-      const tgOrder = {
+      const notifyOrder = {
         order_id,
         product_type,
         product_name: product.name,
@@ -274,7 +274,7 @@ export async function onRequestPost(context) {
         total_amount,
         details_json,
       };
-      const tgItems = items
+      const notifyItems = items
         ? items.map((it) => ({
             department: it.department,
             engraving_value: it.engraving_value,
@@ -282,18 +282,14 @@ export async function onRequestPost(context) {
             avatar_key: it.avatar_key,
           }))
         : [];
-      const text = buildOrderMessage(tgOrder, tgItems, { baseUrl });
-      // Don't await — fire and log. A slow Telegram API must not slow the order
-      // response. But we need to keep the worker alive for the fetch to finish;
-      // Pages Functions supports this via `waitUntil` on the FetchEvent-like
-      // context when available. We'll fall back to awaiting if not.
-      const promise = sendTelegramText(env, text).catch(() => {});
+      const text = buildOrderMessage(notifyOrder, notifyItems, { baseUrl });
+      const promise = sendWhatsApp(env, text).catch(() => {});
       if (context && typeof context.waitUntil === 'function') {
         context.waitUntil(promise);
       } else {
         await promise;
       }
-    } catch (tgErr) {
+    } catch (notifyErr) {
       // Never fail the order over a notification problem.
     }
 
