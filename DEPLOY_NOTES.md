@@ -1,5 +1,33 @@
 # Deploy Notes — Durible3D
 
+> ## ⏳ DEPLOY PENDING — redesign-v2 awaits credentials
+>
+> As of this commit, the **redesign-v2** code is merged to `main` and
+> pushed to GitHub, but **not yet live** on Cloudflare Pages. The
+> live site (`durible.biomechemical.com`) still serves the previous
+> build.
+>
+> **To push it live**, run this from the repo root (WSL works, or any
+> shell where `wrangler login` has an active OAuth session):
+>
+> ```bash
+> wrangler pages deploy . --project-name=durible --branch=main --commit-dirty=true
+> ```
+>
+> Then verify with:
+>
+> ```bash
+> curl -s https://durible.biomechemical.com/ | grep 'name="build"'
+> # expected: <meta name="build" content="redesign-v2">
+> ```
+>
+> **Why it wasn't auto-deployed**: Cloudflare Pages for project
+> `durible` is not connected to the GitHub repo — it only deploys
+> when `wrangler pages deploy` is run manually. If you want pushes
+> to `main` to deploy automatically, go to **Workers & Pages →
+> durible → Settings → Builds and deployments → Connect to Git**
+> and link `azan84/durible`.
+
 ## Production
 
 - **Live URL**: https://durible.biomechemical.com/
