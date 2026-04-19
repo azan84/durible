@@ -3,59 +3,59 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
-    <loc>https://durible.biomechemical.com/</loc>
+    <loc>https://ordo.earth/</loc>
     <lastmod>2026-04-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://durible.biomechemical.com/Durible_logo.png</image:loc>
+      <image:loc>https://ordo.earth/Durible_logo.png</image:loc>
       <image:title>Durible3D Studio logo</image:title>
     </image:image>
   </url>
 
   <url>
-    <loc>https://durible.biomechemical.com/keychain.html</loc>
+    <loc>https://ordo.earth/keychain.html</loc>
     <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://durible.biomechemical.com/keychain.png</image:loc>
+      <image:loc>https://ordo.earth/keychain.png</image:loc>
       <image:title>Personalised KOE Alumni Keychain</image:title>
       <image:caption>Custom 3D-printed KOE Alumni keychain</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://durible.biomechemical.com/bizcard.html</loc>
+    <loc>https://ordo.earth/bizcard.html</loc>
     <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://durible.biomechemical.com/Biz_card.jpeg</image:loc>
+      <image:loc>https://ordo.earth/Biz_card.jpeg</image:loc>
       <image:title>3D Printed Smart Business Card</image:title>
       <image:caption>Sustainable 3D-printed business card with NFC and QR code</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://durible.biomechemical.com/cablewinder.html</loc>
+    <loc>https://ordo.earth/cablewinder.html</loc>
     <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://durible.biomechemical.com/Cable_winder.jpeg</image:loc>
+      <image:loc>https://ordo.earth/Cable_winder.jpeg</image:loc>
       <image:title>Custom Cable Winder</image:title>
       <image:caption>3D-printed cable winder with your logo printed on the face</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://durible.biomechemical.com/bagtag.html</loc>
+    <loc>https://ordo.earth/bagtag.html</loc>
     <lastmod>2026-04-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://durible.biomechemical.com/Bag_tag.jpeg</image:loc>
+      <image:loc>https://ordo.earth/Bag_tag.jpeg</image:loc>
       <image:title>Personalised Bag Tag</image:title>
       <image:caption>3D-printed bag tag with name and phone number</image:caption>
     </image:image>

@@ -1,4 +1,4 @@
-# robots.txt for Durible3D Studio — https://durible.biomechemical.com/
+# robots.txt for Durible3D Studio — https://ordo.earth/
 # Allow all well-behaved crawlers to index the public site.
 
 User-agent: *
@@ -9,7 +9,7 @@ Disallow: /api/
 Disallow: /functions/
 
 # Sitemap for faster indexing
-Sitemap: https://durible.biomechemical.com/sitemap.xml
+Sitemap: https://ordo.earth/sitemap.xml
 
 # Be kind
 Crawl-delay: 1

@@ -53,7 +53,7 @@ export async function sendWhatsApp(env, text) {
 // order: row from `orders`; items: array from `order_items` (keychain only).
 export function buildOrderMessage(order, items, opts) {
   const baseUrl =
-    (opts && opts.baseUrl) || 'https://durible.biomechemical.com';
+    (opts && opts.baseUrl) || 'https://ordo.earth';
   const L = [];
   L.push(`🛒 New order: ${order.order_id}`);
   L.push('');

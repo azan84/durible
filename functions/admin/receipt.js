@@ -178,7 +178,7 @@ function renderReceipt(order, items) {
       <div class="r-brand">
         <div class="r-name">DURIBLE3D STUDIO</div>
         <div class="r-tag">Custom 3D-printed lifestyle pieces</div>
-        <div class="r-tag">durible.biomechemical.com</div>
+        <div class="r-tag">ordo.earth</div>
       </div>
     </header>
 
