@@ -1,0 +1,15 @@
+# robots.txt for Durible3D Studio — https://durible.biomechemical.com/
+# Allow all well-behaved crawlers to index the public site.
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /api/
+Disallow: /functions/
+
+# Sitemap for faster indexing
+Sitemap: https://durible.biomechemical.com/sitemap.xml
+
+# Be kind
+Crawl-delay: 1
