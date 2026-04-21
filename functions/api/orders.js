@@ -1,4 +1,4 @@
-// POST /api/orders — unified endpoint for all Durible3D products.
+// POST /api/orders — unified endpoint for all Ordo products.
 // The request must include a `product_type` field; different product types
 // have different required fields (validated below).
 //

@@ -123,3 +123,28 @@ export function buildOrderMessage(order, items, opts) {
 
   return L.join('\n');
 }
+
+// Build the pilot-programme lead notification. Plain text, no markdown.
+export function buildPilotMessage(lead, opts) {
+  const baseUrl = (opts && opts.baseUrl) || 'https://ordo.earth';
+  const L = [];
+  L.push(`🧪 New pilot lead: ${lead.pilot_id}`);
+  L.push('');
+  L.push(`🏢 ${lead.company_name}`);
+  L.push(`👤 ${lead.contact_name}`);
+  L.push(`   ${lead.phone}`);
+  L.push(`   ${lead.email}`);
+  if (lead.use_case) {
+    L.push('');
+    L.push('🎯 Use case');
+    L.push(`   ${lead.use_case}`);
+  }
+  if (lead.notes) {
+    L.push('');
+    L.push('📝 Notes');
+    L.push(`   ${lead.notes}`);
+  }
+  L.push('');
+  L.push(`📋 Admin: ${baseUrl}/admin/pilots`);
+  return L.join('\n');
+}

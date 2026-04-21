@@ -1,4 +1,4 @@
-# robots.txt for Durible3D Studio — https://ordo.earth/
+# robots.txt for Ordo — https://ordo.earth/
 # Allow all well-behaved crawlers to index the public site.
 
 User-agent: *

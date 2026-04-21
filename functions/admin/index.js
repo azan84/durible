@@ -269,14 +269,18 @@ function renderHtml({
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Durible Admin — Orders</title>
+<title>Ordo Admin — Orders</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>${ADMIN_CSS}</style>
 </head>
 <body>
   <header class="topbar">
     <div class="wrap">
-      <h1>DURIBLE3D ADMIN</h1>
+      <h1>ORDO ADMIN</h1>
+      <nav class="topnav">
+        <a href="/admin" class="active">Orders</a>
+        <a href="/admin/pilots">Pilot leads · Durible</a>
+      </nav>
       <div class="stats">
         <div><strong>${orders.length}</strong> orders shown</div>
         <div>Revenue: <strong>${money(totalRevenue)}</strong></div>
@@ -377,6 +381,10 @@ a:hover{text-decoration:underline}
 .wrap{max-width:1400px;margin:0 auto;padding:0 24px}
 .topbar{background:#000;color:#fff;padding:24px 0;margin-bottom:24px}
 .topbar h1{font-family:'Oswald',sans-serif;font-size:28px;font-weight:500;letter-spacing:3px;margin:0 0 10px}
+.topnav{display:flex;gap:16px;margin-bottom:14px;font-size:12px;letter-spacing:1px;text-transform:uppercase}
+.topnav a{color:#aaa;padding:4px 8px;border-bottom:2px solid transparent}
+.topnav a:hover{color:#fff;text-decoration:none}
+.topnav a.active{color:#c6a96a;border-bottom-color:#c6a96a}
 .stats{display:flex;gap:32px;flex-wrap:wrap;align-items:center;font-size:13px}
 .stats strong{color:#c6a96a}
 .counts{display:flex;gap:8px;margin-left:auto}

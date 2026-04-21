@@ -24,7 +24,7 @@ export async function onRequestGet({ env, request }) {
 
   const now = new Date().toISOString();
   const text =
-    `✅ Durible3D · WhatsApp test\n\n` +
+    `✅ Ordo · WhatsApp test\n\n` +
     `If you can read this, your CallMeBot integration is wired correctly.\n\n` +
     `Time: ${now}\n` +
     `Source: ${baseUrl}/admin\n\n` +

@@ -1,24 +1,25 @@
-# Deploy Notes — Durible3D
+# Deploy Notes — Ordo (was Durible3D)
 
-> ## ⏳ DEPLOY PENDING — redesign-v2 awaits credentials
+> ## ⏳ DEPLOY PENDING — ordo-v3 awaits credentials
 >
-> As of this commit, the **redesign-v2** code is merged to `main` and
-> pushed to GitHub, but **not yet live** on Cloudflare Pages. The
-> live site (`durible.biomechemical.com`) still serves the previous
-> build.
+> As of this commit, the **ordo-v3** code is ready on `main` but
+> **not yet live** on Cloudflare Pages. You must also run the D1
+> migration before deploying (adds the `pilot_leads` table).
 >
-> **To push it live**, run this from the repo root (WSL works, or any
-> shell where `wrangler login` has an active OAuth session):
+> **Step 1 — run the D1 migration** (safe / idempotent):
+> ```bash
+> wrangler d1 execute durible-orders --file=./migrations/2026-04-21-pilot-leads.sql --remote
+> ```
 >
+> **Step 2 — deploy the site**:
 > ```bash
 > wrangler pages deploy . --project-name=durible --branch=main --commit-dirty=true
 > ```
 >
-> Then verify with:
->
+> **Step 3 — verify**:
 > ```bash
 > curl -s https://durible.biomechemical.com/ | grep 'name="build"'
-> # expected: <meta name="build" content="redesign-v2">
+> # expected: <meta name="build" content="ordo-v3">
 > ```
 >
 > **Why it wasn't auto-deployed**: Cloudflare Pages for project
@@ -84,7 +85,7 @@ curl -s https://durible.biomechemical.com/ | grep 'name="build"'
 Should print:
 
 ```
-<meta name="build" content="redesign-v2">
+<meta name="build" content="ordo-v3">
 ```
 
 Bump the `build` meta in every page when you ship a new design
@@ -94,7 +95,7 @@ serving fresh bytes.
 ### If the live CSS or JS is stale
 
 Cloudflare's edge cache has a TTL on static files. The HTML files
-reference `style.css?v=redesignv2` and `interactions.js?v=redesignv2`
+reference `style.css?v=ordo-v3` and `interactions.js?v=ordo-v3`
 as a cache-buster. **Bump that version string when you change either
 file**, otherwise visitors' browsers will keep serving the old
 cached copy.
@@ -207,7 +208,7 @@ rest of the pipeline is unchanged.
   ```
   Then redeploy so the new secret is in scope.
 
-Features on `/admin`:
+Features on `/admin` (orders):
 - Filter chips (status + product)
 - Status dropdown per row (auto-saves)
 - CSV export at `/admin/export` (respects current filter)
@@ -215,6 +216,14 @@ Features on `/admin`:
 - Per-order printable receipt at `/admin/receipt?id=DUR-XXX`
 - Payment slip preview via `/admin/slip?key=...` (private — only
   served when logged in)
+- Cross-link to `/admin/pilots` in topnav
+
+Features on `/admin/pilots` (Durible pilot leads):
+- Filter chips by status (`new | contacted | piloting | closed`)
+- Status dropdown per row (auto-saves via POST `/admin/pilot-status`)
+- Notes expander per row
+- CSV export at `/admin/pilots-export`
+- Cross-link back to `/admin` in topnav
 
 ## Things that need your credentials (I can't do these for you)
 
@@ -250,6 +259,7 @@ To roll back:
 
 ## What I verified at ship time
 
+### redesign-v2 (baseline)
 - All 5 HTML pages return 200 over HTTP
 - Build marker `redesign-v2` present on every page
 - Product grid renders 4 cards; 5 category chips; 4 count-up
@@ -259,3 +269,12 @@ To roll back:
 - Live URL curl returns the new `<meta name="build">` marker
 - Form flow `keychain.html` → POST `/api/orders` → D1 insert still
   works (no changes to endpoint or payload)
+
+### ordo-v3 (pending deploy)
+Verify after deploy + migration:
+- `curl -s https://ordo.earth/ | grep 'name="build"'` returns `ordo-v3`
+- Homepage shows 4 pillar blocks + dimensional filter chips
+- "How it works", portfolio strip, Durible Lab section visible
+- Pilot form on homepage submits → `/api/pilot` → D1 `pilot_leads` insert → WhatsApp notification
+- `/admin/pilots` accessible; status dropdown auto-saves; CSV export works
+- All 4 PDP order forms still submit correctly (no regression)

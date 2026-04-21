@@ -1,7 +1,7 @@
 /* ================================================================
-   DURIBLE3D — Interactions layer (vanilla)
+   ORDO — Interactions layer (vanilla)
    Scroll reveals · cursor parallax · wishlist drawer ·
-   mobile nav · count-up · product filter · sticky CTA ·
+   mobile nav · count-up · pillar/type filter · sticky CTA ·
    accordions · image-loaded shimmer · nav scroll state
    ================================================================ */
 
@@ -372,30 +372,81 @@
   }
   function escapeAttr(s) { return escapeHtml(s); }
 
-  // ------- 9. Product filter chips -------
+  // ------- 9. Product filter chips (pillar + type, OR-within, AND-across) -------
 
   function setupProductFilter() {
-    var chips = document.querySelectorAll('.catalog-filters .chip');
     var grid = document.getElementById('productGrid');
-    if (!chips.length || !grid) return;
+    if (!grid) return;
 
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        chips.forEach(function (c) {
-          c.classList.remove('active');
-          c.setAttribute('aria-selected', 'false');
-        });
-        chip.classList.add('active');
-        chip.setAttribute('aria-selected', 'true');
+    var pillarChips = document.querySelectorAll('.catalog-filters [data-filter-pillar]');
+    var typeChips = document.querySelectorAll('.catalog-filters [data-filter-type]');
+    var clearBtn = document.getElementById('clearFilters');
+    var emptyEl = document.getElementById('shopEmpty');
+    if (!pillarChips.length && !typeChips.length) return;
 
-        var filter = chip.getAttribute('data-filter') || 'all';
-        grid.querySelectorAll('.product-card').forEach(function (card) {
-          var cat = card.getAttribute('data-category');
-          var show = filter === 'all' || cat === filter;
-          card.style.display = show ? '' : 'none';
-        });
+    function activeSet(chips, attr) {
+      var out = [];
+      chips.forEach(function (c) {
+        if (c.getAttribute('aria-pressed') === 'true') out.push(c.getAttribute(attr));
       });
+      return out;
+    }
+
+    function apply() {
+      var pillars = activeSet(pillarChips, 'data-filter-pillar');
+      var types = activeSet(typeChips, 'data-filter-type');
+
+      var anyActive = pillars.length > 0 || types.length > 0;
+      if (clearBtn) clearBtn.hidden = !anyActive;
+
+      var totalVisible = 0;
+      var cards = grid.querySelectorAll('.product-card');
+      cards.forEach(function (card) {
+        var pillar = card.getAttribute('data-pillar') || '';
+        var cat = card.getAttribute('data-category') || '';
+        var pillarOk = pillars.length === 0 || pillars.indexOf(pillar) >= 0;
+        var typeOk = types.length === 0 || types.indexOf(cat) >= 0;
+        // Placeholder cards (no data-category) only match when no type filter is active.
+        if (!cat && types.length > 0) typeOk = false;
+        var show = pillarOk && typeOk;
+        card.style.display = show ? '' : 'none';
+        if (show) totalVisible++;
+      });
+
+      // Hide pillar-block wrappers with no visible cards inside
+      grid.querySelectorAll('.pillar-block').forEach(function (block) {
+        var hasVisible = false;
+        block.querySelectorAll('.product-card').forEach(function (c) {
+          if (c.style.display !== 'none') hasVisible = true;
+        });
+        block.hidden = !hasVisible;
+      });
+
+      if (emptyEl) emptyEl.hidden = totalVisible > 0;
+    }
+
+    function toggleChip(chip) {
+      var pressed = chip.getAttribute('aria-pressed') === 'true';
+      chip.setAttribute('aria-pressed', pressed ? 'false' : 'true');
+      apply();
+    }
+
+    pillarChips.forEach(function (chip) {
+      chip.addEventListener('click', function () { toggleChip(chip); });
     });
+    typeChips.forEach(function (chip) {
+      chip.addEventListener('click', function () { toggleChip(chip); });
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function () {
+        pillarChips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+        typeChips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+        apply();
+      });
+    }
+
+    apply();
   }
 
   // ------- 10. Image-loaded (stop shimmer) -------

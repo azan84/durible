@@ -161,7 +161,7 @@ function renderReceipt(order, items) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Receipt — ${esc(order.order_id)} | Durible3D</title>
+<title>Receipt — ${esc(order.order_id)} | Ordo</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>${RECEIPT_CSS}</style>
 </head>
@@ -174,9 +174,9 @@ function renderReceipt(order, items) {
 
   <main class="receipt">
     <header class="r-head">
-      <img src="/Durible_logo.png" alt="Durible3D" class="r-logo">
+      <img src="/Durible_logo.png" alt="Ordo logo" class="r-logo">
       <div class="r-brand">
-        <div class="r-name">DURIBLE3D STUDIO</div>
+        <div class="r-name">ORDO3D STUDIO</div>
         <div class="r-tag">Custom 3D-printed lifestyle pieces</div>
         <div class="r-tag">ordo.earth</div>
       </div>
@@ -234,7 +234,7 @@ function renderReceipt(order, items) {
     </section>
 
     <footer class="r-foot">
-      <div>Thank you for supporting Durible3D!</div>
+      <div>Thank you for supporting Ordo!</div>
       <div class="muted">Printed in Malaysia · Designed inside International Islamic University Malaysia</div>
     </footer>
   </main>

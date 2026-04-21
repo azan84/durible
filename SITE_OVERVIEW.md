@@ -6,7 +6,7 @@ A detailed reference for the Durible3D storefront at **https://ordo.earth/** (al
 
 ## 1. The business
 
-**Durible3D** is a 3D-printing studio operated as the fundraising initiative of the Mechanical Engineering Club at **International Islamic University Malaysia (IIUM)**, based on the Gombak campus. Revenue sustains the club and gives its students paid, hands-on experience in 3D printing, CAD design, CFD and FEA simulation.
+**Durible3D** is a 3D-printing studio operated  at **International Islamic University Malaysia (IIUM)**, based on the Gombak campus. 
 
 **Product focus**: custom, made-to-order lifestyle objects printed in recyclable PLA filament:
 

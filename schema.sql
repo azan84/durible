@@ -1,9 +1,12 @@
--- Durible3D — D1 schema for multi-product order collection
--- Run once against your D1 database:
---   wrangler d1 execute durible-orders --file=./schema.sql --remote
+-- Ordo — D1 schema for multi-product order collection + Durible pilot leads.
+-- WARNING: this file drops the `orders` and `order_items` tables. Only run
+-- from a clean state. For ordo-v3 additions to an existing deployment, apply
+-- the incremental migration instead:
+--   wrangler d1 execute durible-orders --file=./migrations/2026-04-21-pilot-leads.sql --remote
 
 DROP TABLE IF EXISTS order_items;
 DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS pilot_leads;
 
 -- One row per buyer / transaction, for all product types.
 CREATE TABLE orders (
@@ -46,3 +49,21 @@ CREATE INDEX idx_orders_status     ON orders(status);
 CREATE INDEX idx_orders_email      ON orders(email);
 CREATE INDEX idx_orders_product    ON orders(product_type);
 CREATE INDEX idx_items_order       ON order_items(order_id);
+
+-- One row per pilot-programme lead for Durible (durian-skin biocomposite filament).
+-- Distinct from the `orders` table because pilot leads are enquiries, not paid orders.
+CREATE TABLE pilot_leads (
+  id               INTEGER PRIMARY KEY AUTOINCREMENT,
+  pilot_id         TEXT NOT NULL UNIQUE,       -- e.g. PLT-260421-A7K9
+  company_name     TEXT NOT NULL,
+  contact_name     TEXT NOT NULL,
+  email            TEXT NOT NULL,
+  phone            TEXT NOT NULL,
+  use_case         TEXT,
+  notes            TEXT,
+  status           TEXT NOT NULL DEFAULT 'new',  -- new | contacted | piloting | closed
+  created_at       TEXT NOT NULL
+);
+
+CREATE INDEX idx_pilot_leads_created_at ON pilot_leads(created_at);
+CREATE INDEX idx_pilot_leads_status     ON pilot_leads(status);
