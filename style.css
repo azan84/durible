@@ -93,6 +93,44 @@
   --nav-h: 72px;
 }
 
+/* --------------------- LIGHT MODE --------------------- */
+
+html[data-theme="light"] {
+  --bg:            #f5f5f3;
+  --bg-elev:       #ffffff;
+  --bg-sunk:       #ebebea;
+  --ink:           #1a1a1a;
+  --ink-strong:    #050505;
+  --ink-muted:     #555555;
+  --ink-soft:      #888888;
+  --line:          #dededc;
+  --line-strong:   #c8c8c6;
+
+  --primary:       #6e9e22;
+  --primary-hover: #5a8519;
+  --primary-ink:   #ffffff;
+
+  --gold:          #6e9e22;
+  --gold-hover:    #5a8519;
+
+  --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md:  0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-lg:  0 16px 40px rgba(0, 0, 0, 0.1),  0 4px 8px rgba(0, 0, 0, 0.04);
+  --shadow-xl:  0 32px 80px rgba(0, 0, 0, 0.14), 0 8px 16px rgba(0, 0, 0, 0.05);
+  --shadow-gold-ring: 0 0 0 3px rgba(110, 158, 34, 0.25);
+}
+
+html[data-theme="light"] .nav {
+  background: rgba(245, 245, 243, 0.92);
+}
+html[data-theme="light"] .sticky-bar {
+  background: rgba(245, 245, 243, 0.96);
+}
+
+/* Theme toggle icon visibility */
+html[data-theme="dark"]  #themeToggle .icon-sun  { display: none; }
+html[data-theme="light"] #themeToggle .icon-moon { display: none; }
+
 /* --------------------- RESET --------------------- */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -1738,12 +1776,11 @@ body.scroll-lock { overflow: hidden; }
 .ordo-lab-title {
   font-family: var(--font-display);
   font-size: clamp(var(--fs-2xl), 5vw, var(--fs-5xl));
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.08;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   margin-bottom: var(--sp-6);
-  color: var(--bg);
-  font-variation-settings: 'opsz' 144, 'SOFT' 40;
+  color: #ffffff;
 }
 .ordo-lab-title em {
   font-style: normal;
