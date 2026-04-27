@@ -343,11 +343,13 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
   height: 36px;
   width: auto;
   object-fit: contain;
-  /* Dark mode: invert white→black (matches nav), hue-rotate green→lime family */
-  filter: invert(1) hue-rotate(120deg);
   transition: filter var(--dur-3) var(--ease-swift);
 }
-/* Light mode: show original dark-green-on-white logo as-is */
+/* Dark mode: logo is dark green — brighten so it's visible on dark nav */
+html[data-theme="dark"] .nav-logo img {
+  filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(60deg);
+}
+/* Light mode: original dark green shows naturally on light nav */
 html[data-theme="light"] .nav-logo img {
   filter: none;
 }
