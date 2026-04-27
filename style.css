@@ -90,7 +90,7 @@
   --max-w: 1280px;
   --max-w-reader: 640px;
   --gutter: clamp(20px, 4vw, 40px);
-  --nav-h: 72px;
+  --nav-h: 96px;
 }
 
 /* --------------------- LIGHT MODE --------------------- */
@@ -340,7 +340,7 @@ input, select, textarea, button { font-family: inherit; font-size: inherit; }
   margin-right: auto;
 }
 .nav-logo img {
-  height: 36px;
+  height: 72px;
   width: auto;
   object-fit: contain;
   transition: filter var(--dur-3) var(--ease-swift);
@@ -1548,8 +1548,8 @@ html[data-theme="light"] .nav-logo img {
 /* --------------------- FOOTER --------------------- */
 
 .footer {
-  background: var(--ink-strong);
-  color: var(--bg);
+  background: #111111;
+  color: #f2f2f2;
   padding: var(--sp-20) 0 var(--sp-6);
   margin-top: 0;
 }
@@ -1573,9 +1573,8 @@ html[data-theme="light"] .nav-logo img {
   letter-spacing: -0.02em;
   line-height: 1;
   margin-bottom: var(--sp-4);
-  color: var(--bg);
+  color: #ffffff;
   font-style: italic;
-  font-variation-settings: 'opsz' 144, 'SOFT' 100;
 }
 .footer-brand p {
   font-size: var(--fs-sm);
