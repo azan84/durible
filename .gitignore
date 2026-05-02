@@ -1,0 +1,5 @@
+
+# STL source — build input, not runtime asset
+*.stl
+node_modules/
+package*.json

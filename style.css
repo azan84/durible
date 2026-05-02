@@ -597,12 +597,43 @@ html[data-theme="light"] .nav-logo img {
   margin: 0 auto;
   padding: 0 var(--gutter);
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--sp-10);
   align-items: center;
 }
 
-.hero-copy {
-  max-width: 860px;
+/* ── 3D stage ─────────────────────────────────────────────────────── */
+.stage {
+  position: relative;
+  height: 80vh;
+  min-height: 380px;
+}
+.stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.stage-label {
+  position: absolute;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  padding: 5px 12px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.stage-label--tl { top: 12%;  left: 0; }
+.stage-label--mr { top: 50%;  right: 0; transform: translateY(-50%); }
+.stage-label--bl { bottom: 12%; left: 0; }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .stage { height: 50vh; order: 1; }   /* text stays first (order 0 default) */
 }
 
 .hero-eyebrow {

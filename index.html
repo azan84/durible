@@ -54,6 +54,15 @@
   <link rel="stylesheet" href="style.css?v=ordo-v1">
   <script src="interactions.js?v=ordo-v1" defer></script>
 
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -183,6 +192,13 @@
           <a href="#start-project" class="btn btn-primary btn-icon-r">Start a Project</a>
           <a href="#pillars" class="link">Explore Pillars</a>
         </div>
+      </div>
+
+      <div class="stage" aria-label="3D model of the Bambu Lab P1S printer">
+        <canvas id="three-canvas" aria-hidden="true"></canvas>
+        <span class="stage-label stage-label--tl">Bambu Lab P1S · CoreXY</span>
+        <span class="stage-label stage-label--mr">256 × 256 × 256 mm build</span>
+        <span class="stage-label stage-label--bl">PLA · PETG · biocomposite</span>
       </div>
 
     </div>
@@ -843,6 +859,155 @@
       window.open('https://wa.me/60107924208?text=' + encodeURIComponent(msg), '_blank');
     });
   })();
+  </script>
+
+  <!-- 3D Hero — Three.js + GSAP ScrollTrigger -->
+  <script type="module">
+  import * as THREE from 'three';
+  import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+  import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+  import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+  const canvas = document.getElementById('three-canvas');
+  if (!canvas) { throw new Error('No canvas'); }
+
+  // ── Lazy-init via IntersectionObserver ──────────────────────────────────
+  const observer = new IntersectionObserver((entries, obs) => {
+    if (!entries[0].isIntersecting) return;
+    obs.disconnect();
+    initScene();
+  }, { rootMargin: '200px' });
+  observer.observe(canvas);
+
+  function initScene() {
+    // ── Renderer ─────────────────────────────────────────────────────────
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+    // ── Scene / Camera ────────────────────────────────────────────────────
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+    camera.position.set(0, 0.5, 6);
+
+    // ── Environment (PMREM RoomEnvironment) ───────────────────────────────
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+    pmrem.dispose();
+
+    // ── Lights ────────────────────────────────────────────────────────────
+    const key = new THREE.DirectionalLight(0xffffff, 1.5);
+    key.position.set(3, 4, 5);
+    scene.add(key);
+
+    const fill = new THREE.DirectionalLight(0xd8e0d4, 0.6);   // lime-green tint
+    fill.position.set(-4, 2, -3);
+    scene.add(fill);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+
+    // ── Load GLB ──────────────────────────────────────────────────────────
+    const draco = new DRACOLoader();
+    draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/libs/draco/');
+
+    const loader = new GLTFLoader();
+    loader.setDRACOLoader(draco);
+
+    let model = null;
+
+    loader.load('assets/models/P1S.glb', (gltf) => {
+      model = gltf.scene;
+
+      // Auto-centre + scale to longest dimension = 2.5
+      const box = new THREE.Box3().setFromObject(model);
+      const size = new THREE.Vector3();
+      box.getSize(size);
+      const maxDim = Math.max(size.x, size.y, size.z);
+      model.scale.setScalar(2.5 / maxDim);
+
+      const center = new THREE.Vector3();
+      box.getCenter(center);
+      model.position.sub(center.multiplyScalar(2.5 / maxDim));
+
+      // Initial pose — slight 3/4 view
+      model.rotation.set(0, -0.3, 0);
+
+      scene.add(model);
+      setupScroll(model);
+    }, undefined, (err) => console.error('GLB load error:', err));
+
+    // ── Resize ────────────────────────────────────────────────────────────
+    function onResize() {
+      const w = canvas.parentElement.clientWidth;
+      const h = canvas.parentElement.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', onResize);
+    onResize();
+
+    // ── Render loop ───────────────────────────────────────────────────────
+    let t = 0;
+    (function tick() {
+      requestAnimationFrame(tick);
+      t += 0.016;
+      if (model) model.position.y = Math.sin(t * 0.8) * 0.05;
+      renderer.render(scene, camera);
+    })();
+  }
+
+  // ── GSAP scroll choreography (loaded only if scene inits) ────────────────
+  function setupScroll(model) {
+    const gsapURL  = 'https://cdn.skypack.dev/gsap';
+    const stURL    = 'https://cdn.skypack.dev/gsap/ScrollTrigger';
+
+    Promise.all([import(gsapURL), import(stURL)]).then(([gsapMod, stMod]) => {
+      const gsap = gsapMod.default ?? gsapMod.gsap ?? gsapMod;
+      const { ScrollTrigger } = stMod;
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero scroll — full 360° Y + tilt + depth recession
+      gsap.to(model.rotation, {
+        y: Math.PI * 2 - 0.3,
+        x: 0.4,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.2,
+        },
+      });
+      gsap.to(model.position, {
+        z: -1.5,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.2,
+        },
+      });
+
+      // Pillars section — half-rotation flourish
+      const pillars = document.getElementById('pillars');
+      if (pillars) {
+        gsap.to(model.rotation, {
+          y: '+=' + Math.PI,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: pillars,
+            start: 'top bottom',
+            end: 'top top',
+            scrub: 1,
+          },
+        });
+      }
+    });
+  }
   </script>
 
   <!-- Theme toggle -->
