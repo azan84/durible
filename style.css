@@ -613,6 +613,13 @@ html[data-theme="light"] .nav-logo img {
   width: 100%;
   height: 100%;
 }
+.stage-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--r-lg, 16px);
+}
 .stage-label {
   position: absolute;
   font-size: var(--fs-xs);
@@ -1085,6 +1092,21 @@ html[data-theme="light"] .nav-logo img {
   transition: transform var(--dur-4) var(--ease-out);
 }
 .pdp-gallery-main:hover img { transform: scale(1.03); }
+
+.pdp-gallery-thumbs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+.pdp-gallery-thumbs img,
+.pdp-gallery-thumbs video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--bg-sunk);
+}
 
 .pdp-info {
   padding-top: var(--sp-4);
