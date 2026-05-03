@@ -186,7 +186,24 @@
       </div>
 
       <div class="stage" aria-label="Personalised NFC bag tag by Ordo">
-        <img class="stage-image" src="img/bagtag-blank.jpg" alt="Personalised NFC bag tag — Ordo-Link" fetchpriority="high" decoding="async" width="1000" height="1250">
+        <video class="stage-video" id="heroVideo"
+               src="img/bagtag-video.mp4"
+               poster="img/bagtag-blank.jpg"
+               autoplay loop muted playsinline
+               preload="auto">
+        </video>
+        <button class="stage-sound-btn" id="stageSoundBtn" aria-label="Unmute video" title="Toggle sound">
+          <!-- muted (default) -->
+          <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+          <!-- sound on -->
+          <svg class="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" hidden>
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M15.54 8.46a5 5 0 010 7.07"/><path d="M19.07 4.93a10 10 0 010 14.14"/>
+          </svg>
+        </button>
         <span class="stage-label stage-label--tl">Ordo-Link · NFC bag tag</span>
         <span class="stage-label stage-label--mr">Tap to reveal contact info</span>
         <span class="stage-label stage-label--bl">PLA · weatherproof · made in KL</span>
@@ -862,6 +879,33 @@
       var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-theme', next);
       localStorage.setItem('ordo-theme', next);
+    });
+  })();
+  </script>
+
+  <!-- Hero video sound toggle -->
+  <script>
+  (function () {
+    var video  = document.getElementById('heroVideo');
+    var btn    = document.getElementById('stageSoundBtn');
+    if (!video || !btn) return;
+
+    var iconMuted = btn.querySelector('.icon-muted');
+    var iconSound = btn.querySelector('.icon-sound');
+
+    btn.addEventListener('click', function () {
+      video.muted = !video.muted;
+      if (video.muted) {
+        iconMuted.removeAttribute('hidden');
+        iconSound.setAttribute('hidden', '');
+        btn.setAttribute('aria-label', 'Unmute video');
+      } else {
+        iconMuted.setAttribute('hidden', '');
+        iconSound.removeAttribute('hidden');
+        btn.setAttribute('aria-label', 'Mute video');
+        // Browsers may pause if unmuted before user gesture — resume
+        video.play().catch(function () {});
+      }
     });
   })();
   </script>

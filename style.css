@@ -613,13 +613,37 @@ html[data-theme="light"] .nav-logo img {
   width: 100%;
   height: 100%;
 }
-.stage-image {
+.stage-image,
+.stage-video {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: var(--r-lg, 16px);
 }
+
+/* Sound toggle button */
+.stage-sound-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s;
+}
+.stage-sound-btn:hover { background: rgba(0, 0, 0, 0.8); }
+.stage-sound-btn svg   { width: 18px; height: 18px; }
 .stage-label {
   position: absolute;
   font-size: var(--fs-xs);
