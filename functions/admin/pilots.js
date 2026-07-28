@@ -149,6 +149,7 @@ function renderHtml({ leads, filterStatus, updated, counts }) {
       <nav class="topnav">
         <a href="/admin">Orders</a>
         <a href="/admin/pilots" class="active">Pilot leads · Durible</a>
+        <a href="/admin/manage">Manage · Business</a>
       </nav>
       <div class="stats">
         <div><strong>${leads.length}</strong> leads shown</div>

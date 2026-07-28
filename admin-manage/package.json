@@ -1,0 +1,15 @@
+{
+  "name": "ordo-admin-manage",
+  "private": true,
+  "description": "Source + build tooling for /admin/manage. Not part of the deployed static site — only the build output (functions/admin/manage-bundle.js) is deployed. Run `npm install && npm run build` here after editing OrdoAdmin.jsx, then commit the regenerated functions/admin/manage-bundle.js.",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  }
+}

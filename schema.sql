@@ -7,6 +7,7 @@
 DROP TABLE IF EXISTS order_items;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS pilot_leads;
+DROP TABLE IF EXISTS admin_kv;
 
 -- One row per buyer / transaction, for all product types.
 CREATE TABLE orders (
@@ -67,3 +68,12 @@ CREATE TABLE pilot_leads (
 
 CREATE INDEX idx_pilot_leads_created_at ON pilot_leads(created_at);
 CREATE INDEX idx_pilot_leads_status     ON pilot_leads(status);
+
+-- Single-blob key/value store backing the /admin/manage business tool
+-- (orders board, finance/PnL, inventory, pricing calculator, clients).
+-- One row, key 'ordo-core-v1', value is the whole app state as JSON.
+CREATE TABLE admin_kv (
+  key              TEXT PRIMARY KEY,
+  value            TEXT NOT NULL,
+  updated_at       TEXT NOT NULL
+);

@@ -280,6 +280,7 @@ function renderHtml({
       <nav class="topnav">
         <a href="/admin" class="active">Orders</a>
         <a href="/admin/pilots">Pilot leads · Durible</a>
+        <a href="/admin/manage">Manage · Business</a>
       </nav>
       <div class="stats">
         <div><strong>${orders.length}</strong> orders shown</div>

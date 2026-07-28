@@ -1,5 +1,34 @@
 # Deploy Notes — Ordo (was Durible3D)
 
+> ## ⏳ DEPLOY PENDING — /admin/manage business tool
+>
+> Adds `/admin/manage`, a staff-facing business management app
+> (orders pipeline, finance/PnL, inventory, pricing calculator,
+> clients). Sits behind the same Basic Auth as the rest of `/admin/*`.
+> Its state is one JSON blob in the new D1 `admin_kv` table.
+>
+> **Step 1 — run the D1 migration** (idempotent):
+> ```bash
+> wrangler d1 execute durible-orders --file=./migrations/2026-07-28-admin-kv.sql --remote
+> ```
+>
+> **Step 2 — deploy**:
+> ```bash
+> wrangler pages deploy . --project-name=durible --branch=main --commit-dirty=true
+> ```
+>
+> **Step 3 — verify**: open `https://ordo.earth/admin/manage`, log in
+> with the admin password, then pick a user and enter PIN `1234`.
+> Everyone should change their PIN under Settings → Your PIN.
+>
+> **Rebuilding the UI**: `/admin/manage` is a React app. The source is
+> `admin-manage/OrdoAdmin.jsx`; the deployed artifact is the generated
+> `functions/admin/manage-bundle.js`. After editing the source:
+> ```bash
+> cd admin-manage && npm install && npm run build
+> ```
+> then commit the regenerated bundle.
+
 > ## ⏳ DEPLOY PENDING — ordo-v3 awaits credentials
 >
 > As of this commit, the **ordo-v3** code is ready on `main` but

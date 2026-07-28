@@ -3,3 +3,11 @@
 *.stl
 node_modules/
 package*.json
+
+# admin-manage build tooling — keep package.json (needed to rebuild) even
+# though package*.json is ignored globally above; node_modules stays ignored.
+!/admin-manage/package.json
+
+# local secrets and state for wrangler pages dev
+.dev.vars
+.wrangler/
