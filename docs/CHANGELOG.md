@@ -1,5 +1,37 @@
 # Changelog
 
+## [ordo-v4] — 2026-10-08 · material atelier redesign
+
+Visual redesign of the homepage and shared stylesheet. Made with Claude
+Code, with design critiques and code review from Codex CLI and
+Antigravity (agy).
+
+### Changed
+
+- **New palette and type** — basalt base, unbleached-PLA ink, husk green
+  for interaction, durian-fibre ochre reserved for Durible. Bricolage
+  Grotesque (display), Hanken Grotesk (body), JetBrains Mono (specs).
+  Light theme retuned for WCAG AA contrast.
+- **Signature hero motion** — headline and product video "print"
+  themselves in 14 stepped 0.2 mm layers with a nozzle line and live
+  layer/Z readout. Runs once; disabled under reduced motion.
+- **Ordo Lab moved up** after Pillars, with a four-step husk → fibre →
+  filament → object process strip.
+- Sentence-case labels, no italic accent words, quieter scroll reveals
+  (gated on JS so content never stays hidden).
+- Product pages pick up the new fonts and honour the saved theme.
+
+### Fixed
+
+- Shop filter chips did nothing (markup used `data-filter`, JS expected
+  `data-filter-pillar`). Now single-select toggle buttons with arrow-key
+  navigation, plus an empty state for commission-only families.
+- Pillar "Browse" links now open the shop filtered to that family.
+- Hero video gets a pause control (WCAG 2.2.2); paused by default
+  under reduced motion.
+- PDP sticky CTA is now inert and hidden from assistive tech while
+  off-screen.
+
 ## [ordo-v3] — 2026-04-21 · brand and pillars
 
 User-visible rebrand from "Durible3D" to **Ordo**. "Durible" is retired as

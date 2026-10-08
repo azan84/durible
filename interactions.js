@@ -372,81 +372,65 @@
   }
   function escapeAttr(s) { return escapeHtml(s); }
 
-  // ------- 9. Product filter chips (pillar + type, OR-within, AND-across) -------
+  // ------- 9. Product filter chips -------
 
   function setupProductFilter() {
     var grid = document.getElementById('productGrid');
     if (!grid) return;
 
-    var pillarChips = document.querySelectorAll('.catalog-filters [data-filter-pillar]');
-    var typeChips = document.querySelectorAll('.catalog-filters [data-filter-type]');
-    var clearBtn = document.getElementById('clearFilters');
+    var chips = document.querySelectorAll('.catalog-filters [data-filter]');
     var emptyEl = document.getElementById('shopEmpty');
-    if (!pillarChips.length && !typeChips.length) return;
+    if (!chips.length) return;
 
-    function activeSet(chips, attr) {
-      var out = [];
-      chips.forEach(function (c) {
-        if (c.getAttribute('aria-pressed') === 'true') out.push(c.getAttribute(attr));
+    function setActive(chip) {
+      chips.forEach(function (item) {
+        var isActive = item === chip;
+        item.classList.toggle('active', isActive);
+        item.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       });
-      return out;
+
+      apply(chip);
     }
 
-    function apply() {
-      var pillars = activeSet(pillarChips, 'data-filter-pillar');
-      var types = activeSet(typeChips, 'data-filter-type');
-
-      var anyActive = pillars.length > 0 || types.length > 0;
-      if (clearBtn) clearBtn.hidden = !anyActive;
-
+    function apply(activeChip) {
+      var filter = activeChip.getAttribute('data-filter');
       var totalVisible = 0;
       var cards = grid.querySelectorAll('.product-card');
       cards.forEach(function (card) {
-        var pillar = card.getAttribute('data-pillar') || '';
-        var cat = card.getAttribute('data-category') || '';
-        var pillarOk = pillars.length === 0 || pillars.indexOf(pillar) >= 0;
-        var typeOk = types.length === 0 || types.indexOf(cat) >= 0;
-        // Placeholder cards (no data-category) only match when no type filter is active.
-        if (!cat && types.length > 0) typeOk = false;
-        var show = pillarOk && typeOk;
+        var show = !card.hasAttribute('hidden') &&
+          (filter === 'all' || card.getAttribute('data-category') === filter);
         card.style.display = show ? '' : 'none';
         if (show) totalVisible++;
       });
 
-      // Hide pillar-block wrappers with no visible cards inside
-      grid.querySelectorAll('.pillar-block').forEach(function (block) {
-        var hasVisible = false;
-        block.querySelectorAll('.product-card').forEach(function (c) {
-          if (c.style.display !== 'none') hasVisible = true;
-        });
-        block.hidden = !hasVisible;
+      if (emptyEl) {
+        emptyEl.hidden = totalVisible !== 0;
+        var emptyPillar = emptyEl.querySelector('[data-empty-pillar]');
+        if (emptyPillar) emptyPillar.textContent = activeChip.textContent;
+      }
+    }
+
+    var initialChip = null;
+    chips.forEach(function (chip) {
+      if (!initialChip && (chip.classList.contains('active') ||
+          chip.getAttribute('aria-pressed') === 'true')) {
+        initialChip = chip;
+      }
+
+      chip.addEventListener('click', function () { setActive(chip); });
+      chip.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        e.preventDefault();
+        var index = Array.prototype.indexOf.call(chips, chip);
+        var next = e.key === 'ArrowRight' ? index + 1 : index - 1;
+        if (next < 0) next = chips.length - 1;
+        if (next >= chips.length) next = 0;
+        chips[next].focus();
+        setActive(chips[next]);
       });
-
-      if (emptyEl) emptyEl.hidden = totalVisible > 0;
-    }
-
-    function toggleChip(chip) {
-      var pressed = chip.getAttribute('aria-pressed') === 'true';
-      chip.setAttribute('aria-pressed', pressed ? 'false' : 'true');
-      apply();
-    }
-
-    pillarChips.forEach(function (chip) {
-      chip.addEventListener('click', function () { toggleChip(chip); });
-    });
-    typeChips.forEach(function (chip) {
-      chip.addEventListener('click', function () { toggleChip(chip); });
     });
 
-    if (clearBtn) {
-      clearBtn.addEventListener('click', function () {
-        pillarChips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
-        typeChips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
-        apply();
-      });
-    }
-
-    apply();
+    setActive(initialChip || chips[0]);
   }
 
   // ------- 10. Image-loaded (stop shimmer) -------
@@ -487,11 +471,14 @@
     if (!bar || !anchor) return;
 
     if (!('IntersectionObserver' in window)) { return; }
+    bar.inert = true;
 
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) bar.classList.remove('show');
-        else bar.classList.add('show');
+        var show = !entry.isIntersecting;
+        bar.classList.toggle('show', show);
+        bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+        bar.inert = !show;
       });
     }, { rootMargin: '0px 0px -80% 0px' });
     io.observe(anchor);
@@ -522,6 +509,43 @@
     onScroll();
   }
 
+  // ------- 14. Pillar links jump to a filtered shop -------
+
+  function setupFilterLinks() {
+    document.querySelectorAll('[data-goto-filter]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        var chip = document.querySelector('.catalog-filters [data-filter="' + link.getAttribute('data-goto-filter') + '"]');
+        if (chip) chip.click();
+      });
+    });
+  }
+
+  // ------- 15. Hero build readout (layer counter) -------
+
+  function setupBuildReadout() {
+    var out = document.getElementById('stageReadout');
+    if (!out || prefersReduced) return;
+
+    var layers = 14, layerMm = 0.2, layer = 0;
+    var wrap = out.closest('.stage') && out.closest('.stage').querySelector('.build-wrap');
+    var style = wrap ? getComputedStyle(wrap) : null;
+    var delay = style ? parseFloat(style.getPropertyValue('--build-delay')) * 1000 || 0 : 0;
+    var dur = style ? parseFloat(style.getPropertyValue('--build-dur')) * 1000 || 1400 : 1400;
+
+    function render() {
+      var n = layer < 10 ? '0' + layer : String(layer);
+      out.textContent = 'Layer ' + n + '/' + layers + ' \u00b7 Z ' + (layer * layerMm).toFixed(2) + ' mm';
+    }
+    render();
+    setTimeout(function () {
+      var timer = setInterval(function () {
+        layer++;
+        render();
+        if (layer >= layers) clearInterval(timer);
+      }, dur / layers);
+    }, delay);
+  }
+
   // ------- INIT -------
 
   function init() {
@@ -538,6 +562,8 @@
     setupAccordions();
     setupStickyCta();
     setupActiveNav();
+    setupFilterLinks();
+    setupBuildReadout();
   }
 
   if (document.readyState === 'loading') {

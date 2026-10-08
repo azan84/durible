@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="build" content="ordo-v1">
-  <meta name="theme-color" content="#1a1a1a">
+  <meta name="build" content="ordo-v4">
+  <meta name="theme-color" content="#131412">
 
   <title>Ordo — Sustainable 3D Manufacturing | Prompt to Production | Malaysia</title>
   <meta name="description" content="Ordo is a sustainable 3D manufacturing studio in Kuala Lumpur. NFC smart tags, branded office products, architectural honours, and sentimental keepsakes — all printed locally.">
@@ -46,13 +46,13 @@
   <link rel="canonical" href="https://ordo.earth/">
 
   <!-- Anti-flash: apply saved theme before CSS renders -->
-  <script>(function(){var t=localStorage.getItem('ordo-theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <script>(function(){var d=document.documentElement,t='dark';try{t=localStorage.getItem('ordo-theme')||'dark';}catch(e){}d.setAttribute('data-theme',t);d.classList.add('js');})();</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=ordo-v1">
-  <script src="interactions.js?v=ordo-v1" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=ordo-v4">
+  <script src="interactions.js?v=ordo-v4" defer></script>
 
   <script type="application/ld+json">
   {
@@ -99,10 +99,10 @@
 
       <nav class="nav-links" aria-label="Primary">
         <a href="#pillars">Pillars</a>
-        <a href="#shop">Shop</a>
         <a href="#ordo-lab">Ordo Lab</a>
+        <a href="#shop">Shop</a>
         <a href="#impact">Impact</a>
-        <a href="#start-project" class="nav-link-cta">Start a Project</a>
+        <a href="#start-project" class="nav-link-cta">Start a project</a>
       </nav>
 
       <div class="nav-actions">
@@ -143,10 +143,10 @@
       <div class="eyebrow">Menu</div>
       <div class="mobile-drawer-links">
         <a href="#pillars" data-close>Pillars</a>
-        <a href="#shop" data-close>Shop</a>
         <a href="#ordo-lab" data-close>Ordo Lab</a>
+        <a href="#shop" data-close>Shop</a>
         <a href="#impact" data-close>Impact</a>
-        <a href="#start-project" data-close>Start a Project</a>
+        <a href="#start-project" data-close>Start a project</a>
       </div>
     </div>
   </div>
@@ -171,48 +171,63 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-copy">
-        <div class="hero-eyebrow reveal">Sustainable 3D Manufacturing · Kuala Lumpur</div>
-        <h1 class="hero-title reveal" data-stagger="1">
-          Prompt to<br>
-          <em>Production.</em>
-        </h1>
-        <p class="hero-sub reveal" data-stagger="2">
-          Ordo turns ideas into locally-crafted 3D-printed objects — NFC smart tags, branded office products, architectural honours, and sentimental keepsakes. Made in Kuala Lumpur with eco-conscious materials, one considered object at a time.
+        <div class="hero-eyebrow settle" style="--settle-delay:0s">Sustainable 3D manufacturing in Kuala Lumpur</div>
+        <div class="build-wrap" style="--build-dur:1.3s; --build-delay:0.15s">
+          <h1 class="hero-title build">
+            <span class="hero-title-line">Prompt to</span>
+            <span class="hero-title-line">production.</span>
+          </h1>
+          <span class="build-nozzle" aria-hidden="true"></span>
+        </div>
+        <p class="hero-sub settle" style="--settle-delay:1.35s">
+          Ordo turns ideas into 3D-printed objects made in Kuala Lumpur: NFC smart tags, branded office products, architectural honours and keepsakes. Eco-conscious materials, one considered object at a time.
         </p>
-        <div class="hero-actions reveal" data-stagger="3">
-          <a href="#start-project" class="btn btn-primary btn-icon-r">Start a Project</a>
-          <a href="#pillars" class="link">Explore Pillars</a>
+        <div class="hero-actions settle" style="--settle-delay:1.5s">
+          <a href="#start-project" class="btn btn-primary btn-icon-r">Start a project</a>
+          <a href="#shop" class="link">Shop ready-made pieces</a>
         </div>
       </div>
 
-      <div class="stage" aria-label="Personalised NFC bag tag by Ordo">
-        <video class="stage-video" id="heroVideo"
-               src="img/bagtag-video.mp4"
-               poster="img/bagtag-blank.jpg"
-               autoplay loop muted playsinline
-               preload="auto">
-        </video>
-        <button class="stage-sound-btn" id="stageSoundBtn" aria-label="Unmute video" title="Toggle sound">
-          <!-- muted (default) -->
-          <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-            <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-          </svg>
-          <!-- sound on -->
-          <svg class="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" hidden>
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-            <path d="M15.54 8.46a5 5 0 010 7.07"/><path d="M19.07 4.93a10 10 0 010 14.14"/>
-          </svg>
-        </button>
-        <span class="stage-label stage-label--tl">Ordo-Link · NFC bag tag</span>
-        <span class="stage-label stage-label--mr">Tap to reveal contact info</span>
-        <span class="stage-label stage-label--bl">PLA · weatherproof · made in KL</span>
-      </div>
-
+      <figure class="stage">
+        <div class="build-wrap" style="--build-dur:1.6s; --build-delay:0.35s">
+          <div class="stage-frame build">
+            <video class="stage-video" id="heroVideo"
+                   src="img/bagtag-video.mp4"
+                   poster="img/bagtag-blank.jpg"
+                   autoplay loop muted playsinline
+                   preload="auto"
+                   aria-label="A phone tapping an Ordo NFC bag tag to reveal the owner's details">
+            </video>
+            <button type="button" class="stage-sound-btn stage-play-btn" id="stagePlayBtn" aria-label="Pause video" title="Play / pause">
+              <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                <line x1="9" y1="6" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="18"/>
+              </svg>
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true" hidden>
+                <polygon points="8 5 19 12 8 19 8 5"/>
+              </svg>
+            </button>
+            <button type="button" class="stage-sound-btn" id="stageSoundBtn" aria-label="Unmute video" title="Toggle sound">
+              <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+              </svg>
+              <svg class="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" hidden>
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M15.54 8.46a5 5 0 010 7.07"/><path d="M19.07 4.93a10 10 0 010 14.14"/>
+              </svg>
+            </button>
+          </div>
+          <span class="build-nozzle" aria-hidden="true"></span>
+        </div>
+        <figcaption class="stage-caption settle" style="--settle-delay:1.9s">
+          <span><strong>Ordo-Link bag tag.</strong> Tap a phone to see who it belongs to.</span>
+          <span class="stage-readout" id="stageReadout" aria-hidden="true">Layer 14/14 &middot; Z 2.80 mm</span>
+        </figcaption>
+      </figure>
     </div>
 
     <div class="container">
-      <div class="hero-meta-row reveal">
+      <div class="hero-meta-row settle" style="--settle-delay:1.7s">
         <div class="hero-meta">
           <span class="hero-meta-label">Material</span>
           <span class="hero-meta-value">Eco-conscious PLA</span>
@@ -222,7 +237,7 @@
           <span class="hero-meta-value">Kuala Lumpur, MY</span>
         </div>
         <div class="hero-meta">
-          <span class="hero-meta-label">Pillars</span>
+          <span class="hero-meta-label">Range</span>
           <span class="hero-meta-value">4 product families</span>
         </div>
         <div class="hero-meta">
@@ -239,62 +254,111 @@
       <div class="section-head-row">
         <div>
           <div class="section-eyebrow">Product families</div>
-          <h2 class="section-title">Four pillars,<br><em>one studio.</em></h2>
+          <h2 class="section-title">Four families of objects, one studio.</h2>
         </div>
         <p class="section-sub">Every Ordo product belongs to a pillar — a focused family of objects designed for a specific purpose and audience.</p>
       </div>
 
       <div class="pillars-grid">
 
-        <div class="pillar-card reveal">
+        <article class="pillar-card reveal">
           <div class="pillar-card-media">
-            <span class="pillar-card-badge">Ordo-Link</span>
             <img src="img/pillar-link.png" alt="Ordo-Link NFC luggage and safety tags" loading="lazy" decoding="async">
           </div>
           <div class="pillar-card-info">
             <h3 class="pillar-card-name">Ordo-Link</h3>
             <p class="pillar-card-desc">Smart NFC luggage &amp; safety tags. Tap to reveal contact info, ownership details, or emergency data — no app required.</p>
-            <a href="#shop" class="link pillar-card-link">Shop Ordo-Link &#8594;</a>
+            <a href="#shop" class="link pillar-card-link" data-goto-filter="ordo-link">Browse Ordo-Link</a>
           </div>
-        </div>
+        </article>
 
-        <div class="pillar-card reveal" data-stagger="1">
+        <article class="pillar-card reveal" data-stagger="1">
           <div class="pillar-card-media">
-            <span class="pillar-card-badge">Ordo-Office</span>
             <img src="img/pillar-office.png" alt="Ordo-Office branded phone holders and cable winders for B2B" loading="lazy" decoding="async">
           </div>
           <div class="pillar-card-info">
             <h3 class="pillar-card-name">Ordo-Office</h3>
             <p class="pillar-card-desc">Branded phone holders &amp; cable winders for B2B. Your logo, your team's desk. Minimum orders welcome.</p>
-            <a href="#shop" class="link pillar-card-link">Shop Ordo-Office &#8594;</a>
+            <a href="#shop" class="link pillar-card-link" data-goto-filter="ordo-office">Browse Ordo-Office</a>
           </div>
-        </div>
+        </article>
 
-        <div class="pillar-card reveal" data-stagger="2">
+        <article class="pillar-card reveal" data-stagger="2">
           <div class="pillar-card-media">
-            <span class="pillar-card-badge">Ordo-Honor</span>
             <img src="img/pillar-honor.png" alt="Ordo-Honor custom architectural plaques and awards" loading="lazy" decoding="async">
           </div>
           <div class="pillar-card-info">
             <h3 class="pillar-card-name">Ordo-Honor</h3>
             <p class="pillar-card-desc">Custom architectural plaques &amp; awards. Commissioned for institutions, events, and organisations that mark occasions with permanence.</p>
-            <a href="#shop" class="link pillar-card-link">Shop Ordo-Honor &#8594;</a>
+            <a href="#shop" class="link pillar-card-link" data-goto-filter="ordo-honor">Browse Ordo-Honor</a>
           </div>
-        </div>
+        </article>
 
-        <div class="pillar-card reveal" data-stagger="3">
+        <article class="pillar-card reveal" data-stagger="3">
           <div class="pillar-card-media">
-            <span class="pillar-card-badge">Ordo-Life</span>
             <img src="img/pillar-life.png" alt="Ordo-Life sentimental 3D ultrasound art and personalised keepsakes" loading="lazy" decoding="async">
           </div>
           <div class="pillar-card-info">
             <h3 class="pillar-card-name">Ordo-Life</h3>
             <p class="pillar-card-desc">Sentimental 3D ultrasound art &amp; personalised keepsakes. Objects made to hold a memory for life.</p>
-            <a href="#shop" class="link pillar-card-link">Shop Ordo-Life &#8594;</a>
+            <a href="#shop" class="link pillar-card-link" data-goto-filter="ordo-life">Browse Ordo-Life</a>
           </div>
-        </div>
+        </article>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ORDO LAB -->
+  <section id="ordo-lab" class="ordo-lab">
+    <div class="container ordo-lab-inner">
+      <div class="ordo-lab-copy">
+        <div class="section-eyebrow ordo-lab-eyebrow reveal">Ordo Lab &middot; Durible&#8482;</div>
+        <h2 class="ordo-lab-title reveal">Printing with what Malaysia throws away.</h2>
+        <p class="ordo-lab-lede reveal">
+          Durible&#8482; is our materials research: bioplastics made from durian husk, one of Malaysia's most abundant agricultural by-products. Instead of letting the husks go to landfill, we're turning them into feedstock for locally made 3D printing material.
+        </p>
+        <p class="ordo-lab-lede reveal">
+          It started on a small bench at IIUM's Kulliyyah of Engineering, printing keepsakes for alumni. The goal now is a printer and a material that are both born in Malaysia.
+        </p>
+        <div class="lab-badges-row reveal">
+          <span class="lab-badge">100% locally sourced</span>
+          <span class="lab-badge">Zero petroleum plastics</span>
+          <span class="lab-prototype-tag">Prototype phase</span>
+        </div>
+        <a href="#start-project" class="btn btn-secondary btn-icon-r reveal">Commission a project</a>
+      </div>
+
+      <ol class="lab-process reveal" aria-label="How Durible is made">
+        <li class="lab-step">
+          <span class="lab-step-n" aria-hidden="true">1</span>
+          <div>
+            <h3>Collected</h3>
+            <p>Durian husks from local sellers, diverted before they reach landfill.</p>
+          </div>
+        </li>
+        <li class="lab-step">
+          <span class="lab-step-n" aria-hidden="true">2</span>
+          <div>
+            <h3>Milled</h3>
+            <p>Dried and ground down into a fine plant fibre.</p>
+          </div>
+        </li>
+        <li class="lab-step">
+          <span class="lab-step-n" aria-hidden="true">3</span>
+          <div>
+            <h3>Compounded</h3>
+            <p>Blended into a bioplastic and drawn into printing filament.</p>
+          </div>
+        </li>
+        <li class="lab-step">
+          <span class="lab-step-n" aria-hidden="true">4</span>
+          <div>
+            <h3>Printed</h3>
+            <p>Built up layer by layer into finished objects in our KL studio.</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -303,18 +367,18 @@
     <div class="container">
       <div class="section-head-row">
         <div>
-          <div class="section-eyebrow">Ready to buy</div>
-          <h2 class="section-title">The collection,<br><em>ready to order.</em></h2>
+          <div class="section-eyebrow">Ready to order</div>
+          <h2 class="section-title">The collection.</h2>
         </div>
-        <p class="section-sub">All products are printed to order in Kuala Lumpur. Buy direct via WhatsApp or enquire about bulk and custom orders.</p>
+        <p class="section-sub">Every piece is printed to order in Kuala Lumpur. Customise one online, or message us on WhatsApp for bulk and custom runs.</p>
       </div>
 
-      <div class="catalog-filters" role="tablist" aria-label="Filter by pillar">
-        <button type="button" class="chip active" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button type="button" class="chip" data-filter="ordo-link" role="tab" aria-selected="false">Ordo-Link</button>
-        <button type="button" class="chip" data-filter="ordo-office" role="tab" aria-selected="false">Ordo-Office</button>
-        <button type="button" class="chip" data-filter="ordo-honor" role="tab" aria-selected="false">Ordo-Honor</button>
-        <button type="button" class="chip" data-filter="ordo-life" role="tab" aria-selected="false">Ordo-Life</button>
+      <div class="catalog-filters" role="group" aria-label="Filter by product family">
+        <button type="button" class="chip active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="chip" data-filter="ordo-link" aria-pressed="false">Ordo-Link</button>
+        <button type="button" class="chip" data-filter="ordo-office" aria-pressed="false">Ordo-Office</button>
+        <button type="button" class="chip" data-filter="ordo-honor" aria-pressed="false">Ordo-Honor</button>
+        <button type="button" class="chip" data-filter="ordo-life" aria-pressed="false">Ordo-Life</button>
       </div>
 
       <div class="product-grid" id="productGrid">
@@ -332,7 +396,7 @@
              class="product-card-media" aria-label="Order NFC Smart Luggage Tag via WhatsApp">
             <span class="product-card-tag">Ordo-Link</span>
             <img src="img/Bag_tag.jpeg" alt="NFC Smart Luggage Tag" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Order via WhatsApp <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Order via WhatsApp</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save NFC Smart Luggage Tag to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -343,7 +407,7 @@
               <span class="product-card-price mono">RM 140.00</span>
             </div>
             <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+NFC+Smart+Luggage+Tag+%E2%80%93+RM+140"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Buy Now &#8594;</a>
+               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
           </div>
         </article>
 
@@ -359,7 +423,7 @@
              class="product-card-media" aria-label="Order NFC Safety ID Card via WhatsApp">
             <span class="product-card-tag">Ordo-Link</span>
             <img src="img/Bag_tag.jpeg" alt="NFC Safety ID Card" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Order via WhatsApp <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Order via WhatsApp</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save NFC Safety ID Card to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -370,7 +434,7 @@
               <span class="product-card-price mono">RM 94.00</span>
             </div>
             <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+NFC+Safety+ID+Card+%E2%80%93+RM+94"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Buy Now &#8594;</a>
+               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
           </div>
         </article>
 
@@ -384,7 +448,7 @@
           <a href="bagtag.html" class="product-card-media" aria-label="Shop the Personalised Bag Tag">
             <span class="product-card-tag">Ready to ship</span>
             <img src="img/bagtag-blank.jpg" alt="Personalised 3D-printed bag tag" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Customise <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Customise</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save bag tag to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -411,7 +475,7 @@
              class="product-card-media" aria-label="Order Branded Phone Holder Standard via WhatsApp">
             <span class="product-card-tag">Ordo-Office</span>
             <div class="product-img-placeholder"><span>Phone Holder</span></div>
-            <span class="product-card-quick">Order via WhatsApp <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Order via WhatsApp</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save Branded Phone Holder to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -422,7 +486,7 @@
               <span class="product-card-price mono">RM 212.00</span>
             </div>
             <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Branded+Phone+Holder+Standard+%E2%80%93+RM+212"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Buy Now &#8594;</a>
+               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
           </div>
         </article>
 
@@ -438,7 +502,7 @@
              class="product-card-media" aria-label="Order Cable Winder 3-Pack via WhatsApp">
             <span class="product-card-tag">Ordo-Office</span>
             <img src="img/Cable_winder.jpeg" alt="Cable Winder 3-Pack" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Order via WhatsApp <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Order via WhatsApp</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save Cable Winder 3-Pack to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -449,7 +513,7 @@
               <span class="product-card-price mono">RM 165.00</span>
             </div>
             <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Cable+Winder+3-Pack+%E2%80%93+RM+165"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Buy Now &#8594;</a>
+               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
           </div>
         </article>
 
@@ -465,7 +529,7 @@
              class="product-card-media" aria-label="Order Durible Cord Organizer via WhatsApp">
             <span class="product-card-tag">Ordo-Office</span>
             <img src="img/Cable_winder.jpeg" alt="Durible Cord Organizer" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Order via WhatsApp <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Order via WhatsApp</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save Durible Cord Organizer to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -476,7 +540,7 @@
               <span class="product-card-price mono">RM 117.00</span>
             </div>
             <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Durible+Cord+Organizer+%E2%80%93+RM+117"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Buy Now &#8594;</a>
+               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
           </div>
         </article>
 
@@ -490,7 +554,7 @@
           <a href="cablewinder.html" class="product-card-media" aria-label="Shop the Custom Cable Winder">
             <span class="product-card-tag">Print your logo</span>
             <img src="img/Cable_winder.jpeg" alt="Round 3D-printed cable winder with custom artwork" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Upload logo <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Upload logo</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save cable winder to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -514,7 +578,7 @@
           <a href="bizcard.html" class="product-card-media" aria-label="Shop the 3D Printed Business Card">
             <span class="product-card-tag">NFC + QR</span>
             <img src="img/Biz_card.jpeg" alt="3D printed smart business card with embedded NFC" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Customise <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Customise</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save business card to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -541,7 +605,7 @@
              class="product-card-media" aria-label="Order Memorial Plaque Premium via WhatsApp">
             <span class="product-card-tag">Ordo-Honor</span>
             <img src="img/Durible.jpeg" alt="Memorial Plaque Premium" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Enquire <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Enquire</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save Memorial Plaque Premium to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -552,7 +616,7 @@
               <span class="product-card-price mono">RM 935.00</span>
             </div>
             <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Memorial+Plaque+Premium+%E2%80%93+RM+935"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Buy Now &#8594;</a>
+               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
           </div>
         </article>
 
@@ -568,7 +632,7 @@
              class="product-card-media" aria-label="Order Award Trophy Custom via WhatsApp">
             <span class="product-card-tag">Ordo-Honor</span>
             <img src="img/Durible.jpeg" alt="Award Trophy Custom" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Enquire <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Enquire</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save Award Trophy Custom to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -579,7 +643,7 @@
               <span class="product-card-price mono">RM 700.00</span>
             </div>
             <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Award+Trophy+Custom+%E2%80%93+RM+700"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Buy Now &#8594;</a>
+               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
           </div>
         </article>
 
@@ -596,7 +660,7 @@
              class="product-card-media" aria-label="Order 3D Ultrasound Keepsake via WhatsApp">
             <span class="product-card-tag">Ordo-Life</span>
             <div class="product-img-placeholder"><span>3D Ultrasound Keepsake</span></div>
-            <span class="product-card-quick">Order via WhatsApp <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Order via WhatsApp</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save 3D Ultrasound Keepsake to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -607,7 +671,7 @@
               <span class="product-card-price mono">RM 1,170.00</span>
             </div>
             <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+3D+Ultrasound+Keepsake+%E2%80%93+RM+1%2C170"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Buy Now &#8594;</a>
+               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
           </div>
         </article>
 
@@ -621,7 +685,7 @@
           <a href="keychain.html" class="product-card-media" aria-label="Shop the KOE Alumni Keychain">
             <span class="product-card-tag">Made to order</span>
             <img src="img/keychain.png" alt="Personalised KOE Alumni Keychain" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Customise <span aria-hidden="true">&#8594;</span></span>
+            <span class="product-card-quick">Customise</span>
           </a>
           <button type="button" class="product-card-wish" data-wish aria-label="Save KOE Alumni Keychain to wishlist" aria-pressed="false">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
@@ -636,30 +700,10 @@
         </article>
 
       </div>
-    </div>
-  </section>
 
-  <!-- ORDO LAB -->
-  <section id="ordo-lab" class="ordo-lab">
-    <div class="ordo-lab-bg" aria-hidden="true"></div>
-    <div class="ordo-lab-inner">
-      <div class="section-eyebrow ordo-lab-eyebrow reveal">Ordo Lab &middot; Durible&#8482;</div>
-      <h2 class="ordo-lab-title reveal" data-stagger="1">
-        Manufacturing meets <em>Nature.</em>
-      </h2>
-      <div class="lab-badges-row reveal" data-stagger="2">
-        <span class="lab-badge">100% Locally Sourced</span>
-        <span class="lab-badge">Zero Petroleum Plastics</span>
-        <span class="lab-prototype-tag">Prototype Phase</span>
-      </div>
-      <p class="ordo-lab-lede reveal" data-stagger="3">
-        Durible&#8482; is Ordo's materials R&amp;D initiative &#8212; developing bioplastics from durian skin, one of Malaysia's most abundant agricultural by-products. Instead of letting these husks become landfill, we're turning them into feedstock for a new generation of locally-sourced 3D printing materials.
-      </p>
-      <p class="ordo-lab-lede reveal" data-stagger="4">
-        Every object began inside a workshop at IIUM's Kulliyyah of Engineering &#8212; a small bench, a 3D printer, a commitment to making things that outlast the moment they were made. We started with keepsakes for alumni. Now we're building toward a future where the printer and the material are both born in Malaysia.
-      </p>
-      <div class="reveal" data-stagger="5">
-        <a href="#start-project" class="btn btn-secondary btn-icon-r" style="background: transparent; color: #ffffff; border-color: rgba(255,255,255,0.35);">Commission a project</a>
+      <div class="shop-empty" id="shopEmpty" hidden>
+        <p><span data-empty-pillar>These</span> pieces are made to commission, so there's nothing off the shelf yet.</p>
+        <a href="#start-project" class="btn btn-secondary">Start a commission</a>
       </div>
     </div>
   </section>
@@ -668,28 +712,24 @@
   <section id="impact" class="proof" aria-label="Sustainability impact">
     <div class="container">
       <div class="impact-head reveal">
-        <div class="section-eyebrow" style="text-align:center; margin-bottom:var(--sp-2);">Sustainability impact</div>
-        <h2 class="section-title" style="text-align:center; margin-bottom:0; font-size:clamp(var(--fs-xl),3vw,var(--fs-3xl));">By the <em>numbers.</em></h2>
+        <div class="section-eyebrow">Sustainability impact</div>
+        <h2 class="section-title">What local printing has added up to so far.</h2>
       </div>
-      <div class="proof-grid" style="margin-top:var(--sp-10);">
+      <div class="proof-grid">
         <div class="proof-item reveal">
-          <span class="proof-rule"></span>
-          <div class="proof-number" data-count="1240"><span>0</span><small> kg</small></div>
-          <span class="proof-label">CO&#8322;e Avoided (estimated)</span>
+                    <div class="proof-number" data-count="1240"><span>1240</span><small> kg</small></div>
+          <span class="proof-label">CO&#8322;e avoided (estimated)</span>
         </div>
         <div class="proof-item reveal" data-stagger="1">
-          <span class="proof-rule"></span>
-          <div class="proof-number" data-count="85"><span>0</span><small> kg</small></div>
-          <span class="proof-label">Waste Upcycled via Durible&#8482;</span>
+                    <div class="proof-number" data-count="85"><span>85</span><small> kg</small></div>
+          <span class="proof-label">Waste upcycled through Durible&#8482;</span>
         </div>
         <div class="proof-item reveal" data-stagger="2">
-          <span class="proof-rule"></span>
-          <div class="proof-number" data-count="420" data-suffix="+"><span>0</span><small>+</small></div>
-          <span class="proof-label">Local Products Manufactured</span>
+                    <div class="proof-number" data-count="420" data-suffix="+"><span>420</span><small>+</small></div>
+          <span class="proof-label">Products made locally</span>
         </div>
         <div class="proof-item reveal" data-stagger="3">
-          <span class="proof-rule"></span>
-          <div class="proof-number" data-count="100" data-suffix="%"><span>0</span><small>%</small></div>
+                    <div class="proof-number" data-count="100" data-suffix="%"><span>100</span><small>%</small></div>
           <span class="proof-label">Made in Malaysia</span>
         </div>
       </div>
@@ -700,9 +740,9 @@
   <section id="start-project" class="project-section">
     <div class="project-inner">
       <div class="project-form-header reveal">
-        <div class="section-eyebrow">Start a Project</div>
-        <h2 class="section-title" style="font-size:clamp(var(--fs-xl),3.5vw,var(--fs-3xl));">Tell us what you're <em>building.</em></h2>
-        <p style="color:var(--ink-muted); font-size:var(--fs-sm); max-width:55ch; margin:var(--sp-3) auto 0;">Select a product pillar, share your brief, and we'll reach out within one business day.</p>
+        <div class="section-eyebrow">Start a project</div>
+        <h2 class="section-title">Tell us what you're making.</h2>
+        <p class="section-sub">Pick a product family, share your brief, and we'll reply within one business day.</p>
       </div>
 
       <form id="startProjectForm" class="reveal" data-stagger="1" novalidate>
@@ -730,7 +770,7 @@
         <div class="project-form-fields">
           <div class="project-form-row">
             <div class="project-field">
-              <label class="project-label" for="projName">Full Name</label>
+              <label class="project-label" for="projName">Full name</label>
               <input type="text" id="projName" name="proj_name" class="project-input" placeholder="Your name" required>
             </div>
             <div class="project-field">
@@ -745,19 +785,19 @@
               <input type="tel" id="projPhone" name="proj_phone" class="project-input" placeholder="+60 10-792 4208">
             </div>
             <div class="project-field">
-              <label class="project-label" for="projQty">Estimated Quantity</label>
+              <label class="project-label" for="projQty">Estimated quantity</label>
               <input type="text" id="projQty" name="proj_qty" class="project-input" placeholder="e.g. 50 units">
             </div>
           </div>
 
           <div class="project-field">
-            <label class="project-label" for="projDesc">Project Brief</label>
+            <label class="project-label" for="projDesc">Project brief</label>
             <textarea id="projDesc" name="proj_desc" class="project-textarea" rows="4" placeholder="Describe your project &#8212; what you need, your brand, timeline, any special requirements&#8230;" required></textarea>
           </div>
 
           <div class="project-submit-row">
-            <button type="submit" class="btn btn-primary" style="min-width:220px; padding:var(--sp-4) var(--sp-8);">Send via WhatsApp</button>
-            <p style="font-size:var(--fs-xs); color:var(--ink-soft); margin-top:var(--sp-3);">Opens WhatsApp with your brief pre-filled. We reply within 1 business day.</p>
+            <button type="submit" class="btn btn-primary">Send brief on WhatsApp</button>
+            <p class="project-submit-note">Opens WhatsApp with your brief filled in.</p>
           </div>
         </div>
       </form>
@@ -815,12 +855,12 @@
             <a href="#start-project">Start a Project</a>
             <a href="#ordo-lab">Ordo Lab</a>
           </div>
-          <p style="font-size:var(--fs-xs); color:rgba(250,248,244,0.4); margin-top:var(--sp-5); line-height:1.6;">Kuala Lumpur, Malaysia</p>
+          
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Ordo Studio &middot; Kuala Lumpur, Malaysia</p>
+        <p>&copy; 2026 Ordo Studio, Kuala Lumpur</p>
         <p>Sustainable manufacturing, made in Malaysia</p>
       </div>
     </div>
@@ -880,6 +920,38 @@
       html.setAttribute('data-theme', next);
       localStorage.setItem('ordo-theme', next);
     });
+  })();
+  </script>
+
+  <!-- Hero video play/pause (paused by default for reduced motion) -->
+  <script>
+  (function () {
+    var video = document.getElementById('heroVideo');
+    var btn   = document.getElementById('stagePlayBtn');
+    if (!video || !btn) return;
+
+    var iconPause = btn.querySelector('.icon-pause');
+    var iconPlay  = btn.querySelector('.icon-play');
+
+    function sync() {
+      var paused = video.paused;
+      iconPause.toggleAttribute('hidden', paused);
+      iconPlay.toggleAttribute('hidden', !paused);
+      btn.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.removeAttribute('autoplay');
+      video.pause();
+    }
+
+    btn.addEventListener('click', function () {
+      if (video.paused) video.play().catch(function () {});
+      else video.pause();
+    });
+    video.addEventListener('play', sync);
+    video.addEventListener('pause', sync);
+    sync();
   })();
   </script>
 
