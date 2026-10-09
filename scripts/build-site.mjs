@@ -19,7 +19,6 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BUILD = 'ordo-v5';
 const SITE = 'https://ordo.earth';
 const WHATSAPP = '60107924208';
-const EMAIL = 'hello@ordostudio.com';
 
 // ─── Data ────────────────────────────────────────────────────────────────
 
@@ -233,7 +232,6 @@ function footer() {
       <p class="footer-h">Start a conversation</p>
       <a href="/custom-projects">Custom projects</a>
       <a href="/contact">Discuss your project</a>
-      <a href="mailto:${EMAIL}">${EMAIL}</a>
       <a href="https://wa.me/${WHATSAPP}" target="_blank" rel="noopener">WhatsApp +60 10-792 4208</a>
     </div>
   </div>
@@ -350,7 +348,6 @@ function enquiryForm({ heading = true } = {}) {
     <p class="lede">Tell us what you have in mind. We’d love to explore it with you.</p>
     <ul class="contact-alt">
       <li><a href="https://wa.me/${WHATSAPP}" target="_blank" rel="noopener" data-wa>Message us on WhatsApp</a></li>
-      <li><a href="mailto:${EMAIL}">${EMAIL}</a></li>
     </ul>
   </div>` : ''}
   <form class="form" id="enquiryForm" novalidate>
@@ -497,7 +494,7 @@ ${processSection()}`;
       { '@type': 'Organization', '@id': SITE + '/#org', name: 'Ordo', alternateName: ['Ordo Studio'], url: SITE + '/',
         logo: SITE + '/img/ordo-wordmark.svg', description: 'Design and making partner for businesses and organisations: NFC-enabled touchpoints, customised gifts and themed collections, 3D printed in Malaysia.',
         areaServed: { '@type': 'Country', name: 'Malaysia' },
-        contactPoint: { '@type': 'ContactPoint', email: EMAIL, telephone: '+' + WHATSAPP, contactType: 'sales', areaServed: 'MY', availableLanguage: ['English', 'Malay'] } },
+        contactPoint: { '@type': 'ContactPoint', telephone: '+' + WHATSAPP, contactType: 'sales', areaServed: 'MY', availableLanguage: ['English', 'Malay'] } },
       { '@type': 'WebSite', '@id': SITE + '/#website', url: SITE + '/', name: 'Ordo', publisher: { '@id': SITE + '/#org' } },
     ],
   });
@@ -737,7 +734,6 @@ function contactPage() {
       <p class="lede">Tell us what you have in mind. We’d love to explore it with you.</p>
       <dl class="contact-list">
         <div><dt>WhatsApp</dt><dd><a href="https://wa.me/${WHATSAPP}" target="_blank" rel="noopener" data-wa>+60 10-792 4208</a></dd></div>
-        <div><dt>Email</dt><dd><a href="mailto:${EMAIL}">${EMAIL}</a></dd></div>
         <div><dt>Studio</dt><dd>Kuala Lumpur, Malaysia</dd></div>
       </dl>
       <p class="note">Pricing, specifications and delivery are agreed at the proposal stage, once we understand your brief.</p>
