@@ -554,7 +554,7 @@ details[open] .acc-body { animation: accIn .45s var(--ease-out); }
 
 /* ─── Footer ───────────────────────────────────────────── */
 .site-footer { background: var(--char); color: rgba(245, 241, 232, .78); padding-top: clamp(56px, 7vw, 88px); }
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.1fr; gap: 36px; padding-bottom: 48px; }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1.1fr; gap: 36px; padding-bottom: 48px; }
 .footer-brand p { max-width: 30ch; margin-top: 18px; }
 .footer-accent { color: var(--coral); font-weight: 600; margin-top: 10px !important; }
 .brand-footer { color: var(--ivory); }

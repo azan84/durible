@@ -221,13 +221,6 @@ function footer() {
       ${RANGES.map((r) => `<a href="/collections/${r.slug}">${r.name}</a>`).join('\n      ')}
       <a href="/about">About Ordo</a>
     </nav>
-    <nav class="footer-col" aria-label="Ready-made pieces">
-      <p class="footer-h">Order ready-made</p>
-      <a href="/bagtag">Personalised bag tag</a>
-      <a href="/bizcard">Smart business card</a>
-      <a href="/cablewinder">Custom cable winder</a>
-      <a href="/keychain">KOE alumni keychain</a>
-    </nav>
     <div class="footer-col">
       <p class="footer-h">Start a conversation</p>
       <a href="/custom-projects">Custom projects</a>
