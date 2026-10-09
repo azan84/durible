@@ -1,986 +1,338 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="build" content="ordo-v4">
-  <meta name="theme-color" content="#131412">
-
-  <title>Ordo — Sustainable 3D Manufacturing | Prompt to Production | Malaysia</title>
-  <meta name="description" content="Ordo is a sustainable 3D manufacturing studio in Kuala Lumpur. NFC smart tags, branded office products, architectural honours, and sentimental keepsakes — all printed locally.">
-
-  <!-- SEO: discovery -->
-  <meta name="keywords" content="3D printing Malaysia, sustainable manufacturing, NFC smart tag, custom awards, ordo earth, ordo studio, Durible3D, eco 3D printing, bioplastic, Kuala Lumpur, IIUM">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="googlebot" content="index, follow">
-  <meta name="bingbot" content="index, follow">
-  <meta name="author" content="Ordo Studio">
-  <meta name="publisher" content="Ordo Studio">
-  <meta name="language" content="English">
-
-  <!-- SEO: geo -->
-  <meta name="geo.region" content="MY-14">
-  <meta name="geo.placename" content="Kuala Lumpur, Malaysia">
-  <meta name="geo.position" content="3.1390;101.6869">
-  <meta name="ICBM" content="3.1390, 101.6869">
-
-  <!-- Open Graph -->
-  <meta property="og:site_name" content="Ordo Studio">
-  <meta property="og:locale" content="en_MY">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ordo.earth/">
-  <meta property="og:title" content="Ordo — Sustainable 3D Manufacturing | Malaysia">
-  <meta property="og:description" content="From NFC smart tags to architectural awards — sustainable 3D manufacturing, made in Kuala Lumpur.">
-  <meta property="og:image" content="https://ordo.earth/img/Durible_logo.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Ordo Studio — sustainable 3D manufacturing">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ordo — Sustainable 3D Manufacturing">
-  <meta name="twitter:description" content="NFC smart tags, custom awards, bioplastic objects — made in KL, shipped across Malaysia.">
-  <meta name="twitter:image" content="https://ordo.earth/img/Durible_logo.png">
-
-  <link rel="icon" type="image/png" href="img/Durible_logo.png">
-  <link rel="canonical" href="https://ordo.earth/">
-
-  <!-- Anti-flash: apply saved theme before CSS renders -->
-  <script>(function(){var d=document.documentElement,t='dark';try{t=localStorage.getItem('ordo-theme')||'dark';}catch(e){}d.setAttribute('data-theme',t);d.classList.add('js');})();</script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=ordo-v4">
-  <script src="interactions.js?v=ordo-v4" defer></script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://ordo.earth/#org",
-        "name": "Ordo Studio",
-        "alternateName": ["Ordo", "Durible3D"],
-        "url": "https://ordo.earth/",
-        "logo": { "@type": "ImageObject", "url": "https://ordo.earth/img/Durible_logo.png" },
-        "description": "Sustainable 3D manufacturing studio in Kuala Lumpur.",
-        "areaServed": { "@type": "Country", "name": "Malaysia" },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "hello@ordostudio.com",
-          "telephone": "+60107924208",
-          "contactType": "customer service",
-          "areaServed": "MY",
-          "availableLanguage": ["English", "Malay"]
-        }
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://ordo.earth/#website",
-        "url": "https://ordo.earth/",
-        "name": "Ordo",
-        "publisher": { "@id": "https://ordo.earth/#org" },
-        "inLanguage": "en-MY"
-      }
-    ]
-  }
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="build" content="ordo-v5">
+<title>Ordo — Thoughtful products for meaningful business connections</title>
+<meta name="description" content="Ordo is a design and making partner for businesses and organisations in Malaysia: NFC-enabled touchpoints, customised gifts and themed collections, 3D printed with purpose.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#f5f1e8">
+<link rel="canonical" href="https://ordo.earth/">
+<meta property="og:site_name" content="Ordo">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_MY">
+<meta property="og:url" content="https://ordo.earth/">
+<meta property="og:title" content="Ordo — Thoughtful products for meaningful business connections">
+<meta property="og:description" content="Ordo is a design and making partner for businesses and organisations in Malaysia: NFC-enabled touchpoints, customised gifts and themed collections, 3D printed with purpose.">
+<meta property="og:image" content="https://ordo.earth/img/ordo-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ordo — Thoughtful products for meaningful business connections">
+<meta name="twitter:description" content="Ordo is a design and making partner for businesses and organisations in Malaysia: NFC-enabled touchpoints, customised gifts and themed collections, 3D printed with purpose.">
+<meta name="twitter:image" content="https://ordo.earth/img/ordo-og.jpg">
+<link rel="icon" type="image/svg+xml" href="/img/ordo-favicon.svg">
+<link rel="icon" type="image/png" sizes="180x180" href="/img/ordo-favicon.png">
+<link rel="apple-touch-icon" href="/img/ordo-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/ordo.css?v=ordo-v5">
+<script>document.documentElement.classList.add('js')</script>
+<script src="/ordo.js?v=ordo-v5" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://ordo.earth/#org","name":"Ordo","alternateName":["Ordo Studio"],"url":"https://ordo.earth/","logo":"https://ordo.earth/img/ordo-wordmark.svg","description":"Design and making partner for businesses and organisations: NFC-enabled touchpoints, customised gifts and themed collections, 3D printed in Malaysia.","areaServed":{"@type":"Country","name":"Malaysia"},"contactPoint":{"@type":"ContactPoint","email":"hello@ordostudio.com","telephone":"+60107924208","contactType":"sales","areaServed":"MY","availableLanguage":["English","Malay"]}},{"@type":"WebSite","@id":"https://ordo.earth/#website","url":"https://ordo.earth/","name":"Ordo","publisher":{"@id":"https://ordo.earth/#org"}}]}</script>
 </head>
 <body>
-
-  <!-- NAVIGATION -->
-  <header class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo" aria-label="Ordo — home">
-        <img src="img/ordo-logo.png" alt="Ordo Studio">
-      </a>
-
-      <nav class="nav-links" aria-label="Primary">
-        <a href="#pillars">Pillars</a>
-        <a href="#ordo-lab">Ordo Lab</a>
-        <a href="#shop">Shop</a>
-        <a href="#impact">Impact</a>
-        <a href="#start-project" class="nav-link-cta">Start a project</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button type="button" class="nav-icon-btn" id="openWishlist" aria-label="Wishlist">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
-          </svg>
-          <span class="nav-badge" id="wishBadge" aria-live="polite">0</span>
-        </button>
-        <button type="button" class="nav-icon-btn" id="themeToggle" aria-label="Toggle light/dark mode">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-          </svg>
-        </button>
-        <button type="button" class="nav-icon-btn nav-mobile-toggle" id="openMobileNav" aria-label="Open menu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-            <line x1="4" y1="7" x2="20" y2="7"/>
-            <line x1="4" y1="17" x2="20" y2="17"/>
-          </svg>
-        </button>
-      </div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="Ordo — home"><svg class="wordmark" viewBox="44 111 1214 455" aria-hidden="true" focusable="false"><g fill="currentColor" fill-rule="evenodd"><path class="wm-l" d="M221 234 C317 234 394 307 394 398 C394 489 317 562 221 562 C125 562 48 489 48 398 C48 307 125 234 221 234 Z M221 312 C173 312 134 350 134 398 C134 446 173 484 221 484 C269 484 308 446 308 398 C308 350 269 312 221 312 Z"/><path class="wm-l" d="M410 400 C410 309 476 238 559 238 L579 238 C597 238 603 245 597 262 L580 305 C577 313 573 317 563 316 C524 313 493 348 493 398 L493 544 C493 551 489 555 482 555 L421 555 C413 555 410 551 410 544 Z"/><path class="wm-l" d="M810 138 C810 123 819 115 834 115 L891 115 C895 115 897 117 897 122 L897 400 C897 490 826 562 735 562 C644 562 573 490 573 400 C573 308 644 234 735 234 C754 234 773 235 784 240 C791 243 794 248 794 258 L794 329 C778 318 758 312 738 312 C692 312 659 349 659 400 C659 447 692 484 736 484 C779 484 810 449 810 402 Z"/><path class="wm-l" d="M1083 234 C1178 234 1254 307 1254 398 C1254 489 1178 562 1083 562 C988 562 912 489 912 398 C912 307 988 234 1083 234 Z M1083 312 C1036 312 997 350 997 398 C997 446 1036 484 1083 484 C1130 484 1169 446 1169 398 C1169 350 1130 312 1083 312 Z"/></g></svg></a>
+    <nav class="nav" aria-label="Primary"><a href="/solutions">Solutions</a><a href="/ranges">Product Ranges</a><a href="/custom-projects">Custom Projects</a><a href="/about">About Ordo</a><a href="/contact">Contact</a></nav>
+    <a class="btn btn-primary btn-sm header-cta" href="/contact"><span>Discuss your project</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu"><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <nav class="wrap" aria-label="Mobile"><a href="/solutions">Solutions</a><a href="/ranges">Product Ranges</a><a href="/custom-projects">Custom Projects</a><a href="/about">About Ordo</a><a href="/contact">Contact</a><a class="btn btn-primary" href="/contact"><span>Discuss your project</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></nav>
+  </div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+</header>
+<main id="main">
+<section class="hero is-initial" aria-roledescription="carousel" aria-label="Ordo product ranges" data-carousel>
+  <div class="wrap">
+    <div class="slides" aria-live="off">
+      <article class="slide is-active" data-slide="0" aria-roledescription="slide" aria-label="1 of 3: Ordo Connect">
+        <div class="slide-copy">
+          <p class="eyebrow"><svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1 1.5l6 5 6-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ordo Connect</p>
+          <h1 class="hero-title"><span class="w"><span style="--d:0">Make</span></span> <span class="w"><span style="--d:1">every</span></span> <span class="w"><span style="--d:2">connection</span></span> <span class="w"><span style="--d:3">count.</span></span></h1>
+          <p class="hero-lede">NFC-enabled cards, keychains and touchpoints for teams, events and customer engagement.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="/contact?interest=Ordo+Connect&amp;message=I%E2%80%99d+like+to+discuss+an+Ordo+Connect+idea."><span>Discuss your project</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="tlink" href="/collections/ordo-connect"><span>Explore Ordo Connect</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="slide-media"><div class="frame" data-print-hero><img src="/img/ordo/hero-connect-1200.webp" srcset="/img/ordo/hero-connect-640.webp 640w, /img/ordo/hero-connect-1200.webp 1200w" sizes="(min-width: 1024px) 50vw, 100vw" width="1200" height="900" alt="NFC cards and keychains arranged beside a phone on a warm ivory studio desk." fetchpriority="high" decoding="async"></div></div>
+      </article>
+      <article class="slide" data-slide="1" aria-roledescription="slide" aria-label="2 of 3: Ordo Life" aria-hidden="true" inert>
+        <div class="slide-copy">
+          <p class="eyebrow"><svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1 1.5l6 5 6-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ordo Life</p>
+          <h1 class="hero-title"><span class="w"><span style="--d:0">Give</span></span> <span class="w"><span style="--d:1">something</span></span> <span class="w"><span style="--d:2">thoughtful.</span></span></h1>
+          <p class="hero-lede">Considered gifts and objects for employee appreciation, client gifting and welcoming spaces.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="/collections/ordo-life"><span>Explore gifting ideas</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="tlink" href="/contact?interest=Custom+project&amp;message=I%E2%80%99d+like+to+discuss+a+custom+gifting+brief."><span>Discuss a custom brief</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="slide-media"><div class="frame" data-print-hero><img src="/img/ordo/hero-life-1200.webp" srcset="/img/ordo/hero-life-640.webp 640w, /img/ordo/hero-life-1200.webp 1200w" sizes="(min-width: 1024px) 50vw, 100vw" width="1200" height="900" alt="A diffuser holder and thoughtful desk object styled as a potential business gift." loading="lazy" decoding="async"></div></div>
+      </article>
+      <article class="slide" data-slide="2" aria-roledescription="slide" aria-label="3 of 3: Ordo Collections" aria-hidden="true" inert>
+        <div class="slide-copy">
+          <p class="eyebrow"><svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1 1.5l6 5 6-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Ordo Collections</p>
+          <h1 class="hero-title"><span class="w"><span style="--d:0">Bring</span></span> <span class="w"><span style="--d:1">your</span></span> <span class="w"><span style="--d:2">identity</span></span> <span class="w"><span style="--d:3">into</span></span> <span class="w"><span style="--d:4">form.</span></span></h1>
+          <p class="hero-lede">Custom collections inspired by your organisation, occasion or place.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="/contact?interest=Ordo+Collections&amp;message=I%E2%80%99d+like+to+plan+a+custom+collection."><span>Plan your collection</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="tlink" href="/collections/ordo-collections"><span>Explore Ordo Collections</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        </div>
+        <div class="slide-media"><div class="frame" data-print-hero><img src="/img/ordo/hero-collections-1200.webp" srcset="/img/ordo/hero-collections-640.webp 640w, /img/ordo/hero-collections-1200.webp 1200w" sizes="(min-width: 1024px) 50vw, 100vw" width="1200" height="900" alt="Coordinated event keepsakes and place-inspired objects in deep teal and ivory." loading="lazy" decoding="async"></div></div>
+      </article>
     </div>
-  </header>
-
-  <!-- MOBILE NAV DRAWER -->
-  <div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-modal="true" aria-label="Navigation" hidden>
-    <div class="mobile-drawer-backdrop" data-close></div>
-    <div class="mobile-drawer-panel">
-      <button type="button" class="mobile-drawer-close" data-close aria-label="Close menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-      </button>
-      <div class="eyebrow">Menu</div>
-      <div class="mobile-drawer-links">
-        <a href="#pillars" data-close>Pillars</a>
-        <a href="#ordo-lab" data-close>Ordo Lab</a>
-        <a href="#shop" data-close>Shop</a>
-        <a href="#impact" data-close>Impact</a>
-        <a href="#start-project" data-close>Start a project</a>
+    <div class="hero-controls">
+      <div class="hero-progress" role="group" aria-label="Choose a range">
+        <button type="button" aria-current="true" aria-label="Show Ordo Connect" data-goto="0"><span></span></button><button type="button" aria-label="Show Ordo Life" data-goto="1"><span></span></button><button type="button" aria-label="Show Ordo Collections" data-goto="2"><span></span></button>
+      </div>
+      <div class="hero-buttons">
+        <button type="button" class="round" data-prev aria-label="Previous range"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10H5m4.5-4.5L5 10l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="round" data-toggle aria-label="Pause rotation"><svg class="i-pause" viewBox="0 0 20 20" aria-hidden="true"><path d="M7.5 5v10M12.5 5v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5l8 5-8 5z" fill="currentColor"/></svg></button>
+        <button type="button" class="round" data-next aria-label="Next range"><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- WISHLIST DRAWER -->
-  <div class="wish-drawer" id="wishDrawer" role="dialog" aria-modal="true" aria-label="Wishlist" hidden>
-    <div class="wish-drawer-backdrop" data-close></div>
-    <div class="wish-drawer-panel">
-      <div class="wish-header">
-        <h2>Saved for later</h2>
-        <button type="button" class="wish-close" data-close aria-label="Close wishlist">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-        </button>
-      </div>
-      <div class="wish-body" id="wishBody">
-        <!-- populated by JS -->
-      </div>
+<section class="section intro">
+  <div class="wrap intro-grid">
+    <div>
+      <p class="eyebrow"><svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1 1.5l6 5 6-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>What Ordo does</p>
+      <h2 class="h2" data-split><span class="w"><span style="--d:0">Thoughtful</span></span> <span class="w"><span style="--d:1">products</span></span> <span class="w"><span style="--d:2">for</span></span> <span class="w"><span style="--d:3">meaningful</span></span> <span class="w"><span style="--d:4">business</span></span> <span class="w"><span style="--d:5">connections.</span></span></h2>
+    </div>
+    <div class="intro-copy" data-reveal>
+      <p class="lede">From NFC-enabled touchpoints to customised gifts and themed collections, we help businesses and organisations bring their ideas into form.</p>
+      <div class="actions"><a class="btn btn-primary" href="/solutions"><span>Explore business applications</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="tlink" href="/contact"><span>Discuss your project</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
     </div>
   </div>
+</section>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <div class="hero-eyebrow settle" style="--settle-delay:0s">Sustainable 3D manufacturing in Kuala Lumpur</div>
-        <div class="build-wrap" style="--build-dur:1.3s; --build-delay:0.15s">
-          <h1 class="hero-title build">
-            <span class="hero-title-line">Prompt to</span>
-            <span class="hero-title-line">production.</span>
-          </h1>
-          <span class="build-nozzle" aria-hidden="true"></span>
-        </div>
-        <p class="hero-sub settle" style="--settle-delay:1.35s">
-          Ordo turns ideas into 3D-printed objects made in Kuala Lumpur: NFC smart tags, branded office products, architectural honours and keepsakes. Eco-conscious materials, one considered object at a time.
-        </p>
-        <div class="hero-actions settle" style="--settle-delay:1.5s">
-          <a href="#start-project" class="btn btn-primary btn-icon-r">Start a project</a>
-          <a href="#shop" class="link">Shop ready-made pieces</a>
-        </div>
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow"><svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1 1.5l6 5 6-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Possible applications</p>
+        <h2 class="h2" data-split><span class="w"><span style="--d:0">Created</span></span> <span class="w"><span style="--d:1">for</span></span> <span class="w"><span style="--d:2">your</span></span> <span class="w"><span style="--d:3">organisation.</span></span></h2>
+        <p class="sub">Four ways organisations can work with Ordo, across all three ranges.</p>
       </div>
-
-      <figure class="stage">
-        <div class="build-wrap" style="--build-dur:1.6s; --build-delay:0.35s">
-          <div class="stage-frame build">
-            <video class="stage-video" id="heroVideo"
-                   src="img/bagtag-video.mp4"
-                   poster="img/bagtag-blank.jpg"
-                   autoplay loop muted playsinline
-                   preload="auto"
-                   aria-label="A phone tapping an Ordo NFC bag tag to reveal the owner's details">
-            </video>
-            <button type="button" class="stage-sound-btn stage-play-btn" id="stagePlayBtn" aria-label="Pause video" title="Play / pause">
-              <svg class="icon-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-                <line x1="9" y1="6" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="18"/>
-              </svg>
-              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true" hidden>
-                <polygon points="8 5 19 12 8 19 8 5"/>
-              </svg>
-            </button>
-            <button type="button" class="stage-sound-btn" id="stageSoundBtn" aria-label="Unmute video" title="Toggle sound">
-              <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-              </svg>
-              <svg class="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true" hidden>
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                <path d="M15.54 8.46a5 5 0 010 7.07"/><path d="M19.07 4.93a10 10 0 010 14.14"/>
-              </svg>
-            </button>
-          </div>
-          <span class="build-nozzle" aria-hidden="true"></span>
-        </div>
-        <figcaption class="stage-caption settle" style="--settle-delay:1.9s">
-          <span><strong>Ordo-Link bag tag.</strong> Tap a phone to see who it belongs to.</span>
-          <span class="stage-readout" id="stageReadout" aria-hidden="true">Layer 14/14 &middot; Z 2.80 mm</span>
-        </figcaption>
-      </figure>
+      <a class="tlink" href="/solutions"><span>Explore business applications</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
-
-    <div class="container">
-      <div class="hero-meta-row settle" style="--settle-delay:1.7s">
-        <div class="hero-meta">
-          <span class="hero-meta-label">Material</span>
-          <span class="hero-meta-value">Eco-conscious PLA</span>
-        </div>
-        <div class="hero-meta">
-          <span class="hero-meta-label">Made in</span>
-          <span class="hero-meta-value">Kuala Lumpur, MY</span>
-        </div>
-        <div class="hero-meta">
-          <span class="hero-meta-label">Range</span>
-          <span class="hero-meta-value">4 product families</span>
-        </div>
-        <div class="hero-meta">
-          <span class="hero-meta-label">Lead time</span>
-          <span class="hero-meta-value">5–7 days</span>
-        </div>
+    <ol class="apps">
+  <li class="app">
+    <div class="app-media" data-print><img src="/img/ordo/application-gifting-1200.webp" srcset="/img/ordo/application-gifting-640.webp 640w, /img/ordo/application-gifting-1200.webp 1200w" sizes="(min-width: 900px) 45vw, 100vw" width="1200" height="900" alt="A considered desk gift and sculptural object arranged in a warm professional setting." loading="lazy" decoding="async"></div>
+    <div class="app-body">
+      <div class="app-head"><h3>Corporate gifting</h3><span class="app-num" aria-hidden="true">01</span></div>
+      <p>Thoughtful gifts for clients, employees and partners.</p>
+      <div class="app-links">
+        <a class="tlink" href="/ranges?application=corporate-gifting"><span>View product ideas</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="tlink" href="/contact?interest=Ordo+Life&amp;message=I%E2%80%99m+exploring+thoughtful+gifts+for+clients%2C+employees+or+partners."><span>Request a quote</span><svg class="i-out" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 13l6-6m-5 0h5v5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
-  </section>
-
-  <!-- CORE PILLARS -->
-  <section id="pillars" class="pillars section">
-    <div class="container">
-      <div class="section-head-row">
-        <div>
-          <div class="section-eyebrow">Product families</div>
-          <h2 class="section-title">Four families of objects, one studio.</h2>
-        </div>
-        <p class="section-sub">Every Ordo product belongs to a pillar — a focused family of objects designed for a specific purpose and audience.</p>
-      </div>
-
-      <div class="pillars-grid">
-
-        <article class="pillar-card reveal">
-          <div class="pillar-card-media">
-            <img src="img/pillar-link.png" alt="Ordo-Link NFC luggage and safety tags" loading="lazy" decoding="async">
-          </div>
-          <div class="pillar-card-info">
-            <h3 class="pillar-card-name">Ordo-Link</h3>
-            <p class="pillar-card-desc">Smart NFC luggage &amp; safety tags. Tap to reveal contact info, ownership details, or emergency data — no app required.</p>
-            <a href="#shop" class="link pillar-card-link" data-goto-filter="ordo-link">Browse Ordo-Link</a>
-          </div>
-        </article>
-
-        <article class="pillar-card reveal" data-stagger="1">
-          <div class="pillar-card-media">
-            <img src="img/pillar-office.png" alt="Ordo-Office branded phone holders and cable winders for B2B" loading="lazy" decoding="async">
-          </div>
-          <div class="pillar-card-info">
-            <h3 class="pillar-card-name">Ordo-Office</h3>
-            <p class="pillar-card-desc">Branded phone holders &amp; cable winders for B2B. Your logo, your team's desk. Minimum orders welcome.</p>
-            <a href="#shop" class="link pillar-card-link" data-goto-filter="ordo-office">Browse Ordo-Office</a>
-          </div>
-        </article>
-
-        <article class="pillar-card reveal" data-stagger="2">
-          <div class="pillar-card-media">
-            <img src="img/pillar-honor.png" alt="Ordo-Honor custom architectural plaques and awards" loading="lazy" decoding="async">
-          </div>
-          <div class="pillar-card-info">
-            <h3 class="pillar-card-name">Ordo-Honor</h3>
-            <p class="pillar-card-desc">Custom architectural plaques &amp; awards. Commissioned for institutions, events, and organisations that mark occasions with permanence.</p>
-            <a href="#shop" class="link pillar-card-link" data-goto-filter="ordo-honor">Browse Ordo-Honor</a>
-          </div>
-        </article>
-
-        <article class="pillar-card reveal" data-stagger="3">
-          <div class="pillar-card-media">
-            <img src="img/pillar-life.png" alt="Ordo-Life sentimental 3D ultrasound art and personalised keepsakes" loading="lazy" decoding="async">
-          </div>
-          <div class="pillar-card-info">
-            <h3 class="pillar-card-name">Ordo-Life</h3>
-            <p class="pillar-card-desc">Sentimental 3D ultrasound art &amp; personalised keepsakes. Objects made to hold a memory for life.</p>
-            <a href="#shop" class="link pillar-card-link" data-goto-filter="ordo-life">Browse Ordo-Life</a>
-          </div>
-        </article>
-
+  </li>
+  <li class="app">
+    <div class="app-media" data-print><img src="/img/ordo/application-events-1200.webp" srcset="/img/ordo/application-events-640.webp 640w, /img/ordo/application-events-1200.webp 1200w" sizes="(min-width: 900px) 45vw, 100vw" width="1200" height="900" alt="Deep teal NFC touchpoints and event keepsakes arranged on a professional event table." loading="lazy" decoding="async"></div>
+    <div class="app-body">
+      <div class="app-head"><h3>Events and campaigns</h3><span class="app-num" aria-hidden="true">02</span></div>
+      <p>Custom keepsakes and NFC-enabled touchpoints for events and customer engagement.</p>
+      <div class="app-links">
+        <a class="tlink" href="/ranges?application=events-campaigns"><span>View product ideas</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="tlink" href="/contact?interest=Ordo+Connect&amp;message=I%E2%80%99m+exploring+keepsakes+or+NFC+touchpoints+for+an+event+or+campaign."><span>Request a quote</span><svg class="i-out" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 13l6-6m-5 0h5v5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
-  </section>
-
-  <!-- ORDO LAB -->
-  <section id="ordo-lab" class="ordo-lab">
-    <div class="container ordo-lab-inner">
-      <div class="ordo-lab-copy">
-        <div class="section-eyebrow ordo-lab-eyebrow reveal">Ordo Lab &middot; Durible&#8482;</div>
-        <h2 class="ordo-lab-title reveal">Printing with what Malaysia throws away.</h2>
-        <p class="ordo-lab-lede reveal">
-          Durible&#8482; is our materials research: bioplastics made from durian husk, one of Malaysia's most abundant agricultural by-products. Instead of letting the husks go to landfill, we're turning them into feedstock for locally made 3D printing material.
-        </p>
-        <p class="ordo-lab-lede reveal">
-          It started on a small bench at IIUM's Kulliyyah of Engineering, printing keepsakes for alumni. The goal now is a printer and a material that are both born in Malaysia.
-        </p>
-        <div class="lab-badges-row reveal">
-          <span class="lab-badge">100% locally sourced</span>
-          <span class="lab-badge">Zero petroleum plastics</span>
-          <span class="lab-prototype-tag">Prototype phase</span>
-        </div>
-        <a href="#start-project" class="btn btn-secondary btn-icon-r reveal">Commission a project</a>
+  </li>
+  <li class="app">
+    <div class="app-media" data-print><img src="/img/ordo/application-institutional-1200.webp" srcset="/img/ordo/application-institutional-640.webp 640w, /img/ordo/application-institutional-1200.webp 1200w" sizes="(min-width: 900px) 45vw, 100vw" width="1200" height="900" alt="Neutral commemorative and architectural keepsake concepts inspired by a place and community." loading="lazy" decoding="async"></div>
+    <div class="app-body">
+      <div class="app-head"><h3>Institutional collections</h3><span class="app-num" aria-hidden="true">03</span></div>
+      <p>Products inspired by an organisation’s identity, community or place.</p>
+      <div class="app-links">
+        <a class="tlink" href="/ranges?application=institutional-collections"><span>View product ideas</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="tlink" href="/contact?interest=Ordo+Collections&amp;message=I%E2%80%99m+exploring+a+collection+inspired+by+an+organisation%2C+community+or+place."><span>Request a quote</span><svg class="i-out" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 13l6-6m-5 0h5v5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
+    </div>
+  </li>
+  <li class="app">
+    <div class="app-media" data-print><img src="/img/ordo/application-custom-1200.webp" srcset="/img/ordo/application-custom-640.webp 640w, /img/ordo/application-custom-1200.webp 1200w" sizes="(min-width: 900px) 45vw, 100vw" width="1200" height="900" alt="Hands holding a deep teal 3D-printed prototype beside sketches of alternative forms." loading="lazy" decoding="async"></div>
+    <div class="app-body">
+      <div class="app-head"><h3>Custom projects</h3><span class="app-num" aria-hidden="true">04</span></div>
+      <p>Objects developed around a specific brief, audience or purpose.</p>
+      <div class="app-links">
+        <a class="tlink" href="/custom-projects"><span>View product ideas</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="tlink" href="/contact?interest=Custom+project&amp;message=I+have+a+custom+brief+I%E2%80%99d+like+to+discuss."><span>Request a quote</span><svg class="i-out" viewBox="0 0 20 20" aria-hidden="true"><path d="M7 13l6-6m-5 0h5v5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </li>
+</ol>
+  </div>
+</section>
 
-      <ol class="lab-process reveal" aria-label="How Durible is made">
-        <li class="lab-step">
-          <span class="lab-step-n" aria-hidden="true">1</span>
-          <div>
-            <h3>Collected</h3>
-            <p>Durian husks from local sellers, diverted before they reach landfill.</p>
+<section class="section ranges-band" data-theme="teal">
+  <div class="wrap">
+    <p class="eyebrow"><svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1 1.5l6 5 6-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Product ranges</p>
+    <h2 class="h2" data-split><span class="w"><span style="--d:0">Three</span></span> <span class="w"><span style="--d:1">ranges,</span></span> <span class="w"><span style="--d:2">one</span></span> <span class="w"><span style="--d:3">clear</span></span> <span class="w"><span style="--d:4">purpose.</span></span></h2>
+    <ul class="range-cards">
+      <li class="range-card" style="--i:0">
+        <a href="/collections/ordo-connect">
+          <div class="range-media" data-print><img src="/img/ordo/range-connect-1200.webp" srcset="/img/ordo/range-connect-640.webp 640w, /img/ordo/range-connect-1200.webp 1200w" sizes="(min-width: 900px) 33vw, 100vw" width="1200" height="900" alt="Deep teal NFC cards and keychains presented for a professional team." loading="lazy" decoding="async"></div>
+          <div class="range-body">
+            <h3>Ordo Connect</h3>
+            <p class="range-tag">Make every connection count.</p>
+            <p>Physical touchpoints that open a useful digital destination for teams, events and customer engagement.</p>
+            <span class="tlink"><span>View product ideas</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </div>
-        </li>
-        <li class="lab-step">
-          <span class="lab-step-n" aria-hidden="true">2</span>
-          <div>
-            <h3>Milled</h3>
-            <p>Dried and ground down into a fine plant fibre.</p>
+        </a>
+      </li>
+      <li class="range-card" style="--i:1">
+        <a href="/collections/ordo-life">
+          <div class="range-media" data-print><img src="/img/ordo/range-life-1200.webp" srcset="/img/ordo/range-life-640.webp 640w, /img/ordo/range-life-1200.webp 1200w" sizes="(min-width: 900px) 33vw, 100vw" width="1200" height="900" alt="A sculptural diffuser holder and desk object in a softly lit ivory setting." loading="lazy" decoding="async"></div>
+          <div class="range-body">
+            <h3>Ordo Life</h3>
+            <p class="range-tag">Give something thoughtful.</p>
+            <p>Considered gifts and everyday objects for employee appreciation, client gifting and welcoming spaces.</p>
+            <span class="tlink"><span>View product ideas</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </div>
-        </li>
-        <li class="lab-step">
-          <span class="lab-step-n" aria-hidden="true">3</span>
-          <div>
-            <h3>Compounded</h3>
-            <p>Blended into a bioplastic and drawn into printing filament.</p>
+        </a>
+      </li>
+      <li class="range-card" style="--i:2">
+        <a href="/collections/ordo-collections">
+          <div class="range-media" data-print><img src="/img/ordo/range-collections-1200.webp" srcset="/img/ordo/range-collections-640.webp 640w, /img/ordo/range-collections-1200.webp 1200w" sizes="(min-width: 900px) 33vw, 100vw" width="1200" height="900" alt="A group of architectural and event keepsake concepts in a warm studio setting." loading="lazy" decoding="async"></div>
+          <div class="range-body">
+            <h3>Ordo Collections</h3>
+            <p class="range-tag">Bring your identity into form.</p>
+            <p>Coordinated designs inspired by an organisation, a place or an occasion.</p>
+            <span class="tlink"><span>View product ideas</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </div>
-        </li>
-        <li class="lab-step">
-          <span class="lab-step-n" aria-hidden="true">4</span>
-          <div>
-            <h3>Printed</h3>
-            <p>Built up layer by layer into finished objects in our KL studio.</p>
-          </div>
-        </li>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow"><svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1 1.5l6 5 6-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Concept — available for discussion</p>
+        <h2 class="h2" data-split><span class="w"><span style="--d:0">Ideas</span></span> <span class="w"><span style="--d:1">for</span></span> <span class="w"><span style="--d:2">your</span></span> <span class="w"><span style="--d:3">next</span></span> <span class="w"><span style="--d:4">project.</span></span></h2>
+        <p class="sub">Concept imagery shown. Final design and specifications are agreed for each project.</p>
+      </div>
+      <a class="tlink" href="/ranges"><span>View product ideas</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+    <ul class="pgrid">
+      <li class="pcard" data-range="ordo-connect" data-collections="" data-applications="events-campaigns corporate-gifting">
+  <a href="/product/nfc-keychain">
+    <div class="pcard-media" data-print><span class="chip">Concept</span><img src="/img/ordo/nfc-keychain-main-1200.webp" srcset="/img/ordo/nfc-keychain-main-640.webp 640w, /img/ordo/nfc-keychain-main-1200.webp 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw" width="1200" height="1200" alt="Deep teal NFC keychain concept with a simple rounded body and metal ring." loading="lazy" decoding="async" style="view-transition-name:p-nfc-keychain"></div>
+    <p class="pcard-range">Ordo Connect</p>
+    <h3>NFC Keychain</h3>
+    <p>A considered touchpoint to carry and share.</p>
+  </a>
+</li>
+      <li class="pcard" data-range="ordo-connect" data-collections="" data-applications="events-campaigns corporate-gifting">
+  <a href="/product/nfc-business-card">
+    <div class="pcard-media" data-print><span class="chip">Concept</span><img src="/img/ordo/nfc-business-card-main-1200.webp" srcset="/img/ordo/nfc-business-card-main-640.webp 640w, /img/ordo/nfc-business-card-main-1200.webp 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw" width="1200" height="1200" alt="Minimal deep teal NFC business card concept with rounded edges on an ivory surface." loading="lazy" decoding="async" style="view-transition-name:p-nfc-business-card"></div>
+    <p class="pcard-range">Ordo Connect</p>
+    <h3>NFC Business Card</h3>
+    <p>A reusable introduction with a digital next step.</p>
+  </a>
+</li>
+      <li class="pcard" data-range="ordo-connect" data-collections="" data-applications="events-campaigns institutional-collections">
+  <a href="/product/nfc-desktop-touchpoint">
+    <div class="pcard-media" data-print><span class="chip">Concept</span><img src="/img/ordo/nfc-desktop-touchpoint-main-1200.webp" srcset="/img/ordo/nfc-desktop-touchpoint-main-640.webp 640w, /img/ordo/nfc-desktop-touchpoint-main-1200.webp 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw" width="1200" height="1200" alt="Deep teal desktop NFC touchpoint concept standing on a warm ivory reception counter." loading="lazy" decoding="async" style="view-transition-name:p-nfc-desktop-touchpoint"></div>
+    <p class="pcard-range">Ordo Connect</p>
+    <h3>Desktop NFC Touchpoint</h3>
+    <p>A small, physical prompt for a useful connection.</p>
+  </a>
+</li>
+      <li class="pcard" data-range="ordo-life" data-collections="" data-applications="corporate-gifting custom-projects">
+  <a href="/product/sculptural-diffuser">
+    <div class="pcard-media" data-print><span class="chip">Concept</span><img src="/img/ordo/sculptural-diffuser-main-1200.webp" srcset="/img/ordo/sculptural-diffuser-main-640.webp 640w, /img/ordo/sculptural-diffuser-main-1200.webp 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw" width="1200" height="1200" alt="Deep teal sculptural diffuser holder concept with a separate non-heated insert." loading="lazy" decoding="async" style="view-transition-name:p-sculptural-diffuser"></div>
+    <p class="pcard-range">Ordo Life</p>
+    <h3>Sculptural Diffuser Holder</h3>
+    <p>A tactile object for a desk or welcoming space.</p>
+  </a>
+</li>
+      <li class="pcard" data-range="ordo-life" data-collections="" data-applications="corporate-gifting custom-projects">
+  <a href="/product/desk-organiser">
+    <div class="pcard-media" data-print><span class="chip">Concept</span><img src="/img/ordo/desk-organiser-main-1200.webp" srcset="/img/ordo/desk-organiser-main-640.webp 640w, /img/ordo/desk-organiser-main-1200.webp 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw" width="1200" height="1200" alt="Deep teal 3D-printed desk organiser tray with understated compartments." loading="lazy" decoding="async" style="view-transition-name:p-desk-organiser"></div>
+    <p class="pcard-range">Ordo Life</p>
+    <h3>Desk Organiser Tray</h3>
+    <p>A simple place for everyday desk essentials.</p>
+  </a>
+</li>
+      <li class="pcard" data-range="ordo-life" data-collections="" data-applications="corporate-gifting custom-projects">
+  <a href="/product/personalised-keepsake">
+    <div class="pcard-media" data-print><span class="chip">Concept</span><img src="/img/ordo/personalised-keepsake-main-1200.webp" srcset="/img/ordo/personalised-keepsake-main-640.webp 640w, /img/ordo/personalised-keepsake-main-1200.webp 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw" width="1200" height="1200" alt="Deep teal keepsake frame concept with an open centre and a small muted coral detail." loading="lazy" decoding="async" style="view-transition-name:p-personalised-keepsake"></div>
+    <p class="pcard-range">Ordo Life</p>
+    <h3>Personalised Keepsake</h3>
+    <p>A small object shaped around a meaningful moment.</p>
+  </a>
+</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section made">
+  <div class="wrap made-grid">
+    <div class="made-media">
+      <div class="made-a" data-print><img src="/img/ordo/process-layers-1200.webp" srcset="/img/ordo/process-layers-640.webp 640w, /img/ordo/process-layers-1200.webp 1200w" sizes="(min-width: 900px) 30vw, 70vw" width="1200" height="1200" alt="Hands holding a deep teal 3D-printed form, showing fine print layers." loading="lazy" decoding="async"></div>
+      <div class="made-b" data-print><img src="/img/ordo/process-inspection-1200.webp" srcset="/img/ordo/process-inspection-640.webp 640w, /img/ordo/process-inspection-1200.webp 1200w" sizes="(min-width: 900px) 22vw, 50vw" width="1200" height="1200" alt="A printed curve being inspected up close on an ivory surface." loading="lazy" decoding="async"></div>
+    </div>
+    <div class="made-copy">
+      <p class="eyebrow"><svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1 1.5l6 5 6-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Made thoughtfully</p>
+      <h2 class="h2" data-split><span class="w"><span style="--d:0">Designed</span></span> <span class="w"><span style="--d:1">with</span></span> <span class="w"><span style="--d:2">structure.</span></span> <span class="w"><span style="--d:3">Printed</span></span> <span class="w"><span style="--d:4">with</span></span> <span class="w"><span style="--d:5">care.</span></span></h2>
+      <p class="lede" data-reveal>Ordo designs and 3D prints each object. We think about material, form and lasting usefulness, and currently print in PLA. Details for each project are confirmed during proposal.</p>
+      <div data-reveal><a class="tlink" href="/about"><span>About Ordo</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section process" data-theme="teal">
+  <div class="wrap">
+    <p class="eyebrow"><svg viewBox="0 0 14 8" aria-hidden="true"><path d="M1 1.5l6 5 6-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Collaboration</p>
+    <h2 class="h2" data-split><span class="w"><span style="--d:0">From</span></span> <span class="w"><span style="--d:1">your</span></span> <span class="w"><span style="--d:2">brief</span></span> <span class="w"><span style="--d:3">to</span></span> <span class="w"><span style="--d:4">a</span></span> <span class="w"><span style="--d:5">purposeful</span></span> <span class="w"><span style="--d:6">product.</span></span></h2>
+    <div class="steps" data-steps>
+      <svg class="steps-line" viewBox="0 0 1000 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 Q 31 2 62 12 T 125 12 T 187 12 T 250 12 T 312 12 T 375 12 T 437 12 T 500 12 T 562 12 T 625 12 T 687 12 T 750 12 T 812 12 T 875 12 T 937 12 T 1000 12" pathLength="1"/></svg>
+      <ol>
+        <li style="--i:0"><span class="step-dot">1</span><h3>Share your brief</h3><p>Tell us about your audience and what you have in mind.</p></li>
+        <li style="--i:1"><span class="step-dot">2</span><h3>Shape the idea</h3><p>Explore the product direction and possible customisation together.</p></li>
+        <li style="--i:2"><span class="step-dot">3</span><h3>Review the proposal</h3><p>Agree on design, specifications, pricing and delivery arrangements.</p></li>
+        <li style="--i:3"><span class="step-dot">4</span><h3>Bring it into form</h3><p>Proceed with production once the project is approved.</p></li>
       </ol>
     </div>
-  </section>
-
-  <!-- SHOP -->
-  <section id="shop" class="section shop-section">
-    <div class="container">
-      <div class="section-head-row">
-        <div>
-          <div class="section-eyebrow">Ready to order</div>
-          <h2 class="section-title">The collection.</h2>
-        </div>
-        <p class="section-sub">Every piece is printed to order in Kuala Lumpur. Customise one online, or message us on WhatsApp for bulk and custom runs.</p>
-      </div>
-
-      <div class="catalog-filters" role="group" aria-label="Filter by product family">
-        <button type="button" class="chip active" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" class="chip" data-filter="ordo-link" aria-pressed="false">Ordo-Link</button>
-        <button type="button" class="chip" data-filter="ordo-office" aria-pressed="false">Ordo-Office</button>
-        <button type="button" class="chip" data-filter="ordo-honor" aria-pressed="false">Ordo-Honor</button>
-        <button type="button" class="chip" data-filter="ordo-life" aria-pressed="false">Ordo-Life</button>
-      </div>
-
-      <div class="product-grid" id="productGrid">
-
-        <!-- ORDO-LINK -->
-        <article class="product-card reveal" hidden
-          data-category="ordo-link"
-          data-product-id="nfc-luggage-tag"
-          data-product-name="NFC Smart Luggage Tag"
-          data-product-price="140"
-          data-product-image="Bag_tag.jpeg"
-          data-product-url="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+NFC+Smart+Luggage+Tag+%E2%80%93+RM+140">
-          <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+NFC+Smart+Luggage+Tag+%E2%80%93+RM+140"
-             target="_blank" rel="noopener noreferrer"
-             class="product-card-media" aria-label="Order NFC Smart Luggage Tag via WhatsApp">
-            <span class="product-card-tag">Ordo-Link</span>
-            <img src="img/Bag_tag.jpeg" alt="NFC Smart Luggage Tag" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Order via WhatsApp</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save NFC Smart Luggage Tag to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">NFC Smart Luggage Tag</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 140.00</span>
-            </div>
-            <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+NFC+Smart+Luggage+Tag+%E2%80%93+RM+140"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
-          </div>
-        </article>
-
-        <article class="product-card reveal" data-stagger="1" hidden
-          data-category="ordo-link"
-          data-product-id="nfc-safety-card"
-          data-product-name="NFC Safety ID Card"
-          data-product-price="94"
-          data-product-image="Bag_tag.jpeg"
-          data-product-url="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+NFC+Safety+ID+Card+%E2%80%93+RM+94">
-          <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+NFC+Safety+ID+Card+%E2%80%93+RM+94"
-             target="_blank" rel="noopener noreferrer"
-             class="product-card-media" aria-label="Order NFC Safety ID Card via WhatsApp">
-            <span class="product-card-tag">Ordo-Link</span>
-            <img src="img/Bag_tag.jpeg" alt="NFC Safety ID Card" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Order via WhatsApp</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save NFC Safety ID Card to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">NFC Safety ID Card</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 94.00</span>
-            </div>
-            <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+NFC+Safety+ID+Card+%E2%80%93+RM+94"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
-          </div>
-        </article>
-
-        <article class="product-card reveal" data-stagger="2"
-          data-category="ordo-link"
-          data-product-id="bagtag"
-          data-product-name="Personalised Bag Tag"
-          data-product-price="28"
-          data-product-image="bagtag-blank.jpg"
-          data-product-url="bagtag.html">
-          <a href="bagtag.html" class="product-card-media" aria-label="Shop the Personalised Bag Tag">
-            <span class="product-card-tag">Ready to ship</span>
-            <img src="img/bagtag-blank.jpg" alt="Personalised 3D-printed bag tag" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Customise</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save bag tag to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">Personalised Bag Tag</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 28.00</span>
-              <span class="product-card-subprice">+ RM 5 shipping</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- ORDO-OFFICE -->
-        <article class="product-card reveal" data-stagger="3" hidden
-          data-category="ordo-office"
-          data-product-id="phone-holder-std"
-          data-product-name="Branded Phone Holder Standard"
-          data-product-price="212"
-          data-product-image=""
-          data-product-url="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Branded+Phone+Holder+Standard+%E2%80%93+RM+212">
-          <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Branded+Phone+Holder+Standard+%E2%80%93+RM+212"
-             target="_blank" rel="noopener noreferrer"
-             class="product-card-media" aria-label="Order Branded Phone Holder Standard via WhatsApp">
-            <span class="product-card-tag">Ordo-Office</span>
-            <div class="product-img-placeholder"><span>Phone Holder</span></div>
-            <span class="product-card-quick">Order via WhatsApp</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save Branded Phone Holder to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">Branded Phone Holder Standard</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 212.00</span>
-            </div>
-            <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Branded+Phone+Holder+Standard+%E2%80%93+RM+212"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
-          </div>
-        </article>
-
-        <article class="product-card reveal" hidden
-          data-category="ordo-office"
-          data-product-id="cable-winder-3pack"
-          data-product-name="Cable Winder 3-Pack"
-          data-product-price="165"
-          data-product-image="Cable_winder.jpeg"
-          data-product-url="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Cable+Winder+3-Pack+%E2%80%93+RM+165">
-          <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Cable+Winder+3-Pack+%E2%80%93+RM+165"
-             target="_blank" rel="noopener noreferrer"
-             class="product-card-media" aria-label="Order Cable Winder 3-Pack via WhatsApp">
-            <span class="product-card-tag">Ordo-Office</span>
-            <img src="img/Cable_winder.jpeg" alt="Cable Winder 3-Pack" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Order via WhatsApp</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save Cable Winder 3-Pack to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">Cable Winder 3-Pack</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 165.00</span>
-            </div>
-            <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Cable+Winder+3-Pack+%E2%80%93+RM+165"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
-          </div>
-        </article>
-
-        <article class="product-card reveal" data-stagger="1" hidden
-          data-category="ordo-office"
-          data-product-id="cord-organizer"
-          data-product-name="Durible Cord Organizer"
-          data-product-price="117"
-          data-product-image="Cable_winder.jpeg"
-          data-product-url="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Durible+Cord+Organizer+%E2%80%93+RM+117">
-          <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Durible+Cord+Organizer+%E2%80%93+RM+117"
-             target="_blank" rel="noopener noreferrer"
-             class="product-card-media" aria-label="Order Durible Cord Organizer via WhatsApp">
-            <span class="product-card-tag">Ordo-Office</span>
-            <img src="img/Cable_winder.jpeg" alt="Durible Cord Organizer" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Order via WhatsApp</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save Durible Cord Organizer to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">Durible Cord Organizer</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 117.00</span>
-            </div>
-            <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Durible+Cord+Organizer+%E2%80%93+RM+117"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
-          </div>
-        </article>
-
-        <article class="product-card reveal" data-stagger="2"
-          data-category="ordo-office"
-          data-product-id="cablewinder"
-          data-product-name="Custom Cable Winder"
-          data-product-price="20"
-          data-product-image="Cable_winder.jpeg"
-          data-product-url="cablewinder.html">
-          <a href="cablewinder.html" class="product-card-media" aria-label="Shop the Custom Cable Winder">
-            <span class="product-card-tag">Print your logo</span>
-            <img src="img/Cable_winder.jpeg" alt="Round 3D-printed cable winder with custom artwork" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Upload logo</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save cable winder to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">Custom Cable Winder</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 20.00</span>
-              <span class="product-card-subprice">+ RM 5 shipping</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card reveal" data-stagger="3"
-          data-category="ordo-office"
-          data-product-id="bizcard"
-          data-product-name="3D Printed Business Card"
-          data-product-price="40"
-          data-product-image="Biz_card.jpeg"
-          data-product-url="bizcard.html">
-          <a href="bizcard.html" class="product-card-media" aria-label="Shop the 3D Printed Business Card">
-            <span class="product-card-tag">NFC + QR</span>
-            <img src="img/Biz_card.jpeg" alt="3D printed smart business card with embedded NFC" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Customise</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save business card to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">3D Printed Business Card</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 40.00</span>
-              <span class="product-card-subprice">+ RM 5 shipping</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- ORDO-HONOR -->
-        <article class="product-card reveal" hidden
-          data-category="ordo-honor"
-          data-product-id="memorial-plaque"
-          data-product-name="Memorial Plaque Premium"
-          data-product-price="935"
-          data-product-image="Durible.jpeg"
-          data-product-url="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Memorial+Plaque+Premium+%E2%80%93+RM+935">
-          <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Memorial+Plaque+Premium+%E2%80%93+RM+935"
-             target="_blank" rel="noopener noreferrer"
-             class="product-card-media" aria-label="Order Memorial Plaque Premium via WhatsApp">
-            <span class="product-card-tag">Ordo-Honor</span>
-            <img src="img/Durible.jpeg" alt="Memorial Plaque Premium" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Enquire</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save Memorial Plaque Premium to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">Memorial Plaque Premium</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 935.00</span>
-            </div>
-            <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Memorial+Plaque+Premium+%E2%80%93+RM+935"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
-          </div>
-        </article>
-
-        <article class="product-card reveal" data-stagger="1" hidden
-          data-category="ordo-honor"
-          data-product-id="award-trophy"
-          data-product-name="Award Trophy Custom"
-          data-product-price="700"
-          data-product-image="Durible.jpeg"
-          data-product-url="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Award+Trophy+Custom+%E2%80%93+RM+700">
-          <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Award+Trophy+Custom+%E2%80%93+RM+700"
-             target="_blank" rel="noopener noreferrer"
-             class="product-card-media" aria-label="Order Award Trophy Custom via WhatsApp">
-            <span class="product-card-tag">Ordo-Honor</span>
-            <img src="img/Durible.jpeg" alt="Award Trophy Custom" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Enquire</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save Award Trophy Custom to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">Award Trophy Custom</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 700.00</span>
-            </div>
-            <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+Award+Trophy+Custom+%E2%80%93+RM+700"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
-          </div>
-        </article>
-
-        <!-- ORDO-LIFE -->
-        <article class="product-card reveal" data-stagger="2" hidden
-          data-category="ordo-life"
-          data-product-id="ultrasound-keepsake"
-          data-product-name="3D Ultrasound Keepsake"
-          data-product-price="1170"
-          data-product-image=""
-          data-product-url="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+3D+Ultrasound+Keepsake+%E2%80%93+RM+1%2C170">
-          <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+3D+Ultrasound+Keepsake+%E2%80%93+RM+1%2C170"
-             target="_blank" rel="noopener noreferrer"
-             class="product-card-media" aria-label="Order 3D Ultrasound Keepsake via WhatsApp">
-            <span class="product-card-tag">Ordo-Life</span>
-            <div class="product-img-placeholder"><span>3D Ultrasound Keepsake</span></div>
-            <span class="product-card-quick">Order via WhatsApp</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save 3D Ultrasound Keepsake to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">3D Ultrasound Keepsake</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 1,170.00</span>
-            </div>
-            <a href="https://wa.me/60107924208?text=Hi!+I%27m+interested+in+ordering%3A+3D+Ultrasound+Keepsake+%E2%80%93+RM+1%2C170"
-               target="_blank" rel="noopener noreferrer" class="product-card-buy">Order on WhatsApp</a>
-          </div>
-        </article>
-
-        <article class="product-card reveal" data-stagger="3"
-          data-category="ordo-life"
-          data-product-id="keychain"
-          data-product-name="KOE Alumni Keychain"
-          data-product-price="20"
-          data-product-image="keychain.png"
-          data-product-url="keychain.html">
-          <a href="keychain.html" class="product-card-media" aria-label="Shop the KOE Alumni Keychain">
-            <span class="product-card-tag">Made to order</span>
-            <img src="img/keychain.png" alt="Personalised KOE Alumni Keychain" loading="lazy" decoding="async" width="800" height="1000">
-            <span class="product-card-quick">Customise</span>
-          </a>
-          <button type="button" class="product-card-wish" data-wish aria-label="Save KOE Alumni Keychain to wishlist" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </button>
-          <div class="product-card-info">
-            <h3 class="product-card-name">KOE Alumni Keychain</h3>
-            <div class="product-card-meta">
-              <span class="product-card-price mono">RM 20.00</span>
-              <span class="product-card-subprice">+ RM 5 shipping</span>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="shop-empty" id="shopEmpty" hidden>
-        <p><span data-empty-pillar>These</span> pieces are made to commission, so there's nothing off the shelf yet.</p>
-        <a href="#start-project" class="btn btn-secondary">Start a commission</a>
-      </div>
+    <div class="process-cta"><a class="btn btn-light" href="/contact"><span>Discuss your project</span><svg class="i-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="brand brand-footer" href="/" aria-label="Ordo — home"><svg class="wordmark" viewBox="44 111 1214 455" aria-hidden="true" focusable="false"><g fill="currentColor" fill-rule="evenodd"><path class="wm-l" d="M221 234 C317 234 394 307 394 398 C394 489 317 562 221 562 C125 562 48 489 48 398 C48 307 125 234 221 234 Z M221 312 C173 312 134 350 134 398 C134 446 173 484 221 484 C269 484 308 446 308 398 C308 350 269 312 221 312 Z"/><path class="wm-l" d="M410 400 C410 309 476 238 559 238 L579 238 C597 238 603 245 597 262 L580 305 C577 313 573 317 563 316 C524 313 493 348 493 398 L493 544 C493 551 489 555 482 555 L421 555 C413 555 410 551 410 544 Z"/><path class="wm-l" d="M810 138 C810 123 819 115 834 115 L891 115 C895 115 897 117 897 122 L897 400 C897 490 826 562 735 562 C644 562 573 490 573 400 C573 308 644 234 735 234 C754 234 773 235 784 240 C791 243 794 248 794 258 L794 329 C778 318 758 312 738 312 C692 312 659 349 659 400 C659 447 692 484 736 484 C779 484 810 449 810 402 Z"/><path class="wm-l" d="M1083 234 C1178 234 1254 307 1254 398 C1254 489 1178 562 1083 562 C988 562 912 489 912 398 C912 307 988 234 1083 234 Z M1083 312 C1036 312 997 350 997 398 C997 446 1036 484 1083 484 C1130 484 1169 446 1169 398 C1169 350 1130 312 1083 312 Z"/></g></svg></a>
+      <p>Thoughtful products for meaningful business connections.</p>
+      <p class="footer-accent">Made with purpose.</p>
     </div>
-  </section>
-
-  <!-- IMPACT DASHBOARD -->
-  <section id="impact" class="proof" aria-label="Sustainability impact">
-    <div class="container">
-      <div class="impact-head reveal">
-        <div class="section-eyebrow">Sustainability impact</div>
-        <h2 class="section-title">What local printing has added up to so far.</h2>
-      </div>
-      <div class="proof-grid">
-        <div class="proof-item reveal">
-                    <div class="proof-number" data-count="1240"><span>1240</span><small> kg</small></div>
-          <span class="proof-label">CO&#8322;e avoided (estimated)</span>
-        </div>
-        <div class="proof-item reveal" data-stagger="1">
-                    <div class="proof-number" data-count="85"><span>85</span><small> kg</small></div>
-          <span class="proof-label">Waste upcycled through Durible&#8482;</span>
-        </div>
-        <div class="proof-item reveal" data-stagger="2">
-                    <div class="proof-number" data-count="420" data-suffix="+"><span>420</span><small>+</small></div>
-          <span class="proof-label">Products made locally</span>
-        </div>
-        <div class="proof-item reveal" data-stagger="3">
-                    <div class="proof-number" data-count="100" data-suffix="%"><span>100</span><small>%</small></div>
-          <span class="proof-label">Made in Malaysia</span>
-        </div>
-      </div>
+    <nav class="footer-col" aria-label="Explore">
+      <p class="footer-h">Explore</p>
+      <a href="/solutions">Solutions</a>
+      <a href="/collections/ordo-connect">Ordo Connect</a>
+      <a href="/collections/ordo-life">Ordo Life</a>
+      <a href="/collections/ordo-collections">Ordo Collections</a>
+      <a href="/about">About Ordo</a>
+    </nav>
+    <nav class="footer-col" aria-label="Ready-made pieces">
+      <p class="footer-h">Order ready-made</p>
+      <a href="/bagtag">Personalised bag tag</a>
+      <a href="/bizcard">Smart business card</a>
+      <a href="/cablewinder">Custom cable winder</a>
+      <a href="/keychain">KOE alumni keychain</a>
+    </nav>
+    <div class="footer-col">
+      <p class="footer-h">Start a conversation</p>
+      <a href="/custom-projects">Custom projects</a>
+      <a href="/contact">Discuss your project</a>
+      <a href="mailto:hello@ordostudio.com">hello@ordostudio.com</a>
+      <a href="https://wa.me/60107924208" target="_blank" rel="noopener">WhatsApp +60 10-792 4208</a>
     </div>
-  </section>
-
-  <!-- START A PROJECT -->
-  <section id="start-project" class="project-section">
-    <div class="project-inner">
-      <div class="project-form-header reveal">
-        <div class="section-eyebrow">Start a project</div>
-        <h2 class="section-title">Tell us what you're making.</h2>
-        <p class="section-sub">Pick a product family, share your brief, and we'll reply within one business day.</p>
-      </div>
-
-      <form id="startProjectForm" class="reveal" data-stagger="1" novalidate>
-        <input type="hidden" id="projectCategory" name="category" value="">
-
-        <div class="project-categories-row">
-          <button type="button" class="project-category-btn" data-cat="Ordo-Link">
-            <span class="cat-label">Ordo-Link</span>
-            NFC Smart Tags &amp; Safety ID
-          </button>
-          <button type="button" class="project-category-btn" data-cat="Ordo-Office">
-            <span class="cat-label">Ordo-Office</span>
-            Branded Office Products
-          </button>
-          <button type="button" class="project-category-btn" data-cat="Ordo-Honor">
-            <span class="cat-label">Ordo-Honor</span>
-            Plaques &amp; Awards
-          </button>
-          <button type="button" class="project-category-btn" data-cat="Ordo-Life">
-            <span class="cat-label">Ordo-Life</span>
-            Keepsakes &amp; Ultrasound Art
-          </button>
-        </div>
-
-        <div class="project-form-fields">
-          <div class="project-form-row">
-            <div class="project-field">
-              <label class="project-label" for="projName">Full name</label>
-              <input type="text" id="projName" name="proj_name" class="project-input" placeholder="Your name" required>
-            </div>
-            <div class="project-field">
-              <label class="project-label" for="projEmail">Email</label>
-              <input type="email" id="projEmail" name="proj_email" class="project-input" placeholder="your@email.com" required>
-            </div>
-          </div>
-
-          <div class="project-form-row">
-            <div class="project-field">
-              <label class="project-label" for="projPhone">Phone / WhatsApp</label>
-              <input type="tel" id="projPhone" name="proj_phone" class="project-input" placeholder="+60 10-792 4208">
-            </div>
-            <div class="project-field">
-              <label class="project-label" for="projQty">Estimated quantity</label>
-              <input type="text" id="projQty" name="proj_qty" class="project-input" placeholder="e.g. 50 units">
-            </div>
-          </div>
-
-          <div class="project-field">
-            <label class="project-label" for="projDesc">Project brief</label>
-            <textarea id="projDesc" name="proj_desc" class="project-textarea" rows="4" placeholder="Describe your project &#8212; what you need, your brand, timeline, any special requirements&#8230;" required></textarea>
-          </div>
-
-          <div class="project-submit-row">
-            <button type="submit" class="btn btn-primary">Send brief on WhatsApp</button>
-            <p class="project-submit-note">Opens WhatsApp with your brief filled in.</p>
-          </div>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="contact" class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="footer-logo">Ordo</div>
-          <p>Sustainable 3D manufacturing, designed and printed in Kuala Lumpur. From NFC smart tags to architectural honours &#8212; objects made to outlast the moment they were made.</p>
-          <div class="footer-socials">
-            <a href="#" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-            </a>
-            <a href="#" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </a>
-            <a href="#" aria-label="X / Twitter">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
-            </a>
-            <a href="https://wa.me/60107924208?text=Hello%2C+I%27m+interested+in+Ordo+Studio+3D+manufacturing" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Ordo Studio">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 01-12.83 7.32L3 20l1.3-4.82A8.5 8.5 0 1121 11.5z"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footer-heading">Pillars</div>
-          <div class="footer-links">
-            <a href="#pillars">Ordo-Link</a>
-            <a href="#pillars">Ordo-Office</a>
-            <a href="#pillars">Ordo-Honor</a>
-            <a href="#pillars">Ordo-Life</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footer-heading">Shop</div>
-          <div class="footer-links">
-            <a href="keychain.html">KOE Keychain</a>
-            <a href="bizcard.html">Business Card</a>
-            <a href="cablewinder.html">Cable Winder</a>
-            <a href="bagtag.html">Bag Tag</a>
-          </div>
-        </div>
-
-        <div>
-          <div class="footer-heading">Contact</div>
-          <div class="footer-links">
-            <a href="mailto:hello@ordostudio.com">hello@ordostudio.com</a>
-            <a href="tel:+60107924208">+60 10-792 4208</a>
-            <a href="#start-project">Start a Project</a>
-            <a href="#ordo-lab">Ordo Lab</a>
-          </div>
-          
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2026 Ordo Studio, Kuala Lumpur</p>
-        <p>Sustainable manufacturing, made in Malaysia</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-  (function () {
-    var form = document.getElementById('startProjectForm');
-    if (!form) return;
-
-    document.querySelectorAll('.project-category-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        document.querySelectorAll('.project-category-btn').forEach(function (b) {
-          b.classList.remove('active');
-        });
-        btn.classList.add('active');
-        document.getElementById('projectCategory').value = btn.getAttribute('data-cat') || '';
-      });
-    });
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var category = document.getElementById('projectCategory').value || 'Not selected';
-      var name  = (form.proj_name  ? form.proj_name.value  : '').trim();
-      var email = (form.proj_email ? form.proj_email.value : '').trim();
-      var phone = (form.proj_phone ? form.proj_phone.value : '').trim();
-      var qty   = (form.proj_qty   ? form.proj_qty.value   : '').trim();
-      var desc  = (form.proj_desc  ? form.proj_desc.value  : '').trim();
-
-      if (!name || !email || !desc) {
-        alert('Please fill in your name, email, and project brief.');
-        return;
-      }
-
-      var msg =
-        'Hi! I want to start a project with Ordo.\n\n' +
-        'Pillar: ' + category + '\n' +
-        'Name: ' + name + '\n' +
-        'Email: ' + email +
-        (phone ? '\nPhone: ' + phone : '') +
-        (qty   ? '\nQuantity: ' + qty : '') +
-        '\n\nProject Brief:\n' + desc;
-
-      window.open('https://wa.me/60107924208?text=' + encodeURIComponent(msg), '_blank');
-    });
-  })();
-  </script>
-
-  <!-- Theme toggle -->
-  <script>
-  (function () {
-    var btn = document.getElementById('themeToggle');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      var html = document.documentElement;
-      var next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('ordo-theme', next);
-    });
-  })();
-  </script>
-
-  <!-- Hero video play/pause (paused by default for reduced motion) -->
-  <script>
-  (function () {
-    var video = document.getElementById('heroVideo');
-    var btn   = document.getElementById('stagePlayBtn');
-    if (!video || !btn) return;
-
-    var iconPause = btn.querySelector('.icon-pause');
-    var iconPlay  = btn.querySelector('.icon-play');
-
-    function sync() {
-      var paused = video.paused;
-      iconPause.toggleAttribute('hidden', paused);
-      iconPlay.toggleAttribute('hidden', !paused);
-      btn.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
-    }
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      video.removeAttribute('autoplay');
-      video.pause();
-    }
-
-    btn.addEventListener('click', function () {
-      if (video.paused) video.play().catch(function () {});
-      else video.pause();
-    });
-    video.addEventListener('play', sync);
-    video.addEventListener('pause', sync);
-    sync();
-  })();
-  </script>
-
-  <!-- Hero video sound toggle -->
-  <script>
-  (function () {
-    var video  = document.getElementById('heroVideo');
-    var btn    = document.getElementById('stageSoundBtn');
-    if (!video || !btn) return;
-
-    var iconMuted = btn.querySelector('.icon-muted');
-    var iconSound = btn.querySelector('.icon-sound');
-
-    btn.addEventListener('click', function () {
-      video.muted = !video.muted;
-      if (video.muted) {
-        iconMuted.removeAttribute('hidden');
-        iconSound.setAttribute('hidden', '');
-        btn.setAttribute('aria-label', 'Unmute video');
-      } else {
-        iconMuted.setAttribute('hidden', '');
-        iconSound.removeAttribute('hidden');
-        btn.setAttribute('aria-label', 'Mute video');
-        // Browsers may pause if unmuted before user gesture — resume
-        video.play().catch(function () {});
-      }
-    });
-  })();
-  </script>
-
+  </div>
+  <div class="wrap footer-base">
+    <p>© <span data-year>2026</span> Ordo. Made with purpose.</p>
+    <p>Ordo currently uses PLA for 3D printing.</p>
+  </div>
+</footer>
 </body>
 </html>

@@ -1,64 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-  <url>
-    <loc>https://ordo.earth/</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://ordo.earth/Durible_logo.png</image:loc>
-      <image:title>Ordo logo</image:title>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://ordo.earth/keychain.html</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://ordo.earth/keychain.png</image:loc>
-      <image:title>Personalised KOE Alumni Keychain</image:title>
-      <image:caption>Custom 3D-printed KOE Alumni keychain</image:caption>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://ordo.earth/bizcard.html</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://ordo.earth/Biz_card.jpeg</image:loc>
-      <image:title>3D Printed Smart Business Card</image:title>
-      <image:caption>Sustainable 3D-printed business card with NFC and QR code</image:caption>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://ordo.earth/cablewinder.html</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://ordo.earth/Cable_winder.jpeg</image:loc>
-      <image:title>Custom Cable Winder</image:title>
-      <image:caption>3D-printed cable winder with your logo printed on the face</image:caption>
-    </image:image>
-  </url>
-
-  <url>
-    <loc>https://ordo.earth/bagtag.html</loc>
-    <lastmod>2026-04-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://ordo.earth/img/bagtag-suitcase.jpg</image:loc>
-      <image:title>Personalised Bag Tag</image:title>
-      <image:caption>3D-printed bag tag with name and phone number</image:caption>
-    </image:image>
-  </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://ordo.earth/</loc></url>
+  <url><loc>https://ordo.earth/solutions</loc></url>
+  <url><loc>https://ordo.earth/ranges</loc></url>
+  <url><loc>https://ordo.earth/custom-projects</loc></url>
+  <url><loc>https://ordo.earth/about</loc></url>
+  <url><loc>https://ordo.earth/contact</loc></url>
+  <url><loc>https://ordo.earth/collections/ordo-connect</loc></url>
+  <url><loc>https://ordo.earth/collections/ordo-life</loc></url>
+  <url><loc>https://ordo.earth/collections/ordo-collections</loc></url>
+  <url><loc>https://ordo.earth/product/nfc-keychain</loc></url>
+  <url><loc>https://ordo.earth/product/nfc-business-card</loc></url>
+  <url><loc>https://ordo.earth/product/nfc-desktop-touchpoint</loc></url>
+  <url><loc>https://ordo.earth/product/sculptural-diffuser</loc></url>
+  <url><loc>https://ordo.earth/product/desk-organiser</loc></url>
+  <url><loc>https://ordo.earth/product/personalised-keepsake</loc></url>
+  <url><loc>https://ordo.earth/product/baby-ultrasound-keepsake</loc></url>
+  <url><loc>https://ordo.earth/product/kl-architectural-keepsake</loc></url>
+  <url><loc>https://ordo.earth/product/university-commemorative</loc></url>
+  <url><loc>https://ordo.earth/product/raya-ornament</loc></url>
+  <url><loc>https://ordo.earth/product/custom-event-souvenir</loc></url>
+  <url><loc>https://ordo.earth/bagtag</loc></url>
+  <url><loc>https://ordo.earth/bizcard</loc></url>
+  <url><loc>https://ordo.earth/cablewinder</loc></url>
+  <url><loc>https://ordo.earth/keychain</loc></url>
 </urlset>
