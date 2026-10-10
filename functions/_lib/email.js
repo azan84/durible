@@ -1,13 +1,30 @@
-// Transactional email via Resend (https://resend.com) — plain fetch, no SDK.
+// Transactional email for website enquiries.
 //
-// Secrets / vars (Pages project > Settings > Variables and Secrets):
-//   RESEND_API_KEY      required — without it sendEmail() is a no-op
-//   ENQUIRY_EMAIL_FROM  optional — must be on a domain verified in Resend,
-//                       default "Ordo website <enquiries@ordo.earth>"
+// Primary: env.MAILER — service binding to the private `ordo-mailer` Worker
+// (workers/ordo-mailer), which sends through Cloudflare Email Routing to the
+// verified destination nabilah@constellation.my. Configured in wrangler.toml.
+//
+// Fallback: Resend (https://resend.com), used only if MAILER is missing and
+// RESEND_API_KEY is set; ENQUIRY_EMAIL_FROM overrides the sender.
 //
 // Never throws; returns { ok, reason?, id? } so callers can log and move on.
 
 export async function sendEmail(env, { to, subject, text, html, replyTo }) {
+  if (env.MAILER) {
+    try {
+      const res = await env.MAILER.fetch('https://ordo-mailer/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subject, text, html, replyTo }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) return { ok: true };
+      return { ok: false, reason: data.error || `mailer_http_${res.status}` };
+    } catch (err) {
+      return { ok: false, reason: 'mailer: ' + (err.message || 'fetch_failed') };
+    }
+  }
+
   const apiKey = env.RESEND_API_KEY;
   if (!apiKey) return { ok: false, reason: 'email_not_configured' };
 

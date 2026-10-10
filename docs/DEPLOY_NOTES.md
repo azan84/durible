@@ -10,19 +10,17 @@
 >
 > **Enquiry forwarding** — `/api/enquiry` saves each enquiry to D1
 > `pilot_leads` (IDs start `ENQ-`, visible in /admin/pilots) and emails it
-> to **nabilah@constellation.my** with the customer as Reply-To. Email
-> needs a Resend account:
-> 1. Sign up at resend.com, add domain `ordo.earth`, add the DNS records it
->    shows in Cloudflare DNS, wait for "Verified".
-> 2. Create an API key, then:
->    ```bash
->    wrangler pages secret put RESEND_API_KEY --project-name=durible
->    ```
-> 3. Optional vars: `ENQUIRY_EMAIL_TO` (comma-separated, default
->    nabilah@constellation.my), `ENQUIRY_EMAIL_FROM` (default
->    `Ordo website <enquiries@ordo.earth>`).
-> Until the key is set, enquiries are still stored in D1 (and WhatsApp-pinged
-> if CallMeBot is configured) — nothing is lost, but no email is sent.
+> to **nabilah@constellation.my** (customer as Reply-To) through the private
+> Worker `workers/ordo-mailer` (Cloudflare Email Routing `send_email`), which
+> the Pages project reaches via the `MAILER` service binding in wrangler.toml.
+> Live since 2026-10-10: Email Routing enabled on ordo.earth (Cloudflare MX),
+> destination address verified. Redeploy the mailer after edits:
+> `cd workers/ordo-mailer && npx wrangler deploy`.
+> To change the recipient: verify the new address under Email Routing →
+> Destination addresses, then update `destination_address` (wrangler.toml)
+> and `to` (src/index.js) in the mailer. Resend (`RESEND_API_KEY`) remains an
+> optional fallback only when MAILER is absent. A failed send is flagged on
+> the lead as "Email NOT forwarded (reason)".
 >
 > **Deploy** — never deploy `.` (it would publish .dev.vars and order PII).
 > Copy public files to a scratch dir and deploy that from the repo root:

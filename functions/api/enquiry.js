@@ -4,7 +4,7 @@
 //   1. stored in D1 `pilot_leads` (pilot_id prefixed ENQ-, so it shows up in
 //      /admin/pilots without a schema change),
 //   2. emailed to ENQUIRY_EMAIL_TO (default nabilah@constellation.my) with the
-//      customer as Reply-To — see _lib/email.js for the RESEND_API_KEY secret,
+//      customer as Reply-To, via the ordo-mailer Worker (see _lib/email.js),
 //   3. pinged to WhatsApp via CallMeBot when configured (best-effort).
 //
 // The request succeeds if the enquiry was stored OR emailed; it only fails

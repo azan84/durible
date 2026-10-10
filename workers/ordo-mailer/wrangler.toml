@@ -1,0 +1,22 @@
+# ordo-mailer — private Worker that emails website enquiries to Nabilah via
+# Cloudflare Email Routing (send_email binding). No public URL: the Pages
+# project reaches it only through the MAILER service binding in the root
+# wrangler.toml.
+#
+# Deploy:  cd workers/ordo-mailer && npx wrangler deploy
+# Requires Email Routing enabled on ordo.earth and the destination address
+# verified under Email Routing > Destination addresses.
+
+name = "ordo-mailer"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+workers_dev = false
+preview_urls = false
+
+[vars]
+FROM_ADDRESS = "enquiries@ordo.earth"
+FROM_NAME = "Ordo website"
+
+[[send_email]]
+name = "NABILAH"
+destination_address = "nabilah@constellation.my"

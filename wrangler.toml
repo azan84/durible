@@ -19,3 +19,9 @@ database_id = "f015ed66-4987-4b77-a8fe-f0e73eedbc66"
 [[r2_buckets]]
 binding = "BUCKET"
 bucket_name = "durible-uploads"
+
+# Service binding to the private ordo-mailer Worker (workers/ordo-mailer),
+# which emails enquiries via Cloudflare Email Routing — env.MAILER
+[[services]]
+binding = "MAILER"
+service = "ordo-mailer"
