@@ -1,0 +1,32 @@
+# ordo-chat — public Worker behind the "Ask Ordo" assistant on ordo.earth
+# (ordo-chat.js / ordo-chat.css at the site root). Holds the Anthropic API key.
+#
+# Deploy:  cd workers/ordo-chat && npm install && npm run deploy
+# Key:     npx wrangler secret put ANTHROPIC_API_KEY
+
+name = "ordo-site-chat"
+main = "src/index.js"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ALLOWED_ORIGINS = "https://ordo.earth,https://www.ordo.earth"
+ALLOW_LOCALHOST = "false"
+
+# Per-visitor and site-wide caps (Origin can be spoofed outside browsers).
+[[ratelimits]]
+name = "CHAT_LIMITER"
+namespace_id = "4401"
+simple = { limit = 8, period = 60 }
+
+[[ratelimits]]
+name = "GLOBAL_LIMITER"
+namespace_id = "4402"
+simple = { limit = 40, period = 60 }
+
+# Run next to the Anthropic API: some Cloudflare edge egress IPs get 403 "Request not allowed".
+[placement]
+region = "aws:us-east-1"
+
+[observability]
+enabled = true

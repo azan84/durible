@@ -1,5 +1,13 @@
 # Deploy Notes — Ordo (was Durible3D)
 
+> ## "Ask Ordo" assistant (live since 2026-10-25)
+>
+> `ordo-chat.js` / `ordo-chat.css` (included on every generated page) talk to
+> the public Worker `workers/ordo-chat` (Claude Haiku 5.5, Anthropic key as a
+> Worker secret). Include both files in the Pages deploy copy below. After
+> site content changes: `cd workers/ordo-chat && npm run deploy`. Details in
+> `workers/ordo-chat/README.md`.
+
 > ## ⏳ DEPLOY PENDING — ordo-v5 brand site + enquiry email
 >
 > New B2B marketing site (home, /solutions, /ranges, /custom-projects,
@@ -25,7 +33,7 @@
 > **Deploy** — never deploy `.` (it would publish .dev.vars and order PII).
 > Copy public files to a scratch dir and deploy that from the repo root:
 > ```bash
-> D=$(mktemp -d); cp -r *.html style.css interactions.js form.js ordo.css ordo.js robots.txt sitemap.xml img assets collections product "$D"/
+> D=$(mktemp -d); cp -r *.html style.css interactions.js form.js ordo.css ordo.js ordo-chat.css ordo-chat.js robots.txt sitemap.xml img assets collections product "$D"/
 > wrangler pages deploy "$D" --project-name=durible --branch=main
 > ```
 > Verify: `curl -s https://ordo.earth/ | grep 'name="build"'` → `ordo-v5`.

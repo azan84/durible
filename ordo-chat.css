@@ -1,0 +1,276 @@
+/* ordo.earth — "Ask Ordo" concierge chat (ordo-chat.js). Self-contained and scoped
+   under #ordo-chat so the site styles can't reach in. Palette mirrors ordo.css. */
+#ordo-chat {
+  --oc-ivory: #f5f1e8;
+  --oc-paper: #fbf9f3;
+  --oc-sunk: #ede7d8;
+  --oc-teal: #164e52;
+  --oc-teal2: #1f6468;
+  --oc-teal-ink: #0f3a3d;
+  --oc-coral: #e88973;
+  --oc-coral-ink: #b4533c;
+  --oc-char: #252827;
+  --oc-muted: #5c625f;
+  --oc-line: rgba(22, 78, 82, 0.16);
+  --oc-on-teal: #f5f1e8;
+  --oc-on-teal-muted: rgba(245, 241, 232, 0.74);
+  --oc-shadow: 0 30px 60px -20px rgba(15, 58, 61, 0.38), 0 4px 14px rgba(15, 58, 61, 0.10);
+  --oc-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--oc-char);
+  -webkit-font-smoothing: antialiased;
+}
+#ordo-chat *, #ordo-chat *::before, #ordo-chat *::after { box-sizing: border-box; }
+#ordo-chat p, #ordo-chat ul, #ordo-chat ol, #ordo-chat form { margin: 0; }
+#ordo-chat [hidden] { display: none !important; }
+#ordo-chat svg { display: block; }
+
+/* ─── Launcher ─────────────────────────────────────────── */
+#ordo-chat .oc-launcher {
+  position: fixed; right: 22px; bottom: 22px; z-index: 9990;
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 54px; padding: 8px 22px 8px 9px; border: 0; border-radius: 999px;
+  background: var(--oc-teal); color: var(--oc-on-teal);
+  font-family: "Manrope", "DM Sans", system-ui, sans-serif; font-size: 15px; font-weight: 700; line-height: 1; letter-spacing: -0.005em;
+  box-shadow: var(--oc-shadow); cursor: pointer;
+  transition: transform 0.35s var(--oc-ease), box-shadow 0.35s var(--oc-ease), opacity 0.2s, background 0.3s;
+}
+#ordo-chat .oc-launcher:hover { transform: translateY(-3px); background: var(--oc-teal2); }
+#ordo-chat .oc-launcher:focus-visible { outline: 2.5px solid var(--oc-coral-ink); outline-offset: 3px; }
+#ordo-chat .oc-launcher-mark {
+  position: relative; width: 38px; height: 38px; flex: none; display: grid; place-items: center;
+  border-radius: 50%; background: rgba(245, 241, 232, 0.12); color: var(--oc-on-teal);
+}
+#ordo-chat .oc-launcher-mark svg { width: 26px; height: 26px; }
+/* A soft ring that breathes while the teaser is showing. */
+#ordo-chat.oc-teasing .oc-launcher-mark::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 50%;
+  border: 2px solid var(--oc-coral); opacity: 0;
+  animation: oc-ring 2.2s var(--oc-ease) infinite;
+}
+@keyframes oc-ring { 0% { transform: scale(0.8); opacity: 0.9; } 100% { transform: scale(1.35); opacity: 0; } }
+#ordo-chat.oc-open .oc-launcher { opacity: 0; pointer-events: none; visibility: hidden; transform: scale(0.92); }
+
+/* ─── Teaser ───────────────────────────────────────────── */
+#ordo-chat .oc-teaser {
+  position: fixed; right: 22px; bottom: 90px; z-index: 9989;
+  display: flex; align-items: flex-start; gap: 4px; max-width: 290px;
+  padding: 6px 6px 6px 4px; border-radius: 16px 16px 4px 16px;
+  background: var(--oc-paper); border: 1px solid var(--oc-line); box-shadow: var(--oc-shadow);
+  animation: oc-pop 0.5s var(--oc-ease) both;
+}
+#ordo-chat .oc-teaser-open {
+  flex: 1; border: 0; background: none; text-align: left; cursor: pointer;
+  padding: 8px 4px 8px 12px; color: var(--oc-char); font-family: inherit; font-size: 14px; line-height: 1.45;
+}
+#ordo-chat .oc-teaser-open strong { color: var(--oc-teal); font-weight: 600; }
+#ordo-chat .oc-teaser-close {
+  flex: none; width: 28px; height: 28px; display: grid; place-items: center; border: 0; border-radius: 8px;
+  background: none; color: var(--oc-muted); cursor: pointer;
+}
+#ordo-chat .oc-teaser-close svg { width: 14px; height: 14px; }
+#ordo-chat .oc-teaser-close:hover { background: var(--oc-sunk); }
+#ordo-chat .oc-teaser button:focus-visible { outline: 2px solid var(--oc-coral-ink); outline-offset: 1px; border-radius: 8px; }
+@keyframes oc-pop { from { opacity: 0; transform: translateY(10px) scale(0.96); } to { opacity: 1; transform: none; } }
+
+/* ─── Panel ────────────────────────────────────────────── */
+#ordo-chat .oc-panel {
+  position: fixed; right: 22px; bottom: 22px; z-index: 9991;
+  width: 410px; height: min(660px, calc(100vh - 44px)); height: min(660px, calc(100dvh - 44px));
+  display: flex; flex-direction: column;
+  background: var(--oc-paper); border: 1px solid var(--oc-line); border-radius: 22px;
+  box-shadow: var(--oc-shadow); overflow: hidden;
+  opacity: 0; transform: translateY(14px) scale(0.98); transform-origin: bottom right;
+  pointer-events: none; visibility: hidden;
+  transition: opacity 0.28s var(--oc-ease), transform 0.28s var(--oc-ease), visibility 0s linear 0.28s;
+}
+#ordo-chat.oc-open .oc-panel { opacity: 1; transform: none; pointer-events: auto; visibility: visible; transition-delay: 0s; }
+
+#ordo-chat .oc-head {
+  display: flex; align-items: center; gap: 6px;
+  padding: 14px 10px 14px 16px; background: var(--oc-teal); color: var(--oc-on-teal);
+}
+#ordo-chat .oc-avatar {
+  flex: none; width: 40px; height: 40px; margin-right: 6px; display: grid; place-items: center;
+  border-radius: 12px; background: rgba(245, 241, 232, 0.12);
+}
+#ordo-chat .oc-avatar svg { width: 26px; height: 26px; }
+#ordo-chat .oc-head-text { flex: 1; min-width: 0; }
+#ordo-chat .oc-title {
+  font-family: "Manrope", "DM Sans", system-ui, sans-serif; font-size: 17px; font-weight: 800;
+  line-height: 1.2; letter-spacing: -0.015em; color: var(--oc-on-teal);
+}
+#ordo-chat .oc-sub { display: flex; align-items: center; gap: 6px; margin-top: 3px; font-size: 12.5px; color: var(--oc-on-teal-muted); }
+#ordo-chat .oc-dot { width: 7px; height: 7px; border-radius: 50%; background: #7fd1a8; box-shadow: 0 0 0 3px rgba(127, 209, 168, 0.22); }
+#ordo-chat .oc-icon-btn {
+  flex: none; width: 36px; height: 36px; display: grid; place-items: center;
+  border: 0; border-radius: 10px; background: transparent; color: var(--oc-on-teal-muted); cursor: pointer;
+}
+#ordo-chat .oc-icon-btn:hover { background: rgba(245, 241, 232, 0.12); color: var(--oc-on-teal); }
+#ordo-chat .oc-icon-btn:focus-visible { outline: 2px solid var(--oc-coral); outline-offset: 1px; }
+#ordo-chat .oc-icon-btn svg { width: 19px; height: 19px; }
+#ordo-chat .oc-icon-btn:disabled { opacity: 0.35; cursor: default; background: transparent; }
+
+#ordo-chat .oc-log {
+  flex: 1; overflow-y: auto; overscroll-behavior: contain;
+  padding: 20px 16px; display: flex; flex-direction: column; gap: 14px;
+  background: var(--oc-ivory); scroll-behavior: smooth;
+}
+
+/* ─── Messages ─────────────────────────────────────────── */
+#ordo-chat .oc-msg { max-width: 90%; font-size: 15px; line-height: 1.6; overflow-wrap: anywhere; }
+#ordo-chat .oc-msg p { margin: 0 0 8px; }
+#ordo-chat .oc-msg p:last-child, #ordo-chat .oc-msg ul:last-child, #ordo-chat .oc-msg ol:last-child { margin-bottom: 0; }
+#ordo-chat .oc-msg ul, #ordo-chat .oc-msg ol { margin: 0 0 8px; padding-left: 20px; }
+#ordo-chat .oc-msg li { margin: 3px 0; }
+#ordo-chat .oc-msg li::marker { color: var(--oc-coral-ink); }
+#ordo-chat .oc-msg a { color: var(--oc-teal); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(22, 78, 82, 0.35); text-underline-offset: 3px; }
+#ordo-chat .oc-msg a:hover { text-decoration-color: var(--oc-coral-ink); }
+#ordo-chat .oc-msg strong { font-weight: 600; color: var(--oc-teal-ink); }
+#ordo-chat .oc-msg-user {
+  align-self: flex-end; padding: 10px 15px; border-radius: 18px 18px 5px 18px;
+  background: var(--oc-teal); color: var(--oc-on-teal); white-space: pre-wrap;
+}
+#ordo-chat .oc-msg-bot {
+  align-self: flex-start; max-width: 100%; padding: 12px 15px; border-radius: 5px 18px 18px 18px;
+  background: var(--oc-paper); border: 1px solid var(--oc-line); color: var(--oc-char);
+}
+#ordo-chat .oc-msg-bot.oc-error, #ordo-chat .oc-note { color: var(--oc-coral-ink); }
+#ordo-chat .oc-note { display: block; margin-top: 6px; font-size: 13px; }
+
+#ordo-chat .oc-typing { display: inline-flex; gap: 5px; padding: 6px 2px; }
+#ordo-chat .oc-typing span:not(.oc-sr) {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--oc-teal2);
+  animation: oc-dotb 1.2s infinite ease-in-out;
+}
+#ordo-chat .oc-typing span:nth-child(3) { animation-delay: 0.15s; }
+#ordo-chat .oc-typing span:nth-child(4) { animation-delay: 0.3s; }
+@keyframes oc-dotb { 0%, 80%, 100% { opacity: 0.25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+
+/* ─── Product picture cards ────────────────────────────── */
+#ordo-chat .oc-cards {
+  display: flex; gap: 10px; margin: 12px -15px 0; padding: 2px 15px 6px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin;
+}
+#ordo-chat .oc-card {
+  flex: 0 0 148px; scroll-snap-align: start;
+  display: flex; flex-direction: column; overflow: hidden;
+  border: 1px solid var(--oc-line); border-radius: 14px; background: var(--oc-ivory);
+  color: var(--oc-char); text-decoration: none; font-weight: 400;
+  transition: transform 0.3s var(--oc-ease), box-shadow 0.3s var(--oc-ease);
+}
+#ordo-chat .oc-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -12px rgba(15, 58, 61, 0.35); }
+#ordo-chat .oc-card:focus-visible { outline: 2px solid var(--oc-coral-ink); outline-offset: 2px; }
+#ordo-chat .oc-card-img { display: block; aspect-ratio: 4 / 3; background: var(--oc-sunk); overflow: hidden; }
+#ordo-chat .oc-card-img img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--oc-ease); }
+#ordo-chat .oc-card:hover .oc-card-img img { transform: scale(1.05); }
+#ordo-chat .oc-card-name {
+  padding: 9px 11px 2px; font-family: "Manrope", "DM Sans", system-ui, sans-serif;
+  font-size: 13.5px; font-weight: 700; line-height: 1.25; color: var(--oc-teal);
+}
+#ordo-chat .oc-card-cta { padding: 2px 11px 10px; font-size: 12px; color: var(--oc-coral-ink); font-weight: 600; }
+
+/* ─── Brief card ───────────────────────────────────────── */
+#ordo-chat .oc-brief {
+  margin-top: 12px; padding: 14px; border-radius: 16px;
+  background: var(--oc-ivory); border: 1.5px solid rgba(22, 78, 82, 0.28);
+}
+#ordo-chat .oc-brief-pending { color: var(--oc-muted); font-size: 14px; }
+#ordo-chat .oc-brief-pending .oc-brief-label::after { content: ""; display: inline-block; width: 12px; }
+#ordo-chat .oc-brief-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+#ordo-chat .oc-brief-label {
+  font-family: "Manrope", "DM Sans", system-ui, sans-serif; font-size: 12px; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--oc-teal2);
+}
+#ordo-chat .oc-tag {
+  padding: 4px 10px; border-radius: 999px; background: var(--oc-teal); color: var(--oc-on-teal);
+  font-size: 12px; font-weight: 600; white-space: nowrap;
+}
+#ordo-chat .oc-brief-text {
+  display: block; width: 100%; min-height: 110px; margin: 0; resize: vertical;
+  padding: 11px 12px; border: 1px solid var(--oc-line); border-radius: 12px;
+  background: var(--oc-paper); color: var(--oc-char);
+  font-family: inherit; font-size: 14px; line-height: 1.55;
+}
+#ordo-chat .oc-brief-text:focus { outline: none; border-color: var(--oc-teal2); box-shadow: 0 0 0 3px rgba(22, 78, 82, 0.12); }
+#ordo-chat .oc-brief-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+#ordo-chat .oc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 42px; padding: 10px 18px; border-radius: 999px; cursor: pointer; white-space: nowrap;
+  font-family: inherit; font-size: 14px; font-weight: 600; line-height: 1.1;
+  transition: transform 0.3s var(--oc-ease), background 0.3s, color 0.3s;
+}
+#ordo-chat .oc-btn svg { width: 17px; height: 17px; }
+#ordo-chat .oc-btn:hover { transform: translateY(-2px); }
+#ordo-chat .oc-btn:focus-visible { outline: 2.5px solid var(--oc-coral-ink); outline-offset: 2px; }
+#ordo-chat .oc-btn-primary { flex: 1; border: 1.5px solid var(--oc-teal); background: var(--oc-teal); color: var(--oc-on-teal); }
+#ordo-chat .oc-btn-primary:hover { background: var(--oc-teal2); }
+#ordo-chat .oc-btn-ghost { border: 1.5px solid var(--oc-line); background: var(--oc-paper); color: var(--oc-teal); }
+#ordo-chat .oc-btn-ghost:hover { border-color: var(--oc-teal); }
+#ordo-chat .oc-brief-note { margin-top: 10px; font-size: 12.5px; line-height: 1.45; color: var(--oc-muted); }
+
+/* ─── Welcome ──────────────────────────────────────────── */
+#ordo-chat .oc-hello { padding: 4px 2px 2px; }
+#ordo-chat .oc-hello-title {
+  font-family: "Manrope", "DM Sans", system-ui, sans-serif; font-size: 22px; font-weight: 800;
+  line-height: 1.15; letter-spacing: -0.025em; color: var(--oc-teal); margin-bottom: 8px;
+}
+#ordo-chat .oc-intro { color: var(--oc-muted); font-size: 15px; line-height: 1.55; }
+#ordo-chat .oc-chips { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+#ordo-chat .oc-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--oc-line); background: var(--oc-paper); color: var(--oc-teal);
+  border-radius: 999px; padding: 10px 16px; cursor: pointer; text-align: left;
+  font-family: inherit; font-size: 14px; font-weight: 600; line-height: 1.25;
+  transition: border-color 0.25s, transform 0.3s var(--oc-ease), background 0.25s;
+}
+#ordo-chat .oc-chip::after { content: "→"; color: var(--oc-coral-ink); transition: transform 0.3s var(--oc-ease); }
+#ordo-chat .oc-chip:hover { border-color: var(--oc-teal); background: #fff; }
+#ordo-chat .oc-chip:hover::after { transform: translateX(3px); }
+#ordo-chat .oc-chip:focus-visible { outline: 2px solid var(--oc-coral-ink); outline-offset: 1px; }
+
+/* ─── Composer ─────────────────────────────────────────── */
+#ordo-chat .oc-form {
+  display: flex; align-items: flex-end; gap: 8px;
+  padding: 12px; border-top: 1px solid var(--oc-line); background: var(--oc-paper);
+}
+#ordo-chat .oc-input {
+  flex: 1; min-height: 46px; max-height: 120px; resize: none; margin: 0;
+  padding: 12px 15px; border: 1px solid var(--oc-line); border-radius: 16px;
+  background: var(--oc-ivory); color: var(--oc-char);
+  font-family: inherit; font-size: 15px; line-height: 1.4;
+}
+#ordo-chat .oc-input::placeholder { color: #7a807d; }
+#ordo-chat .oc-input:focus { outline: none; border-color: var(--oc-teal2); box-shadow: 0 0 0 3px rgba(22, 78, 82, 0.12); }
+#ordo-chat .oc-send {
+  flex: none; width: 46px; height: 46px; display: grid; place-items: center;
+  border: 0; border-radius: 50%; background: var(--oc-teal); color: var(--oc-on-teal); cursor: pointer;
+  transition: background 0.25s, transform 0.3s var(--oc-ease);
+}
+#ordo-chat .oc-send:not(:disabled):hover { background: var(--oc-teal2); transform: translateX(2px); }
+#ordo-chat .oc-send:disabled { opacity: 0.35; cursor: default; }
+#ordo-chat .oc-send:focus-visible { outline: 2.5px solid var(--oc-coral-ink); outline-offset: 2px; }
+#ordo-chat .oc-send svg { width: 19px; height: 19px; }
+#ordo-chat .oc-foot { padding: 0 14px 10px; font-size: 11.5px; color: var(--oc-muted); text-align: center; background: var(--oc-paper); }
+
+#ordo-chat .oc-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (max-width: 560px) {
+  #ordo-chat .oc-launcher { right: 14px; bottom: 14px; min-height: 50px; padding: 6px 18px 6px 7px; font-size: 14px; }
+  #ordo-chat .oc-teaser { right: 14px; bottom: 76px; max-width: calc(100vw - 28px); }
+  #ordo-chat .oc-panel {
+    right: 0; bottom: 0; width: 100%; height: 100%; height: 100dvh;
+    border-radius: 0; border: 0;
+  }
+  #ordo-chat .oc-input, #ordo-chat .oc-brief-text { font-size: 16px; } /* avoid iOS zoom on focus */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #ordo-chat .oc-launcher, #ordo-chat .oc-panel, #ordo-chat .oc-card, #ordo-chat .oc-card-img img, #ordo-chat .oc-btn, #ordo-chat .oc-chip { transition: none; }
+  #ordo-chat .oc-teaser { animation: none; }
+  #ordo-chat.oc-teasing .oc-launcher-mark::after { animation: none; opacity: 0; }
+  #ordo-chat .oc-log { scroll-behavior: auto; }
+  #ordo-chat .oc-typing span { animation: none; opacity: 0.6; }
+}
+
+@media print { #ordo-chat { display: none; } }

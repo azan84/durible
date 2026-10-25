@@ -1,5 +1,18 @@
 # Changelog
 
+## [chat-1] — 2026-10-25 · "Ask Ordo" concierge assistant
+
+### Added
+
+- **Ask Ordo** chat on every generated page (`ordo-chat.js` / `ordo-chat.css`,
+  included by `scripts/build-site.mjs` via `CHAT`). Answers potential customers
+  from the site's own content with Claude Haiku 5.5 through the new public Worker
+  `workers/ordo-chat` (API key as a Worker secret, origin allow-list, per-IP and
+  site-wide rate limits, prompt caching).
+- Suggested products and ranges show as picture cards; the conversation becomes
+  an editable project brief that opens `/contact` pre-filled or WhatsApp.
+- Never quotes prices, quantities or lead times — those stay with the proposal.
+
 ## [ordo-v5] — 2026-10-10 · brand site rebuild (ordo-brand-website reference)
 
 Rebuilt the marketing site to follow https://ordo-brand-website.replit.app/

@@ -11,3 +11,7 @@ package*.json
 # local secrets and state for wrangler pages dev
 .dev.vars
 .wrangler/
+
+# ordo-chat Worker (the "Ask Ordo" assistant) — keep its manifest and lockfile.
+!/workers/ordo-chat/package.json
+!/workers/ordo-chat/package-lock.json
