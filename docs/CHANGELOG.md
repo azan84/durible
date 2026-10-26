@@ -1,5 +1,23 @@
 # Changelog
 
+## [motion-1] — 2026-10-26 · "Toolpath" motion layer
+
+### Added
+
+- `ordo-motion.css` / `ordo-motion.js` on every generated page (via `MOTION` in
+  `scripts/build-site.mjs`), layered on top of the existing print-in motion:
+  - Filament trail: the cursor extrudes a hot coral line that cools and fades
+  - Clicking prints a tiny four-layer part on the spot
+  - X-ray infill lens over product and range images (rectilinear infill
+    inside a coral wall, following the pointer)
+  - Section headings lay down three layer lines as they rise in
+  - A glowing hot end rides the scroll-progress bar
+  - Hero and collection-hero images tilt toward the cursor
+  - Footer print bed: a gantry prints a KL keepsake, a vase-mode diffuser
+    holder, an NFC tag and an "o" layer by layer, then clears the bed
+- Pointer effects only on mouse devices; reduced motion shows everything
+  settled (the bed is drawn finished) and nothing moves.
+
 ## [chat-1] — 2026-10-25 · "Ask Ordo" concierge assistant
 
 ### Added

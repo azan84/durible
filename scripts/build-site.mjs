@@ -7,7 +7,7 @@
 //   index.html, solutions.html, ranges.html, custom-projects.html, about.html,
 //   contact.html, collections/*.html, product/*.html
 //
-// Shared assets: ordo.css + ordo.js. The legacy order pages (bagtag.html,
+// Shared assets: ordo.css + ordo.js (+ ordo-motion.css/.js, the motion layer). The legacy order pages (bagtag.html,
 // keychain.html, bizcard.html, cablewinder.html) keep style.css/interactions.js
 // and are NOT touched by this script.
 
@@ -18,6 +18,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BUILD = 'ordo-v5';
 const CHAT = 'chat-1'; // bump with ordo-chat.js / ordo-chat.css (the "Ask Ordo" assistant, workers/ordo-chat)
+const MOTION = 'motion-1'; // bump with ordo-motion.js / ordo-motion.css (the "Toolpath" motion layer)
 const SITE = 'https://ordo.earth';
 const WHATSAPP = '60107924208';
 
@@ -275,8 +276,10 @@ function page({ path, title, description, active, body, image = '/img/ordo-og.jp
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/ordo.css?v=${BUILD}">
+<link rel="stylesheet" href="/ordo-motion.css?v=${MOTION}">
 <script>document.documentElement.classList.add('js')</script>
 <script src="/ordo.js?v=${BUILD}" defer></script>
+<script src="/ordo-motion.js?v=${MOTION}" defer></script>
 <script src="/ordo-chat.js?v=${CHAT}" defer></script>${jsonld ? `\n<script type="application/ld+json">${jsonld}</script>` : ''}
 </head>
 <body>
